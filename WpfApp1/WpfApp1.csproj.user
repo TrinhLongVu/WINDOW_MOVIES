@@ -7,7 +7,15 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="Views\Search.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
     <Page Update="Views\Homepage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Search.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

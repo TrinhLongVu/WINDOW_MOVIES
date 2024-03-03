@@ -1,0 +1,43 @@
+﻿<Page x:Class="WpfApp1.Views.Search"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfApp1.Views"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="1280"
+      Title="Search">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="10*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" FontSize="40px" TextAlignment="Center" Foreground="White"><Bold>MOVIE SEARCH RESULTS</Bold></TextBlock>
+        <StackPanel Grid.Row="1">
+            <Grid x:Name="element">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="60"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Image Source="https://api-website.cinestar.com.vn/media/wysiwyg/Posters/03-2024/sang-den-poster.jpg" Stretch="Uniform" Width="274.5" Grid.Row="0"/>
+                <TextBlock Margin="10" Grid.Row="1" FontSize="18px" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"><Bold>MAI(T18)</Bold></TextBlock>
+                <Button Grid.Row="2" Background="#f3ea28" Padding="10" Width="274.5">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="10"/>
+                        </Style>
+                    </Button.Resources>
+                    <TextBlock FontSize="16"><Bold>Book tickets</Bold></TextBlock>
+                </Button>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</Page>

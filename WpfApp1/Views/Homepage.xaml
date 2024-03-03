@@ -5,8 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="700" Width="1280">
     <Grid>
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                <GradientStop Color="#000000" Offset="0.0"/>
+                <GradientStop Color="#4D4855" Offset="1.0"/>
+            </LinearGradientBrush>
+        </Grid.Background>
 
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="10*"></RowDefinition>
+        </Grid.RowDefinitions>
+        
+        <TextBlock x:Name="header" Foreground="White">HEADER</TextBlock>
+        <Frame x:Name="Body" NavigationUIVisibility="Hidden" Source="Search.xaml" Margin="0,39,0,0" Grid.RowSpan="2"/>
     </Grid>
-</Window>
+</Window>   
