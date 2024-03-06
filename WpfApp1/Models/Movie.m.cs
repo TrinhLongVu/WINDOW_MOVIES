@@ -11,6 +11,7 @@ namespace WpfApp1.Models
         public string Id { get; set; }
         // ? can be assign null
         public string? IdGener { get; set; }
+        public string Name { get; set; }
         public string? Release { get; set; }
         public string? Rating { get; set; }
         public string? Poster { get; set; }

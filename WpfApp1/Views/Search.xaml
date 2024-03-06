@@ -14,30 +14,42 @@
             <RowDefinition Height="10*"></RowDefinition>
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" FontSize="40px" TextAlignment="Center" Foreground="White"><Bold>MOVIE SEARCH RESULTS</Bold></TextBlock>
-        <StackPanel Grid.Row="1">
-            <Grid x:Name="element">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="60"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <Image Source="https://api-website.cinestar.com.vn/media/wysiwyg/Posters/03-2024/sang-den-poster.jpg" Stretch="Uniform" Width="274.5" Grid.Row="0"/>
-                <TextBlock Margin="10" Grid.Row="1" FontSize="18px" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"><Bold>MAI(T18)</Bold></TextBlock>
-                <Button Grid.Row="2" Background="#f3ea28" Padding="10" Width="274.5">
-                    <Button.Resources>
-                        <Style TargetType="Border">
-                            <Setter Property="CornerRadius" Value="10"/>
-                        </Style>
-                    </Button.Resources>
-                    <TextBlock FontSize="16"><Bold>Book tickets</Bold></TextBlock>
-                </Button>
-            </Grid>
-        </StackPanel>
+
+        <ListView ScrollViewer.VerticalScrollBarVisibility="Hidden" BorderThickness="0" BorderBrush="Transparent" HorizontalAlignment="Center" Grid.Row="1" Background="Transparent" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ItemsSource="{Binding Movies}">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel/>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid x:Name="element" Margin="10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="60"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Image Source="{Binding Poster}" Stretch="Uniform" Width="274.5" Grid.Row="0"/>
+                        <TextBlock Margin="10" Grid.Row="1" FontSize="18px" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <Bold><Run Text="{Binding Name}"></Run></Bold>
+                        </TextBlock>
+                        <Button Grid.Row="2" Background="#f3ea28" Padding="10" Width="274.5">
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="10"/>
+                                </Style>
+                            </Button.Resources>
+                            <TextBlock FontSize="16"><Bold>Book tickets</Bold></TextBlock>
+                        </Button>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
 </Page>
