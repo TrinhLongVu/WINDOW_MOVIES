@@ -13,6 +13,9 @@
     <Compile Update="Views\MovieInfo.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\Register.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\Search.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -25,6 +28,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\MovieInfo.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Register.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Search.xaml">

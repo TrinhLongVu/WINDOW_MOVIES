@@ -16,18 +16,18 @@ using System.Windows.Shapes;
 namespace WpfApp1.Views
 {
     /// <summary>
-    /// Interaction logic for Login.xaml
+    /// Interaction logic for Register.xaml
     /// </summary>
-    public partial class Login : Page
+    public partial class Register : Page
     {
-        public Login()
+        public Register()
         {
             InitializeComponent();
         }
 
-        private void NavigateRegister(object sender, MouseButtonEventArgs e)
+        private void Navigate_Login(object sender, MouseButtonEventArgs e)
         {
-            NavigationService.Navigate(new Register());
+            NavigationService.Navigate(new Login());
         }
     }
 }
