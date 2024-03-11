@@ -11,7 +11,7 @@ namespace WpfApp1.Models
         public string Id { get; set; }
         public string? Name { get; set; }
         // image can change datatype
-        public string? Image { get; set; }
-        public string? Story { get; set; }
+        public string? Avatar { get; set; }
+        public string? Bio { get; set; }
     }
 }
