@@ -7,111 +7,113 @@
       mc:Ignorable="d"
       d:DesignHeight="600" d:DesignWidth="1280"
       Title="MovieInfo">
-    
 
-    <Grid Width="1220" Height="750">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.4*"/>
-            <ColumnDefinition Width="0.6*"/>
-        </Grid.ColumnDefinitions>
-        <Image Grid.Column="0" x:Name="moviePoster" Source="{Binding Poster}"/>
-        <Border Grid.Column="1" Padding="20">
-            <StackPanel>
-                <TextBlock Foreground="White" FontSize="45" FontWeight="Bold" TextWrapping="Wrap" TextAlignment="Justify" Margin="0,0,0,30" Text="{Binding Name}"/>
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                    <StackPanel Grid.Column="0" Orientation="Horizontal" Margin="15,8">
-                        <Image Width="32" Height="32" Source="https://pics.freeicons.io/uploads/icons/png/16886887221557923363-512.png"/>
-                        <Label Foreground="White" FontSize="18" Margin="8,0">Horror</Label>
+    <ScrollViewer>
+        <Grid Width="1220" Height="750">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.4*"/>
+                <ColumnDefinition Width="0.6*"/>
+            </Grid.ColumnDefinitions>
+            <Image Grid.Column="0" x:Name="moviePoster" Source="{Binding Poster}"/>
+            <Border Grid.Column="1" Padding="20">
+                <StackPanel>
+                    <TextBlock Foreground="White" FontSize="45" FontWeight="Bold" TextWrapping="Wrap" TextAlignment="Justify" Margin="0,0,0,30" Text="{Binding Name}"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0" Orientation="Horizontal" Margin="15,8">
+                            <Image Width="32" Height="32" Source="https://pics.freeicons.io/uploads/icons/png/16886887221557923363-512.png"/>
+                            <Label Foreground="White" FontSize="18" Margin="8,0">Horror</Label>
+                        </StackPanel>
+                        <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="15,8">
+                            <Image Width="32" Height="32" Source="https://pics.freeicons.io/uploads/icons/png/18394080561557901892-512.png"/>
+                            <Label Foreground="White" FontSize="18" Margin="8,0" Content="{Binding Release}"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="2" Orientation="Horizontal" Margin="15,8">
+                            <Image Width="32" Height="32" Source="https://pics.freeicons.io/uploads/icons/png/34707211557923364-512.png"/>
+                            <Label Foreground="White" FontSize="18" Margin="8,0" Content="{Binding Runtime}"/>
+                        </StackPanel>
+                    </Grid>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0" Orientation="Horizontal" Margin="15,8">
+                            <Image Width="32" Height="32" Source="https://pics.freeicons.io/uploads/icons/png/3907647751579517851-512.png"/>
+                            <Label Foreground="White" FontSize="18" Margin="8,0" Content="{Binding Rating}"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="15,8">
+                            <Image Width="32" Height="32" Source="https://pics.freeicons.io/uploads/icons/png/11662024061681730280-512.png"/>
+                            <Label Foreground="White" FontSize="18" Margin="8,0" Content="{Binding Certification}"/>
+                        </StackPanel>
+                    </Grid>
+
+                    <StackPanel Orientation="Horizontal" Margin="0,40,0,10">
+                        <Image Width="35" Height="35" Source="https://pics.freeicons.io/uploads/icons/png/5994997231555590637-512.png"/>
+                        <Label Foreground="White" FontSize="25" FontWeight="Bold" Margin="15,0">PLOT</Label>
                     </StackPanel>
-                    <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="15,8">
-                        <Image Width="32" Height="32" Source="https://pics.freeicons.io/uploads/icons/png/18394080561557901892-512.png"/>
-                        <Label Foreground="White" FontSize="18" Margin="8,0" Content="{Binding Release}"/>
-                    </StackPanel>
-                    <StackPanel Grid.Column="2" Orientation="Horizontal" Margin="15,8">
-                        <Image Width="32" Height="32" Source="https://pics.freeicons.io/uploads/icons/png/34707211557923364-512.png"/>
-                        <Label Foreground="White" FontSize="18" Margin="8,0" Content="{Binding Runtime}"/>
-                    </StackPanel>
-                </Grid>
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                    <StackPanel Grid.Column="0" Orientation="Horizontal" Margin="15,8">
-                        <Image Width="32" Height="32" Source="https://pics.freeicons.io/uploads/icons/png/3907647751579517851-512.png"/>
-                        <Label Foreground="White" FontSize="18" Margin="8,0" Content="{Binding Rating}"/>
-                    </StackPanel>
-                    <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="15,8">
-                        <Image Width="32" Height="32" Source="https://pics.freeicons.io/uploads/icons/png/11662024061681730280-512.png"/>
-                        <Label Foreground="White" FontSize="18" Margin="8,0" Content="{Binding Certification}"/>
-                    </StackPanel>
-                </Grid>
-                
-                <StackPanel Orientation="Horizontal" Margin="0,40,0,10">
-                    <Image Width="35" Height="35" Source="https://pics.freeicons.io/uploads/icons/png/5994997231555590637-512.png"/>
-                    <Label Foreground="White" FontSize="25" FontWeight="Bold" Margin="15,0">PLOT</Label>
+                    <ScrollViewer MaxHeight="100" VerticalScrollBarVisibility="Hidden">
+                        <TextBlock Foreground="White" TextWrapping="Wrap" FontSize="16" TextAlignment="Justify" Text="{Binding Plot}"/>
+                    </ScrollViewer>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0">
+                            <StackPanel Orientation="Horizontal" Margin="0,40,0,10">
+                                <Image Width="35" Height="35" Source="https://pics.freeicons.io/uploads/icons/png/5962017941691818481-512.png"/>
+                                <Label Foreground="White" FontSize="25" FontWeight="Bold">Director</Label>
+                            </StackPanel>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0.4*"/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <Ellipse Grid.Column="0" Width="80" Height="100">
+                                    <Ellipse.Fill>
+                                        <ImageBrush ImageSource="https://asianwiki.com/images/5/5e/Jang-Jae-Hyun-11-08-2015.jpg" Stretch="UniformToFill" AlignmentX="Center" AlignmentY="Center"/>
+                                    </Ellipse.Fill>
+                                </Ellipse>
+                                <StackPanel Grid.Column="1">
+                                    <Label Foreground="White" FontWeight="Bold" FontSize="16">Jae Hyun-Jang</Label>
+                                    <ScrollViewer MaxHeight="65" VerticalScrollBarVisibility="Hidden" Margin="8,0">
+                                        <TextBlock Foreground="White" TextWrapping="Wrap" FontSize="12" TextAlignment="Justify" Text="Jae-hyun Jang is known for The Priests (2015), Svaha: The Sixth Finger (2019) and 12th Assistant Deacon (2015)."/>
+                                    </ScrollViewer>
+                                </StackPanel>
+                            </Grid>
+                        </StackPanel>
+                        <StackPanel Grid.Column="1">
+                            <StackPanel Orientation="Horizontal" Margin="0,40,0,10">
+                                <Image Width="35" Height="35" Source="https://pics.freeicons.io/uploads/icons/png/4835461901683829998-512.png"/>
+                                <Label Foreground="White" FontSize="25" FontWeight="Bold">Casts</Label>
+                            </StackPanel>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0.4*"/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <Ellipse Grid.Column="0" Width="80" Height="100">
+                                    <Ellipse.Fill>
+                                        <ImageBrush ImageSource="https://m.media-amazon.com/images/M/MV5BZjY2MDM1ZGMtODY4OS00ZWY1LThmYzktMDdhNDI0ZjdhNzAzXkEyXkFqcGdeQXVyNTI5NjIyMw@@._V1_FMjpg_UX556_.jpg" Stretch="UniformToFill" AlignmentX="Center" AlignmentY="Center"/>
+                                    </Ellipse.Fill>
+                                </Ellipse>
+                                <StackPanel Grid.Column="1">
+                                    <Label Foreground="White" FontWeight="Bold" FontSize="16">Lee Do-hyun</Label>
+                                    <ScrollViewer MaxHeight="65" VerticalScrollBarVisibility="Hidden" Margin="8,0">
+                                        <TextBlock Foreground="White" TextWrapping="Wrap" FontSize="12" TextAlignment="Justify" Text="Lee Do-hyun was born on 11 April 1995 in Goyang, South Korea. He is an actor, known for Youth of May (2021), Sweet Home (2020) and 18 Again (2020)."/>
+                                    </ScrollViewer>
+                                </StackPanel>
+                            </Grid>
+                        </StackPanel>
+                    </Grid>
                 </StackPanel>
-                <ScrollViewer MaxHeight="100" VerticalScrollBarVisibility="Hidden">
-                    <TextBlock Foreground="White" TextWrapping="Wrap" FontSize="16" TextAlignment="Justify" Text="{Binding Plot}"/>
-                </ScrollViewer>
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                    <StackPanel Grid.Column="0">
-                        <StackPanel Orientation="Horizontal" Margin="0,40,0,10">
-                            <Image Width="35" Height="35" Source="https://pics.freeicons.io/uploads/icons/png/5962017941691818481-512.png"/>
-                            <Label Foreground="White" FontSize="25" FontWeight="Bold">Director</Label>
-                        </StackPanel>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="0.4*"/>
-                                <ColumnDefinition/>
-                            </Grid.ColumnDefinitions>
-                            <Ellipse Grid.Column="0" Width="80" Height="100">
-                                <Ellipse.Fill>
-                                    <ImageBrush ImageSource="https://asianwiki.com/images/5/5e/Jang-Jae-Hyun-11-08-2015.jpg" Stretch="UniformToFill" AlignmentX="Center" AlignmentY="Center"/>
-                                </Ellipse.Fill>
-                            </Ellipse>
-                            <StackPanel Grid.Column="1">
-                                <Label Foreground="White" FontWeight="Bold" FontSize="16">Jae Hyun-Jang</Label>
-                                <ScrollViewer MaxHeight="65" VerticalScrollBarVisibility="Hidden" Margin="8,0">
-                                    <TextBlock Foreground="White" TextWrapping="Wrap" FontSize="12" TextAlignment="Justify" Text="Jae-hyun Jang is known for The Priests (2015), Svaha: The Sixth Finger (2019) and 12th Assistant Deacon (2015)."/>
-                                </ScrollViewer>
-                            </StackPanel>
-                        </Grid>
-                    </StackPanel>
-                    <StackPanel Grid.Column="1">
-                        <StackPanel Orientation="Horizontal" Margin="0,40,0,10">
-                            <Image Width="35" Height="35" Source="https://pics.freeicons.io/uploads/icons/png/4835461901683829998-512.png"/>
-                            <Label Foreground="White" FontSize="25" FontWeight="Bold">Casts</Label>
-                        </StackPanel>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="0.4*"/>
-                                <ColumnDefinition/>
-                            </Grid.ColumnDefinitions>
-                            <Ellipse Grid.Column="0" Width="80" Height="100">
-                                <Ellipse.Fill>
-                                    <ImageBrush ImageSource="https://m.media-amazon.com/images/M/MV5BZjY2MDM1ZGMtODY4OS00ZWY1LThmYzktMDdhNDI0ZjdhNzAzXkEyXkFqcGdeQXVyNTI5NjIyMw@@._V1_FMjpg_UX556_.jpg" Stretch="UniformToFill" AlignmentX="Center" AlignmentY="Center"/>
-                                </Ellipse.Fill>
-                            </Ellipse>
-                            <StackPanel Grid.Column="1">
-                                <Label Foreground="White" FontWeight="Bold" FontSize="16">Lee Do-hyun</Label>
-                                <ScrollViewer MaxHeight="65" VerticalScrollBarVisibility="Hidden" Margin="8,0">
-                                    <TextBlock Foreground="White" TextWrapping="Wrap" FontSize="12" TextAlignment="Justify" Text="Lee Do-hyun was born on 11 April 1995 in Goyang, South Korea. He is an actor, known for Youth of May (2021), Sweet Home (2020) and 18 Again (2020)."/>
-                                </ScrollViewer>
-                            </StackPanel>
-                        </Grid>
-                    </StackPanel>
-                </Grid>
-            </StackPanel>
-        </Border>
-    </Grid>
+            </Border>
+        </Grid>
+    </ScrollViewer>
+    
 </Page>
