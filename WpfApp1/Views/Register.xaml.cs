@@ -15,9 +15,6 @@ using System.Windows.Shapes;
 
 namespace WpfApp1.Views
 {
-    /// <summary>
-    /// Interaction logic for Register.xaml
-    /// </summary>
     public partial class Register : Page
     {
         public Register()
