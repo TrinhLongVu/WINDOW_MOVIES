@@ -8,16 +8,16 @@
       d:DesignHeight="600" d:DesignWidth="1280"
       Title="MovieInfo">
 
-    <ScrollViewer>
+    <ScrollViewer VerticalScrollBarVisibility="Hidden">
         <Grid Width="1220" Height="750">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0.4*"/>
                 <ColumnDefinition Width="0.6*"/>
             </Grid.ColumnDefinitions>
-            <Image Grid.Column="0" x:Name="moviePoster" Source="{Binding Poster}"/>
+            <Image Grid.Column="0" x:Name="moviePoster" Source="{Binding SelectedMovie.Poster}"/>
             <Border Grid.Column="1" Padding="20">
                 <StackPanel>
-                    <TextBlock Foreground="White" FontSize="45" FontWeight="Bold" TextWrapping="Wrap" TextAlignment="Justify" Margin="0,0,0,30" Text="{Binding Name}"/>
+                    <TextBlock Foreground="White" FontSize="45" FontWeight="Bold" TextWrapping="Wrap" TextAlignment="Justify" Margin="0,0,0,30" Text="{Binding SelectedMovie.Title}"/>
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
@@ -25,16 +25,16 @@
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
                         <StackPanel Grid.Column="0" Orientation="Horizontal" Margin="15,8">
-                            <Image Width="32" Height="32" Source="https://pics.freeicons.io/uploads/icons/png/16886887221557923363-512.png"/>
+                            <Image Width="32" Height="32" Source="/Images/icon-tag.png"/>
                             <Label Foreground="White" FontSize="18" Margin="8,0">Horror</Label>
                         </StackPanel>
                         <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="15,8">
-                            <Image Width="32" Height="32" Source="https://pics.freeicons.io/uploads/icons/png/18394080561557901892-512.png"/>
-                            <Label Foreground="White" FontSize="18" Margin="8,0" Content="{Binding Release}"/>
+                            <Image Width="32" Height="32" Source="/Images/icon-calendar.png"/>
+                            <Label Foreground="White" FontSize="18" Margin="8,0" Content="{Binding SelectedMovie.Release}"/>
                         </StackPanel>
                         <StackPanel Grid.Column="2" Orientation="Horizontal" Margin="15,8">
-                            <Image Width="32" Height="32" Source="https://pics.freeicons.io/uploads/icons/png/34707211557923364-512.png"/>
-                            <Label Foreground="White" FontSize="18" Margin="8,0" Content="{Binding Runtime}"/>
+                            <Image Width="32" Height="32" Source="/Images/icon-clock.png"/>
+                            <Label Foreground="White" FontSize="18" Margin="8,0" Content="{Binding SelectedMovie.Runtime}"/>
                         </StackPanel>
                     </Grid>
                     <Grid>
@@ -43,21 +43,21 @@
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
                         <StackPanel Grid.Column="0" Orientation="Horizontal" Margin="15,8">
-                            <Image Width="32" Height="32" Source="https://pics.freeicons.io/uploads/icons/png/3907647751579517851-512.png"/>
-                            <Label Foreground="White" FontSize="18" Margin="8,0" Content="{Binding Rating}"/>
+                            <Image Width="32" Height="32" Source="/Images/icon-imdb.png"/>
+                            <Label Foreground="White" FontSize="18" Margin="8,0" Content="{Binding SelectedMovie.Rating}"/>
                         </StackPanel>
                         <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="15,8">
-                            <Image Width="32" Height="32" Source="https://pics.freeicons.io/uploads/icons/png/11662024061681730280-512.png"/>
-                            <Label Foreground="White" FontSize="18" Margin="8,0" Content="{Binding Certification}"/>
+                            <Image Width="32" Height="32" Source="/Images/icon-age.png"/>
+                            <Label Foreground="White" FontSize="18" Margin="8,0" Content="{Binding SelectedMovie.Certification}"/>
                         </StackPanel>
                     </Grid>
 
                     <StackPanel Orientation="Horizontal" Margin="0,40,0,10">
-                        <Image Width="35" Height="35" Source="https://pics.freeicons.io/uploads/icons/png/5994997231555590637-512.png"/>
+                        <Image Width="35" Height="35" Source="/Images/icon-info.png"/>
                         <Label Foreground="White" FontSize="25" FontWeight="Bold" Margin="15,0">PLOT</Label>
                     </StackPanel>
                     <ScrollViewer MaxHeight="100" VerticalScrollBarVisibility="Hidden">
-                        <TextBlock Foreground="White" TextWrapping="Wrap" FontSize="16" TextAlignment="Justify" Text="{Binding Plot}"/>
+                        <TextBlock Foreground="White" TextWrapping="Wrap" FontSize="16" TextAlignment="Justify" Text="{Binding SelectedMovie.Plot}"/>
                     </ScrollViewer>
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -66,7 +66,7 @@
                         </Grid.ColumnDefinitions>
                         <StackPanel Grid.Column="0">
                             <StackPanel Orientation="Horizontal" Margin="0,40,0,10">
-                                <Image Width="35" Height="35" Source="https://pics.freeicons.io/uploads/icons/png/5962017941691818481-512.png"/>
+                                <Image Width="35" Height="35" Source="/Images/icon-director.png"/>
                                 <Label Foreground="White" FontSize="25" FontWeight="Bold">Director</Label>
                             </StackPanel>
                             <Grid>
@@ -89,7 +89,7 @@
                         </StackPanel>
                         <StackPanel Grid.Column="1">
                             <StackPanel Orientation="Horizontal" Margin="0,40,0,10">
-                                <Image Width="35" Height="35" Source="https://pics.freeicons.io/uploads/icons/png/4835461901683829998-512.png"/>
+                                <Image Width="35" Height="35" Source="/Images/icon-casts.png"/>
                                 <Label Foreground="White" FontSize="25" FontWeight="Bold">Casts</Label>
                             </StackPanel>
                             <Grid>
@@ -115,5 +115,4 @@
             </Border>
         </Grid>
     </ScrollViewer>
-    
 </Page>

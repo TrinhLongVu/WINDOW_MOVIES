@@ -41,14 +41,14 @@ namespace WpfApp1.ViewModel
             CurrentPage = 0;
             _quantityPage = _totalMovies / _pageSize;
             // test when dont have database
-            a.Add(new Movie { Name = "0", Poster = "https://api-website.cinestar.com.vn/media/wysiwyg/Posters/03-2024/sang-den-poster.jpg" });
-            a.Add(new Movie { Name = "Kungfu panda1", Poster = "https://api-website.cinestar.com.vn/media/wysiwyg/Posters/03-2024/sang-den-poster.jpg" });
-            a.Add(new Movie { Name = "Kungfu panda2", Poster = "https://api-website.cinestar.com.vn/media/wysiwyg/Posters/03-2024/sang-den-poster.jpg" });
-            a.Add(new Movie { Name = "Kungfu panda3", Poster = "https://api-website.cinestar.com.vn/media/wysiwyg/Posters/03-2024/sang-den-poster.jpg" });
-            a.Add(new Movie { Name = "Kungfu panda4", Poster = "https://api-website.cinestar.com.vn/media/wysiwyg/Posters/03-2024/sang-den-poster.jpg" });
-            a.Add(new Movie { Name = "Kungfu panda5", Poster = "https://api-website.cinestar.com.vn/media/wysiwyg/Posters/03-2024/sang-den-poster.jpg" });
-            a.Add(new Movie { Name = "Kungfu panda6", Poster = "https://api-website.cinestar.com.vn/media/wysiwyg/Posters/03-2024/sang-den-poster.jpg" });
-            a.Add(new Movie { Name = "Kungfu panda7", Poster = "https://api-website.cinestar.com.vn/media/wysiwyg/Posters/03-2024/sang-den-poster.jpg" });
+            a.Add(new Movie { Title = "0", Poster = "https://api-website.cinestar.com.vn/media/wysiwyg/Posters/03-2024/sang-den-poster.jpg" });
+            a.Add(new Movie { Title = "Kungfu panda1", Poster = "https://api-website.cinestar.com.vn/media/wysiwyg/Posters/03-2024/sang-den-poster.jpg" });
+            a.Add(new Movie { Title = "Kungfu panda2", Poster = "https://api-website.cinestar.com.vn/media/wysiwyg/Posters/03-2024/sang-den-poster.jpg" });
+            a.Add(new Movie { Title = "Kungfu panda3", Poster = "https://api-website.cinestar.com.vn/media/wysiwyg/Posters/03-2024/sang-den-poster.jpg" });
+            a.Add(new Movie { Title = "Kungfu panda4", Poster = "https://api-website.cinestar.com.vn/media/wysiwyg/Posters/03-2024/sang-den-poster.jpg" });
+            a.Add(new Movie { Title = "Kungfu panda5", Poster = "https://api-website.cinestar.com.vn/media/wysiwyg/Posters/03-2024/sang-den-poster.jpg" });
+            a.Add(new Movie { Title = "Kungfu panda6", Poster = "https://api-website.cinestar.com.vn/media/wysiwyg/Posters/03-2024/sang-den-poster.jpg" });
+            a.Add(new Movie { Title = "Kungfu panda7", Poster = "https://api-website.cinestar.com.vn/media/wysiwyg/Posters/03-2024/sang-den-poster.jpg" });
 
             UpdateMovie(1);
 

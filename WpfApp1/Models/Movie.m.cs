@@ -9,9 +9,9 @@ namespace WpfApp1.Models
     class Movie
     {
         public string Id { get; set; }
-        // ? can be assign null
         public string? IdGener { get; set; }
-        public string Name { get; set; }
+        public string Title { get; set; }
+        public string? Price { get; set; }
         public string? Release { get; set; }
         public string? Runtime { get; set; }
         public string? Plot { get; set; }
