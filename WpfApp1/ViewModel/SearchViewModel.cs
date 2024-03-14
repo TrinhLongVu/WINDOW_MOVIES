@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using WpfApp1.Database;
 using WpfApp1.Models;
 
 namespace WpfApp1.ViewModel
@@ -16,6 +17,18 @@ namespace WpfApp1.ViewModel
     {
         public event PropertyChangedEventHandler PropertyChanged;
         public ObservableCollection<Movie> Movies { get; set; } = new ObservableCollection<Movie>();
+        public ObservableCollection<Filter> Filters { get; set; }
+        private Filter _SelectedFilter;
+        public Filter SelectedFilter
+        {
+            get => _SelectedFilter;
+            set
+            {
+                _SelectedFilter = value;
+                FilterItems();
+            }
+        }
+        
         public int CurrentPage { get; set; }
         private int _pageSize = 2;
         private int _totalMovies = 8;
@@ -37,23 +50,34 @@ namespace WpfApp1.ViewModel
             a.Add(new Movie { Name = "Kungfu panda6", Poster = "https://api-website.cinestar.com.vn/media/wysiwyg/Posters/03-2024/sang-den-poster.jpg" });
             a.Add(new Movie { Name = "Kungfu panda7", Poster = "https://api-website.cinestar.com.vn/media/wysiwyg/Posters/03-2024/sang-den-poster.jpg" });
 
-            updateMovie(1);
+            UpdateMovie(1);
+
+            Filters = new ObservableCollection<Filter>
+            {
+                new Filter { Name = "Hot" },
+                new Filter { Name = "Increase" }
+            };
+        }
+
+        private void FilterItems()
+        {
+            // handle logic from database(_SelectedFilter.Name)
         }
         public ICommand PreviousPageCommand => new RelayCommand(Previous);
-        public ICommand NextPageCommand => new RelayCommand(next);
-        private void next()
+        public ICommand NextPageCommand => new RelayCommand(Next);
+        private void Next()
         {
             CurrentPage++;
             CurrentPage = CurrentPage % _quantityPage;
-            updateMovie(CurrentPage);
+            UpdateMovie(CurrentPage);
         }
         private void Previous()
         {
             CurrentPage--;
             CurrentPage = (CurrentPage + _quantityPage) % _quantityPage;
-            updateMovie(CurrentPage);
+            UpdateMovie(CurrentPage);
         }
-        private void updateMovie(int curPage)
+        private void UpdateMovie(int curPage)
         {
             int startIndex = curPage > 0 ? curPage * _pageSize : 0;
             int endIndex = Math.Min(startIndex + _pageSize, _totalMovies);
