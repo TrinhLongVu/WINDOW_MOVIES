@@ -17,7 +17,7 @@
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" FontSize="40px" TextAlignment="Center"   Foreground="White"><Bold>MOVIE SEARCH RESULTS</Bold></TextBlock>
         <ComboBox Grid.Row="1" VerticalAlignment="Center" Width="200" HorizontalAlignment="Right" Margin="0 0 50 0" FontSize="16" ItemsSource="{Binding Filters}" DisplayMemberPath="Name"  SelectedItem="{Binding SelectedFilter}"></ComboBox>
-        <ListView ScrollViewer.VerticalScrollBarVisibility="Hidden" BorderThickness="0" BorderBrush="Transparent" HorizontalAlignment="Center" Grid.Row="2" Background="Transparent" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ItemsSource="{Binding Movies}">
+        <ListView ScrollViewer.VerticalScrollBarVisibility="Hidden" BorderThickness="0" BorderBrush="Transparent" HorizontalAlignment="Center" Grid.Row="2" Background="Transparent" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ItemsSource="{Binding MovieShow}">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel/>
@@ -37,7 +37,7 @@
                             <ColumnDefinition></ColumnDefinition>
                             <ColumnDefinition></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <Image Source="{Binding Poster}" Stretch="Uniform" Width="274.5" Grid.Row="0"/>
+                        <Image Source="{Binding Poster}" Stretch="Uniform" Width="274.5" Height="600" Grid.Row="0"/>
                         <TextBlock Margin="10" Grid.Row="1" FontSize="18px" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center">
                             <Bold>
                                 <Run Text="{Binding Name}"></Run>

@@ -16,8 +16,14 @@ namespace WpfApp1.ViewModel
     class SearchViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
-        public ObservableCollection<Movie> Movies { get; set; } = new ObservableCollection<Movie>();
+        public ObservableCollection<Movie> MovieShow { get; set; } = new ObservableCollection<Movie>();
         public ObservableCollection<Filter> Filters { get; set; }
+        public ArrayList movies = new ArrayList();
+        public int CurrentPage { get; set; }
+        private int _pageSize = 8;
+        private int _totalMovies = 0;
+        private int _quantityPage = 0;
+
         private Filter _SelectedFilter;
         public Filter SelectedFilter
         {
@@ -29,29 +35,16 @@ namespace WpfApp1.ViewModel
             }
         }
         
-        public int CurrentPage { get; set; }
-        private int _pageSize = 2;
-        private int _totalMovies = 8;
-        private int _quantityPage = 0;
-
-        // get from database
-        public ArrayList a = new ArrayList();
         public SearchViewModel()
         {
-            CurrentPage = 0;
+            MovieDB movieDB = new MovieDB();
+            movies = movieDB.GetAllMovie();
+
+            CurrentPage = 1;
+            _totalMovies = movies.Count;
             _quantityPage = _totalMovies / _pageSize;
-            // test when dont have database
-            a.Add(new Movie { Title = "0", Poster = "https://api-website.cinestar.com.vn/media/wysiwyg/Posters/03-2024/sang-den-poster.jpg" });
-            a.Add(new Movie { Title = "Kungfu panda1", Poster = "https://api-website.cinestar.com.vn/media/wysiwyg/Posters/03-2024/sang-den-poster.jpg" });
-            a.Add(new Movie { Title = "Kungfu panda2", Poster = "https://api-website.cinestar.com.vn/media/wysiwyg/Posters/03-2024/sang-den-poster.jpg" });
-            a.Add(new Movie { Title = "Kungfu panda3", Poster = "https://api-website.cinestar.com.vn/media/wysiwyg/Posters/03-2024/sang-den-poster.jpg" });
-            a.Add(new Movie { Title = "Kungfu panda4", Poster = "https://api-website.cinestar.com.vn/media/wysiwyg/Posters/03-2024/sang-den-poster.jpg" });
-            a.Add(new Movie { Title = "Kungfu panda5", Poster = "https://api-website.cinestar.com.vn/media/wysiwyg/Posters/03-2024/sang-den-poster.jpg" });
-            a.Add(new Movie { Title = "Kungfu panda6", Poster = "https://api-website.cinestar.com.vn/media/wysiwyg/Posters/03-2024/sang-den-poster.jpg" });
-            a.Add(new Movie { Title = "Kungfu panda7", Poster = "https://api-website.cinestar.com.vn/media/wysiwyg/Posters/03-2024/sang-den-poster.jpg" });
-
+           
             UpdateMovie(1);
-
             Filters = new ObservableCollection<Filter>
             {
                 new Filter { Name = "Hot" },
@@ -81,8 +74,8 @@ namespace WpfApp1.ViewModel
         {
             int startIndex = curPage > 0 ? curPage * _pageSize : 0;
             int endIndex = Math.Min(startIndex + _pageSize, _totalMovies);
-            Movies.Clear();
-            for (int i = startIndex; i < endIndex; i++) Movies.Add((Movie)a[i]);
+            MovieShow.Clear();
+            for (int i = startIndex; i < endIndex; i++) MovieShow.Add((Movie)movies[i]);
         }
     }
 }
