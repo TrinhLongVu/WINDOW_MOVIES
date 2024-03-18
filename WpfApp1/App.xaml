@@ -27,6 +27,11 @@
                     <Setter Property="Background" Value="White"/>
                     <Setter Property="Foreground" Value="#5444aa"/>
                 </Trigger>
+                <Trigger Property="IsFocused" Value="True">
+                    <Setter Property="Background" Value="White"/>
+                    <Setter Property="Foreground" Value="#5444aa"/>
+                </Trigger>
+                
             </Style.Triggers>
         </Style>
 
