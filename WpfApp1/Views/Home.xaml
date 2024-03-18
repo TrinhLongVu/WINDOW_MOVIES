@@ -7,50 +7,74 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Home">
-    <ScrollViewer HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden">
-        <Grid>
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+        <Grid HorizontalAlignment="Stretch">
             <Grid.RowDefinitions>
                 <RowDefinition Height="28*" ></RowDefinition>
-                <RowDefinition Height="197*"></RowDefinition>
+                <RowDefinition Height="200*"></RowDefinition>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Row="0" FontSize="40px" TextAlignment="Center" Foreground="White"><Bold>PHIM ĐANG CHIẾU</Bold></TextBlock>
-            <Grid Grid.Row="1" Grid.Column="0" Width="250" Height="350" Margin="200,0,0,0" HorizontalAlignment="Left">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="90*"></RowDefinition>
-                    <RowDefinition Height="15*"></RowDefinition>
-                    <RowDefinition Height="10*"></RowDefinition>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="1*"></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <Image Source="https://m.media-amazon.com/images/M/MV5BMzczMmQ0NTItM2JkZi00MTRhLTg5OGMtZWEyZTE2ZDgwM2FjXkEyXkFqcGdeQXVyMTU1MDczNjU1._V1_FMjpg_UY2048_.jpg"
-                       Grid.Row="0" Grid.Column="0" Stretch="Uniform"></Image>
-                <TextBlock Foreground="White" FontWeight="Bold" FontSize="20"
-                           HorizontalAlignment="Center" Text="EXHUMA"
-                           Grid.Row="1" Grid.Column="1" VerticalAlignment="Top"
-                           Padding="0,10,0,0"/>
-                <Grid Grid.Row="2" Grid.Column="1" Width="Auto">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1*"></ColumnDefinition>
-                        <ColumnDefinition Width="1*"></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-                    <TextBlock FontWeight="Bold" TextDecorations="Underline"
-                        HorizontalAlignment="Center" Margin="10,0,0,0"
-                        Grid.Column="0" VerticalAlignment="Center" Foreground="White" Text="Xem Trailer"></TextBlock>
-                    <Button Cursor="Hand" Margin="0,0,20,0" Grid.Column="1" Background="Yellow" FontWeight="Bold"
-                        Foreground="Black">
-                        <Button.Resources>
-                            <Style TargetType="Border">
-                                <Setter Property="CornerRadius" Value="5"/>
-                            </Style>
-                        </Button.Resources>
-                            Book
-                    </Button>
-                </Grid>
-            </Grid>
+            <StackPanel
+                Background="Transparent"
+                MaxWidth="1000px" 
+                Grid.Row="1" Grid.Column="0">
+                <ItemsControl
+                    BorderThickness="0"
+                    HorizontalAlignment="Left"
+                    ItemsSource="{Binding TestCarousel.MovieCollection}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Grid.Row="1" Grid.Column="0" Width="250" Height="350" Margin="0,0,0,0"
+        HorizontalAlignment="Left">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="90*"></RowDefinition>
+                                    <RowDefinition Height="15*"></RowDefinition>
+                                    <RowDefinition Height="10*"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Image Source="{Binding Poster}"
+                                Grid.Row="0" Grid.Column="0" Stretch="Uniform"></Image>
+                                <TextBlock Foreground="White" FontWeight="Bold" FontSize="20"
+                                    HorizontalAlignment="Center" Text="{Binding Title}"
+                                    Grid.Row="1" Grid.Column="1" VerticalAlignment="Top"
+                                    Padding="0,10,0,0"/>
+                                <Grid Grid.Row="2" Grid.Column="1" Width="Auto">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock FontWeight="Bold" TextDecorations="Underline"
+HorizontalAlignment="Center" Margin="10,0,0,0"
+Grid.Column="0" VerticalAlignment="Center" Foreground="White" Text="Xem Trailer"></TextBlock>
+                                    <Button Cursor="Hand" Margin="0,0,20,0" Grid.Column="1" Background="Yellow" FontWeight="Bold"
+Foreground="Black">
+                                        <Button.Resources>
+                                            <Style TargetType="Border">
+                                                <Setter Property="CornerRadius" Value="5"/>
+                                            </Style>
+                                        </Button.Resources>
+                                        Book
+                                    </Button>
+                                </Grid>
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Button Content="Previous" Command="{Binding TestCarousel.PrevCommand}"/>
+                    <Button Content="Next" Command="{Binding TestCarousel.NextCommand}"/>
+                </StackPanel>
+            </StackPanel>
         </Grid>
     </ScrollViewer>
 </Page>

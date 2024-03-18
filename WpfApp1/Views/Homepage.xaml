@@ -18,8 +18,8 @@
             <RowDefinition Height="1*"></RowDefinition>
             <RowDefinition Height="10*"></RowDefinition>
         </Grid.RowDefinitions>
-        
+
         <TextBlock x:Name="header" Foreground="White">HEADER</TextBlock>
-        <Frame x:Name="Body" NavigationUIVisibility="Hidden" Source="MovieInfo.xaml" Margin="0,39,0,0" Grid.RowSpan="2"/>
+        <Frame x:Name="Body" NavigationUIVisibility="Hidden" Source="Home.xaml" Margin="0,39,0,0" Grid.RowSpan="2"/>
     </Grid>
 </Window>   

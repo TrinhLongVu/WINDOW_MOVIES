@@ -21,7 +21,7 @@ namespace WpfApp1.Views {
     public partial class Home : Page {
         public Home() {
             InitializeComponent();
-            DataContext = new MovieInfoViewModel();
+            DataContext = new HomePageModel();
         }
     }
 }
