@@ -5,10 +5,10 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:WpfApp1.Views"
       mc:Ignorable="d" 
-      d:DesignHeight="600" d:DesignWidth="1280"
+      d:DesignHeight="700" d:DesignWidth="1280"
       Title="Register">
 
-    <Grid Width="1280" Height="600">
+    <Grid Width="1280" Height="700">
         <Image Source="/Images/login_bg.jpg"/>
         <Grid>
             <Grid.ColumnDefinitions>
