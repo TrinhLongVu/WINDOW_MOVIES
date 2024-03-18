@@ -68,6 +68,7 @@ create table MovieSchedule(
 
 create table Account(
 	Id varchar(100),
+	Role varchar(100),
 	Username varchar(100),
 	Password varchar(100)
 	primary key (Id)
@@ -91,6 +92,11 @@ alter table Movie
 add constraint FK_GENRE foreign key (IdGener) references Genre(Id)
 
 go
+
+insert into Account(Id, Role, Username, Password)
+values
+('1', 'user', 'un1', '123'),
+('2', 'admin', 'ad1', '123')
 
 insert into Genre(Id, Name)
 values

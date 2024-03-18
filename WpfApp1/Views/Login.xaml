@@ -26,10 +26,10 @@
                 <StackPanel>
                     <TextBlock TextAlignment="Center" FontSize="30" FontWeight="Bold">LOGIN</TextBlock>
                     <Label FontWeight="DemiBold" FontSize="15">Username</Label>
-                    <TextBox Height="40" Padding="8" FontSize="15"></TextBox>
+                    <TextBox Text="{Binding Username, Mode=TwoWay}" Height="40" Padding="8" FontSize="15"></TextBox>
                     <Label FontWeight="DemiBold" FontSize="15">Password</Label>
-                    <TextBox Height="40" Padding="8" FontSize="15"></TextBox>
-                    <Button Margin="20" BorderBrush="Transparent" Background="#FF45B9FF" Foreground="White" FontWeight="DemiBold" Padding="15" FontSize="20">LOGIN
+                    <TextBox Text="{Binding Password, Mode=TwoWay}" Height="40" Padding="8" FontSize="15"></TextBox>
+                    <Button Command="{Binding LoginBtn}" Margin="20" BorderBrush="Transparent" Background="#FF45B9FF" Foreground="White" FontWeight="DemiBold" Padding="15" FontSize="20">LOGIN
                         <Button.Resources>
                             <Style TargetType="Border">
                                 <Setter Property="CornerRadius" Value="5"/>
