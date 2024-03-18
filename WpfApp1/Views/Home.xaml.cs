@@ -23,5 +23,10 @@ namespace WpfApp1.Views {
             InitializeComponent();
             DataContext = new HomePageModel();
         }
+
+        private void Grid_MouseEnter(object sender, MouseEventArgs e) {
+            var title = FindName("Checking") as TextBlock;
+            title.Foreground = Brushes.Yellow;
+        }
     }
 }

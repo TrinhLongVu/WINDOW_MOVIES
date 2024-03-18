@@ -31,7 +31,7 @@ namespace WpfApp1.ViewModel
             _movies = new List<Movie>();
             for (int i = 0; i < 10; i++) {
                 _movies.Add(new Movie {
-                    Title = "EXHUMA " + i.ToString(),
+                    Title = "EXHUMA WQEQ WE QWE QWEQ EQW" + i.ToString(),
                     Release = "2024",
                     Runtime = "2h 14m",
                     Rating = "7.5",
@@ -46,6 +46,7 @@ namespace WpfApp1.ViewModel
 
         public ICommand NextCommand => new RelayCommand(Next);
         public ICommand PrevCommand => new RelayCommand(Previous);
+
 
         private void updateCollection() {
             MovieCollection = new List<Movie>(_movies.Skip(_itemPerPage * CurrentPage).Take(_itemPerPage));
