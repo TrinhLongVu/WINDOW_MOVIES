@@ -38,13 +38,13 @@ namespace WpfApp1.ViewModel
         public SearchViewModel()
         {
             MovieDB movieDB = new MovieDB();
-            movies = movieDB.GetAllMovie();
+            movies = movieDB.SearchMovie("Dam");
 
-            CurrentPage = 1;
+            CurrentPage = 0;
             _totalMovies = movies.Count;
-            _quantityPage = _totalMovies / _pageSize;
+            _quantityPage = (_totalMovies + _pageSize - 1) / _pageSize;
            
-            UpdateMovie(1);
+            UpdateMovie(0);
             Filters = new ObservableCollection<Filter>
             {
                 new Filter { Name = "Hot" },
