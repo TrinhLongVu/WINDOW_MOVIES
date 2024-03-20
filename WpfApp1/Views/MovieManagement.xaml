@@ -13,6 +13,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="55"/>
             <RowDefinition/>
+            <RowDefinition Height="55"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0" HorizontalAlignment="Right" Margin="10">
             <Border Background="White" Width="35" Height="35" CornerRadius="50">
@@ -20,7 +21,7 @@
             </Border>
         </Grid>
         <Grid Grid.Row="1">
-            <ListView x:Name="myListView" ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.HorizontalScrollBarVisibility="Disabled" BorderThickness="0" BorderBrush="Transparent" ItemsSource="{Binding Movies}" Background="Transparent" SelectionMode="Single">
+            <ListView x:Name="myListView" ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalAlignment="Center" BorderThickness="0" BorderBrush="Transparent" ItemsSource="{Binding MovieShow}" Background="Transparent" SelectionMode="Single">
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel/>
@@ -33,14 +34,39 @@
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="60"/>
                             </Grid.RowDefinitions>
-                            <Image Source="{Binding Poster}" Stretch="Uniform" Width="230" Grid.Row="0"/>
+                            <Image Source="{Binding Poster}" Stretch="UniformToFill" Width="230" Height="350" Grid.Row="0"/>
                             <TextBlock Grid.Row="1" Width="200" TextWrapping="NoWrap" TextTrimming="WordEllipsis" TextAlignment="Center" FontSize="18px" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center">
-            <Bold><Run Text="{Binding Title}"></Run></Bold>
+                            <Bold>
+                                <Run Text="{Binding Title}"></Run>
+                            </Bold>
                             </TextBlock>
                         </Grid>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
         </Grid>
+        <StackPanel Margin="0 0 100 0" Orientation="Horizontal" Grid.Row="3" HorizontalAlignment="Right">
+            <Button Command="{Binding PreviousPageCommand}" Background="#f3ea28" Padding="10" Width="90" Height="50">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+                <TextBlock FontSize="16"><Bold>Previous</Bold></TextBlock>
+            </Button>
+            <TextBlock Foreground="White" Padding="40 0 40 0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30">
+        <Bold>
+            <Run Text="{Binding CurrentPage}"/>
+        </Bold>
+            </TextBlock>
+            <Button Command="{Binding NextPageCommand}" Background="#f3ea28" Padding="10" Width="90" Height="50">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+                <TextBlock FontSize="16"><Bold>Next</Bold></TextBlock>
+            </Button>
+        </StackPanel>
     </Grid>
 </Page>
