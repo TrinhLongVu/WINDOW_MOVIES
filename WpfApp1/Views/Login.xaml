@@ -27,7 +27,7 @@
                 <StackPanel>
                     <TextBlock TextAlignment="Center" FontSize="30" FontWeight="Bold">LOGIN</TextBlock>
                     <Label FontWeight="DemiBold" FontSize="15">Username</Label>
-                    <TextBox Text="{Binding Username}" Height="40" Padding="8" FontSize="15">
+                    <TextBox Text="{Binding Username}" Height="40" Padding="8" FontSize="15" BorderBrush="Transparent">
                         <TextBox.Resources>
                             <Style TargetType="{x:Type Border}">
                                 <Setter Property="CornerRadius" Value="10"/>
@@ -35,7 +35,7 @@
                         </TextBox.Resources>
                     </TextBox>
                     <Label FontWeight="DemiBold" FontSize="15">Password</Label>
-                    <PasswordBox utils:HiddenPass.BoundPassword="{Binding Password}" Height="40" Padding="8" FontSize="15">
+                    <PasswordBox utils:HiddenPass.BoundPassword="{Binding Password}" Height="40" Padding="8" FontSize="15" BorderBrush="Transparent">
                         <PasswordBox.Style>
                             <Style TargetType="{x:Type PasswordBox}">
                                 <Style.Resources>
