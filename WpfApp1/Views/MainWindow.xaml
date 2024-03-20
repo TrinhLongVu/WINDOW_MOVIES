@@ -13,6 +13,6 @@
                 <GradientStop Color="#2e2154" Offset="1.0"/>
             </LinearGradientBrush>
         </Grid.Background>
-        <Frame NavigationUIVisibility="Hidden" Source="Login.xaml"/>
+        <Frame NavigationUIVisibility="Hidden" Source="Dashboard.xaml"/>
     </Grid>
 </Window>   

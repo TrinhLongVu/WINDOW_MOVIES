@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
@@ -8,35 +9,12 @@ using WpfApp1.Models;
 
 namespace WpfApp1.Views
 {
-    class AdminMovieManageViewModel : INotifyPropertyChanged
-    {
-        public AdminMovieManageViewModel()
-        {
-            Movies.Add(new Movie { Title = "Mai(T18) wda da wad adaw dadw", Poster = "https://api-website.cinestar.com.vn/media/wysiwyg/Posters/03-2024/sang-den-poster.jpg" });
-            Movies.Add(new Movie { Title = "Mai(T18)", Poster = "https://api-website.cinestar.com.vn/media/wysiwyg/Posters/03-2024/sang-den-poster.jpg" });
-            Movies.Add(new Movie { Title = "Mai(T18)", Poster = "https://api-website.cinestar.com.vn/media/wysiwyg/Posters/03-2024/sang-den-poster.jpg" });
-            Movies.Add(new Movie { Title = "Mai(T18)", Poster = "https://api-website.cinestar.com.vn/media/wysiwyg/Posters/03-2024/sang-den-poster.jpg" });
-            Movies.Add(new Movie { Title = "Mai(T18)", Poster = "https://api-website.cinestar.com.vn/media/wysiwyg/Posters/03-2024/sang-den-poster.jpg" });
-            Movies.Add(new Movie { Title = "Mai(T18)", Poster = "https://api-website.cinestar.com.vn/media/wysiwyg/Posters/03-2024/sang-den-poster.jpg" });
-            Movies.Add(new Movie { Title = "Mai(T18)", Poster = "https://api-website.cinestar.com.vn/media/wysiwyg/Posters/03-2024/sang-den-poster.jpg" });
-        }
-
-        public ObservableCollection<Movie> Movies { get; set; } = new ObservableCollection<Movie>();
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-    }
-
     public partial class Dashboard : Page
     {
         public Dashboard()
         {
             InitializeComponent();
-            DataContext = new AdminMovieManageViewModel();
+            
         }
 
         private void AdminInitStatistic(object sender, RoutedEventArgs e)
@@ -49,7 +27,14 @@ namespace WpfApp1.Views
             Button focusedButton = sender as Button;
             if (focusedButton != null && focusedButton.IsFocused)
             {
-                //MessageBox.Show("Button is focused.");
+                if (focusedButton.Name == "AdminStatistic")
+                {
+                    DashboardBody.Source = new Uri("DashboardStatistic.xaml", UriKind.Relative);
+                }
+                else if (focusedButton.Name == "AdminMovie")
+                {
+                    DashboardBody.Source = new Uri("MovieManagement.xaml", UriKind.Relative);
+                }
             }
         }
 

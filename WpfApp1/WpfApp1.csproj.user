@@ -10,10 +10,16 @@
     <Compile Update="Views\Dashboard.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\DashboardStatistic.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\Login.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\MovieInfo.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\MovieManagement.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\Register.xaml.cs">
@@ -30,6 +36,9 @@
     <Page Update="Views\Dashboard.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Views\DashboardStatistic.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\MainWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -37,6 +46,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\MovieInfo.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\MovieManagement.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Register.xaml">

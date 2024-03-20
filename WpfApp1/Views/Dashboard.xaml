@@ -37,13 +37,13 @@
                         </Grid>
                     </StackPanel>
                     <StackPanel Grid.Row="1" x:Name="MenuButtonList">
-                        <Button Style="{StaticResource dashboardMenuBtn}" GotFocus="MenuButtonFocus" Loaded="AdminInitStatistic">
+                        <Button x:Name="AdminStatistic" Style="{StaticResource dashboardMenuBtn}" GotFocus="MenuButtonFocus" Loaded="AdminInitStatistic">
                             <StackPanel Orientation="Horizontal">
                                 <Icon:PackIconBootstrapIcons Kind="Reception4" Style="{StaticResource dashboardMenuBtnIcon}"/>
                                 <TextBlock Text="Statistics" Style="{StaticResource dashboardMenuBtnText}"/>
                             </StackPanel>
                         </Button>
-                        <Button Style="{StaticResource dashboardMenuBtn}" GotFocus="MenuButtonFocus">
+                        <Button x:Name="AdminMovie" Style="{StaticResource dashboardMenuBtn}" GotFocus="MenuButtonFocus">
                             <StackPanel Orientation="Horizontal">
                                 <Icon:PackIconBootstrapIcons Kind="Film" Style="{StaticResource dashboardMenuBtnIcon}"/>
                                 <TextBlock Text="Movies" Style="{StaticResource dashboardMenuBtnText}"/>
@@ -85,40 +85,7 @@
                         <GradientStop Color="#3a5fc5" Offset="0.8"/>
                     </LinearGradientBrush>
                 </Border.Background>
-                <Grid Margin="10">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="55"/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-                    <Grid Grid.Row="0" HorizontalAlignment="Right" Margin="10">
-                        <Border Background="White" Width="35" Height="35" CornerRadius="50">
-                            <Icon:PackIconBootstrapIcons Kind="Plus" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#FF0033"/>
-                        </Border>
-                    </Grid>
-                    <Grid Grid.Row="1">
-                        <ListView x:Name="myListView" ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.HorizontalScrollBarVisibility="Disabled" BorderThickness="0" BorderBrush="Transparent" ItemsSource="{Binding Movies}" Background="Transparent" SelectionMode="Single">
-                            <ListView.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <WrapPanel/>
-                                </ItemsPanelTemplate>
-                            </ListView.ItemsPanel>
-                            <ListView.ItemTemplate>
-                                <DataTemplate>
-                                    <Grid x:Name="element">
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="Auto"/>
-                                            <RowDefinition Height="60"/>
-                                        </Grid.RowDefinitions>
-                                        <Image Source="{Binding Poster}" Stretch="Uniform" Width="230" Grid.Row="0"/>
-                                        <TextBlock Grid.Row="1" Width="200" TextWrapping="NoWrap" TextTrimming="WordEllipsis" TextAlignment="Center" FontSize="18px" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center">
-                            <Bold><Run Text="{Binding Title}"></Run></Bold>
-                                        </TextBlock>
-                                    </Grid>
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
-                        </ListView>
-                    </Grid>
-                </Grid>
+                <Frame x:Name="DashboardBody" NavigationUIVisibility="Hidden" Source="DashboardStatistic.xaml"/>
             </Border>
         </Grid>
     </Border>
