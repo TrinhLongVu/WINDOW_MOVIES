@@ -19,9 +19,17 @@ namespace WpfApp1.Views {
     /// Interaction logic for Home.xaml
     /// </summary>
     public partial class Home : Page {
+        HomePageModel viewModel;
         public Home() {
             InitializeComponent();
-            DataContext = new HomePageModel();
+            viewModel = new HomePageModel();
+            DataContext = viewModel;
+            viewModel.SelectItemBtn += ViewModel_ClickItem;
+        }
+
+        private void ViewModel_ClickItem(object sender, Int32 Id)
+        {
+            NavigationService?.Navigate(new MovieInfo(Id));
         }
 
         private void Grid_MouseEnter(object sender, MouseEventArgs e) {
