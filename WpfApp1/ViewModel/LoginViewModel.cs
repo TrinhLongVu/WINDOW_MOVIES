@@ -34,7 +34,7 @@ namespace WpfApp1.ViewModel
 
             foreach(Account user in _users)
             {
-                if(user.Username == Username && Hash.VerifyPassword(user.Password, Password))
+                if(user.Username == Username && Hash.VerifyPassword(Password, user.Password))
                 {
                     if(user.Role == "user")
                     {
