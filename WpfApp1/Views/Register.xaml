@@ -51,7 +51,6 @@
                                     </Style>
                                 </DatePicker.Resources>
                             </DatePicker>
-
                         </StackPanel>
                     </Grid>
                     <Label FontWeight="DemiBold" FontSize="15">Password</Label>
