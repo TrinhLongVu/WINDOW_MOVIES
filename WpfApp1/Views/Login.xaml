@@ -27,9 +27,34 @@
                 <StackPanel>
                     <TextBlock TextAlignment="Center" FontSize="30" FontWeight="Bold">LOGIN</TextBlock>
                     <Label FontWeight="DemiBold" FontSize="15">Username</Label>
-                    <TextBox Text="{Binding Username}" Height="40" Padding="8" FontSize="15"></TextBox>
+                    <TextBox Text="{Binding Username}" Height="40" Padding="8" FontSize="15">
+                        <TextBox.Resources>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="CornerRadius" Value="10"/>
+                            </Style>
+                        </TextBox.Resources>
+                    </TextBox>
                     <Label FontWeight="DemiBold" FontSize="15">Password</Label>
-                    <PasswordBox utils:HiddenPass.BoundPassword="{Binding Password}" Height="40" Padding="8" FontSize="15"></PasswordBox>
+                    <PasswordBox utils:HiddenPass.BoundPassword="{Binding Password}" Height="40" Padding="8" FontSize="15">
+                        <PasswordBox.Style>
+                            <Style TargetType="{x:Type PasswordBox}">
+                                <Style.Resources>
+                                    <Style TargetType="Border">
+                                        <Setter Property="CornerRadius" Value="10"/>
+                                    </Style>
+                                </Style.Resources>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type PasswordBox}">
+                                            <Border x:Name="border" CornerRadius="10" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                                                <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </PasswordBox.Style>
+                    </PasswordBox>
                     <Button Command="{Binding LoginBtn}" Margin="20" BorderBrush="Transparent" Background="#FF45B9FF" Foreground="White" FontWeight="DemiBold" Padding="15" FontSize="20">LOGIN
                         <Button.Resources>
                             <Style TargetType="Border">
