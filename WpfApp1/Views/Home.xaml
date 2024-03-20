@@ -8,18 +8,7 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Home">
     <Page.Resources>
-        <Style
-           TargetType="{x:Type TextBlock}"
-           x:Key="TitleStyle">
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Foreground" Value="#f3ea28"/>
-                </Trigger>
-                <Trigger Property="IsMouseOver" Value="False">
-                    <Setter Property="Foreground" Value="White"/>
-                </Trigger>
-            </Style.Triggers>
-        </Style>
+        <BooleanToVisibilityConverter x:Key="boolToValueConverter"></BooleanToVisibilityConverter>
     </Page.Resources>
     <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
         <Grid HorizontalAlignment="Stretch">
@@ -46,9 +35,11 @@
                     </ItemsControl.ItemsPanel>
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
+                            
                             <Grid Cursor="Hand" Grid.Row="1" Grid.Column="0"
                                   Width="250" Height="400" Margin="1,0,1,0"
-                                  HorizontalAlignment="Left">
+                                  HorizontalAlignment="Left" x:Name="ItemDesc">
+
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="90*"></RowDefinition>
                                     <RowDefinition Height="25*"></RowDefinition>
@@ -57,9 +48,12 @@
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="1*"></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
+
+                                <Image Grid.Row="0" Grid.Column="0" Source="{Binding Poster}" Stretch="Uniform">
+                                </Image>
                                 
-                                <Image Grid.Row="0" Grid.Column="0" Source="{Binding Poster}" Stretch="Uniform"></Image>
-                                <Grid Grid.Row="0" Grid.Column="1" Panel.ZIndex="1000">
+                                <Grid Grid.Row="0" Grid.Column="1" Panel.ZIndex="1000"
+                                      Visibility="{Binding Path=IsMouseOver, ElementName=ItemDesc, Converter={StaticResource boolToValueConverter}}">
                                     <Grid.Background>
                                         <SolidColorBrush Color="#000000" Opacity="0.5"/>
                                     </Grid.Background>
@@ -80,13 +74,29 @@
                                         </StackPanel>
                                     </StackPanel>
                                 </Grid>
-                                
+
                                 <TextBlock
-                                    Style="{StaticResource TitleStyle}" TextWrapping="Wrap" FontWeight="Bold" FontSize="20"
+                                    TextWrapping="Wrap" FontWeight="Bold" FontSize="20"
                                     HorizontalAlignment="Center" Text="{Binding Title}"
                                     Grid.Row="1" Grid.Column="1" VerticalAlignment="Top"
                                     TextAlignment="Center"
-                                    Padding="3,5,3,0"/>
+                                    Padding="5,5,5,0">
+                                    <TextBlock.Style>
+                                        <Style TargetType="TextBlock">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Grid}}, Path=IsMouseOver}"
+                                                             Value="True">
+                                                    <Setter Property="Foreground" Value="#f3ea28"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Grid}}, Path=IsMouseOver}"
+                                                             Value="False">
+                                                    <Setter Property="Foreground" Value="White"/>
+                                                </DataTrigger>
+
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
                                 <Grid Grid.Row="2" Grid.Column="1" Width="Auto">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="1*"></ColumnDefinition>
@@ -112,7 +122,8 @@
                 </ItemsControl>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                     <Button Content="Previous" Command="{Binding TestCarousel.PrevCommand}"/>
-                    <Button Content="Next" Command="{Binding TestCarousel.NextCommand}"/>
+                    <Button x:Name="btnChange" Content="Next" Command="{Binding TestCarousel.NextCommand}">
+                    </Button>
                 </StackPanel>
             </StackPanel>
 
