@@ -30,15 +30,44 @@ namespace WpfApp1.Database
 
             while (reader.Read())
             {
-                string Id = reader.GetString(0);
+                var Id = reader.GetInt32(0);
                 string Role = reader.GetString(1);
-                string Username = reader.GetString(2);
-                string Password = reader.GetString(3);
+                string Username = reader.GetString(3);
+                string Password = reader.GetString(4);
                 account.Add(new Account { Id = Id, Role = Role, Username = Username, Password = Password });
             }
 
             reader.Close();
             return account;
+        }
+
+        public void Register(string role, string birthday, string username, string password)
+        {
+            string query = "INSERT INTO Account(Role, Birthday, Username, Password) VALUES (@Role, @Birthday, @Username, @Password)";
+            using (SqlCommand command = new SqlCommand(query, _connect))
+            {
+                command.Parameters.AddWithValue("@Role", role);
+                command.Parameters.AddWithValue("@Birthday", birthday);
+                command.Parameters.AddWithValue("@Username", username);
+                command.Parameters.AddWithValue("@Password", password);
+                try
+                {
+                    int rowsAffected = command.ExecuteNonQuery();
+
+                    if (rowsAffected > 0)
+                    {
+                        Console.WriteLine("Data inserted successfully.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("No rows affected.");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error inserting data: " + ex.Message);
+                }
+            }
         }
     }
 }

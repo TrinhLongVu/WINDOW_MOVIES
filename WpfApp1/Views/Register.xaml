@@ -1,4 +1,4 @@
-﻿<Page x:Class="WpfApp1.Views.Register"
+<Page x:Class="WpfApp1.Views.Register"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -33,7 +33,7 @@
                         </Grid.ColumnDefinitions>
                         <StackPanel Grid.Column="0">
                             <Label FontWeight="DemiBold" FontSize="15">Username</Label>
-                            <TextBox Height="40" Padding="8" FontSize="15"></TextBox>
+                            <TextBox Height="40" Padding="8" FontSize="15" Text="{Binding Username}"></TextBox>
                         </StackPanel>
                         <StackPanel Grid.Column="2">
                             <Label FontWeight="DemiBold" FontSize="15">Date Of Birth</Label>
@@ -54,10 +54,10 @@
                         </StackPanel>
                     </Grid>
                     <Label FontWeight="DemiBold" FontSize="15">Password</Label>
-                    <TextBox Height="40" Padding="8" FontSize="15"></TextBox>
+                    <TextBox Height="40" Padding="8" FontSize="15" Text="{Binding Password}"></TextBox>
                     <Label FontWeight="DemiBold" FontSize="15">Confirm Password</Label>
-                    <TextBox Height="40" Padding="8" FontSize="15"></TextBox>
-                    <Button Margin="20" BorderBrush="Transparent" Background="#FF45B9FF" Foreground="White" FontWeight="DemiBold" Padding="15" FontSize="20">REGISTER
+                    <TextBox Height="40" Padding="8" FontSize="15" Text="{Binding ConfirmPassword}"></TextBox>
+                    <Button Command="{Binding RegisterBtn}" Margin="20" BorderBrush="Transparent" Background="#FF45B9FF" Foreground="White" FontWeight="DemiBold" Padding="15" FontSize="20">REGISTER
                         <Button.Resources>
                             <Style TargetType="Border">
                                 <Setter Property="CornerRadius" Value="5"/>

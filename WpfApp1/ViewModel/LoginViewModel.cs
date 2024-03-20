@@ -11,6 +11,7 @@ using System.Windows.Navigation;
 using WpfApp1.Database;
 using System.Collections;
 using WpfApp1.Models;
+using WpfApp1.Utils;
 
 namespace WpfApp1.ViewModel
 {
@@ -33,7 +34,7 @@ namespace WpfApp1.ViewModel
 
             foreach(Account user in _users)
             {
-                if(user.Username == Username && user.Password == Password)
+                if(user.Username == Username && Hash.VerifyPassword(user.Password, Password))
                 {
                     if(user.Role == "user")
                     {
