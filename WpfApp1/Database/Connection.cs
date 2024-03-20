@@ -11,7 +11,7 @@ namespace WpfApp1.Database
     class Connection
     {
         private static Connection _instance = null;
-        private string _connectionString = @"Server=localhost,1433;Database=Movie;User Id=sa; Password=123456;Trusted_Connection=yes;Encrypt=True;TrustServerCertificate=True";
+        private string _connectionString = @"Server=localhost,1433;Database=Movie;Trusted_Connection=yes;Encrypt=True;TrustServerCertificate=True";
         private SqlConnection _connection;
         private Connection()
         {

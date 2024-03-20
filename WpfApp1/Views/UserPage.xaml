@@ -15,6 +15,6 @@
         </Grid.RowDefinitions>
 
         <TextBlock x:Name="header" Foreground="White">HEADER</TextBlock>
-        <Frame x:Name="Body" NavigationUIVisibility="Hidden" Source="Search.xaml" Margin="0,39,0,0" Grid.RowSpan="2"/>
+        <Frame x:Name="Body" NavigationUIVisibility="Hidden" Source="MovieInfo.xaml" Margin="0,39,0,0" Grid.RowSpan="2"/>
     </Grid>
 </Page>

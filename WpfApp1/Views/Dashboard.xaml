@@ -37,16 +37,16 @@
                         </Grid>
                     </StackPanel>
                     <StackPanel Grid.Row="1" x:Name="MenuButtonList">
-                        <Button Style="{StaticResource dashboardMenuBtn}" GotFocus="MenuButtonFocus" Loaded="AdminInitStatistic">
+                        <Button x:Name="AdminStatistic" Style="{StaticResource dashboardMenuBtn}" GotFocus="MenuButtonFocus" Loaded="AdminInitStatistic">
                             <StackPanel Orientation="Horizontal">
                                 <Icon:PackIconBootstrapIcons Kind="Reception4" Style="{StaticResource dashboardMenuBtnIcon}"/>
                                 <TextBlock Text="Statistics" Style="{StaticResource dashboardMenuBtnText}"/>
                             </StackPanel>
                         </Button>
-                        <Button Style="{StaticResource dashboardMenuBtn}" GotFocus="MenuButtonFocus">
+                        <Button x:Name="AdminMovie" Style="{StaticResource dashboardMenuBtn}" GotFocus="MenuButtonFocus">
                             <StackPanel Orientation="Horizontal">
-                                <Icon:PackIconBootstrapIcons Kind="Reception4" Style="{StaticResource dashboardMenuBtnIcon}"/>
-                                <TextBlock Text="Statistics" Style="{StaticResource dashboardMenuBtnText}"/>
+                                <Icon:PackIconBootstrapIcons Kind="Film" Style="{StaticResource dashboardMenuBtnIcon}"/>
+                                <TextBlock Text="Movies" Style="{StaticResource dashboardMenuBtnText}"/>
                             </StackPanel>
                         </Button>
                         <Button Style="{StaticResource dashboardMenuBtn}" GotFocus="MenuButtonFocus">
@@ -78,13 +78,14 @@
                 </Grid>
 
             </Border>
-            <Border Grid.Column="1" Margin="5" CornerRadius="25">
+            <Border Grid.Column="1" Margin="5" CornerRadius="0, 25, 25, 0">
                 <Border.Background>
                     <LinearGradientBrush>
                         <GradientStop Color="#5444aa" Offset="0"/>
                         <GradientStop Color="#3a5fc5" Offset="0.8"/>
                     </LinearGradientBrush>
                 </Border.Background>
+                <Frame x:Name="DashboardBody" NavigationUIVisibility="Hidden" Source="DashboardStatistic.xaml"/>
             </Border>
         </Grid>
     </Border>

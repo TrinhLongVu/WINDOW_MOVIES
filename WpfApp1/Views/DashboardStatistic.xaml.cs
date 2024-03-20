@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,12 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-
-namespace WpfApp1
+namespace WpfApp1.Views
 {
-    public partial class MainWindow : Window
+    /// <summary>
+    /// Interaction logic for DashboardStatistic.xaml
+    /// </summary>
+    public partial class DashboardStatistic : Page
     {
-        public MainWindow()
+        public DashboardStatistic()
         {
             InitializeComponent();
         }
