@@ -8,7 +8,7 @@ namespace WpfApp1.Models
 {
     class Movie
     {
-        public string Id { get; set; }
+        public Int32 Id { get; set; }
         public string? IdGener { get; set; }
         public string Title { get; set; }
         public string? Price { get; set; }

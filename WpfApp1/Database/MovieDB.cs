@@ -30,7 +30,7 @@ namespace WpfApp1.Database
 
             while (reader.Read())
             {
-                string Id = reader.GetString(0);
+                var Id = reader.GetInt32(0);
                 string IdGener = reader.GetString(1);
                 string Title = reader.GetString(2);
                 string Runtime = reader.GetString(3);
