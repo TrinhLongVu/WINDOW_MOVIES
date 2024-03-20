@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:WpfApp1.Views"
+      xmlns:utils="clr-namespace:WpfApp1.Utils"
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="1280"
       Title="Login">
@@ -28,7 +29,7 @@
                     <Label FontWeight="DemiBold" FontSize="15">Username</Label>
                     <TextBox Text="{Binding Username}" Height="40" Padding="8" FontSize="15"></TextBox>
                     <Label FontWeight="DemiBold" FontSize="15">Password</Label>
-                    <TextBox Text="{Binding Password}" Height="40" Padding="8" FontSize="15"></TextBox>
+                    <PasswordBox utils:HiddenPass.BoundPassword="{Binding Password}" Height="40" Padding="8" FontSize="15"></PasswordBox>
                     <Button Command="{Binding LoginBtn}" Margin="20" BorderBrush="Transparent" Background="#FF45B9FF" Foreground="White" FontWeight="DemiBold" Padding="15" FontSize="20">LOGIN
                         <Button.Resources>
                             <Style TargetType="Border">

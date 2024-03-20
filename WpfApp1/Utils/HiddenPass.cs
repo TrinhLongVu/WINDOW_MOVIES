@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 
 namespace WpfApp1.Utils
@@ -11,7 +6,17 @@ namespace WpfApp1.Utils
     public static class HiddenPass
     {
         public static readonly DependencyProperty BoundPasswordProperty =
-        DependencyProperty.RegisterAttached("BoundPassword", typeof(string), typeof(HiddenPass), new PropertyMetadata(string.Empty, OnBoundPasswordChanged));
+            DependencyProperty.RegisterAttached("BoundPassword", typeof(string), typeof(HiddenPass), new FrameworkPropertyMetadata(string.Empty, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnBoundPasswordChanged));
+
+        public static string GetBoundPassword(DependencyObject obj)
+        {
+            return (string)obj.GetValue(BoundPasswordProperty);
+        }
+
+        public static void SetBoundPassword(DependencyObject obj, string value)
+        {
+            obj.SetValue(BoundPasswordProperty, value);
+        }
 
         private static void OnBoundPasswordChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
@@ -36,25 +41,15 @@ namespace WpfApp1.Utils
             SetIsUpdating(passwordBox, false);
         }
 
-        public static string GetBoundPassword(DependencyObject obj)
-        {
-            return (string)obj.GetValue(BoundPasswordProperty);
-        }
-
-        public static void SetBoundPassword(DependencyObject obj, string value)
-        {
-            obj.SetValue(BoundPasswordProperty, value);
-        }
-
-        public static readonly DependencyProperty IsUpdatingProperty =
+        private static readonly DependencyProperty IsUpdatingProperty =
             DependencyProperty.RegisterAttached("IsUpdating", typeof(bool), typeof(HiddenPass));
 
-        public static bool GetIsUpdating(DependencyObject obj)
+        private static bool GetIsUpdating(DependencyObject obj)
         {
             return (bool)obj.GetValue(IsUpdatingProperty);
         }
 
-        public static void SetIsUpdating(DependencyObject obj, bool value)
+        private static void SetIsUpdating(DependencyObject obj, bool value)
         {
             obj.SetValue(IsUpdatingProperty, value);
         }

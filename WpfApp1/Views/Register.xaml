@@ -3,7 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:WpfApp1.Views"
+      xmlns:utils="clr-namespace:WpfApp1.Utils"
       mc:Ignorable="d" 
       d:DesignHeight="700" d:DesignWidth="1280"
       Title="Register">
@@ -54,9 +54,9 @@
                         </StackPanel>
                     </Grid>
                     <Label FontWeight="DemiBold" FontSize="15">Password</Label>
-                    <TextBox Height="40" Padding="8" FontSize="15" Text="{Binding Password}"></TextBox>
+                    <PasswordBox Height="40" Padding="8" FontSize="15" utils:HiddenPass.BoundPassword="{Binding Password}"></PasswordBox>
                     <Label FontWeight="DemiBold" FontSize="15">Confirm Password</Label>
-                    <TextBox Height="40" Padding="8" FontSize="15" Text="{Binding ConfirmPassword}"></TextBox>
+                    <PasswordBox Height="40" Padding="8" FontSize="15" utils:HiddenPass.BoundPassword="{Binding ConfirmPassword}"></PasswordBox>
                     <Button Command="{Binding RegisterBtn}" Margin="20" BorderBrush="Transparent" Background="#FF45B9FF" Foreground="White" FontWeight="DemiBold" Padding="15" FontSize="20">REGISTER
                         <Button.Resources>
                             <Style TargetType="Border">
