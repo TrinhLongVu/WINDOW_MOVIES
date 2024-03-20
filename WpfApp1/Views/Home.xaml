@@ -1,0 +1,122 @@
+﻿<Page x:Class="WpfApp1.Views.Home"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfApp1.Views"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Home">
+    <Page.Resources>
+        <Style
+           TargetType="{x:Type TextBlock}"
+           x:Key="TitleStyle">
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Foreground" Value="#f3ea28"/>
+                </Trigger>
+                <Trigger Property="IsMouseOver" Value="False">
+                    <Setter Property="Foreground" Value="White"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Page.Resources>
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+        <Grid HorizontalAlignment="Stretch">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="28*" ></RowDefinition>
+                <RowDefinition Height="200*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Row="0" FontSize="40px" TextAlignment="Center" Foreground="White"><Bold>PHIM ĐANG CHIẾU</Bold></TextBlock>
+            <StackPanel
+                Background="Transparent"
+                MaxWidth="1000px" 
+                Grid.Row="1" Grid.Column="0">
+                <ItemsControl
+                    BorderThickness="0"
+                    HorizontalAlignment="Left"
+                    ItemsSource="{Binding TestCarousel.MovieCollection}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Cursor="Hand" Grid.Row="1" Grid.Column="0"
+                                  Width="250" Height="400" Margin="1,0,1,0"
+                                  HorizontalAlignment="Left">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="90*"></RowDefinition>
+                                    <RowDefinition Height="25*"></RowDefinition>
+                                    <RowDefinition Height="10*"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                
+                                <Image Grid.Row="0" Grid.Column="0" Source="{Binding Poster}" Stretch="Uniform"></Image>
+                                <Grid Grid.Row="0" Grid.Column="1" Panel.ZIndex="1000">
+                                    <Grid.Background>
+                                        <SolidColorBrush Color="#000000" Opacity="0.5"/>
+                                    </Grid.Background>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="1*"></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                                        <TextBlock FontWeight="Bold" FontSize="17" TextWrapping="Wrap"
+                                                   Margin="0,0,0,20"
+                                                   Foreground="White" Text="{Binding Title}"></TextBlock>
+                                        <StackPanel Orientation="Horizontal" Margin="0">
+                                            <Image Width="20" Height="20" Source="/Images/icon-clock.png"/>
+                                            <Label Foreground="White" FontSize="13" Margin="0,0,0,0" Content="{Binding Runtime}"/>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="0">
+                                            <Image Width="20" Height="20" Source="/Images/icon-calendar.png"/>
+                                            <Label Foreground="White" FontSize="13" Margin="0,0,0,0" Content="{Binding Release}"/>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </Grid>
+                                
+                                <TextBlock
+                                    Style="{StaticResource TitleStyle}" TextWrapping="Wrap" FontWeight="Bold" FontSize="20"
+                                    HorizontalAlignment="Center" Text="{Binding Title}"
+                                    Grid.Row="1" Grid.Column="1" VerticalAlignment="Top"
+                                    TextAlignment="Center"
+                                    Padding="3,5,3,0"/>
+                                <Grid Grid.Row="2" Grid.Column="1" Width="Auto">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock FontWeight="Bold" TextDecorations="Underline"
+                                               HorizontalAlignment="Center" Margin="10,0,0,0"
+                                               Grid.Column="0" VerticalAlignment="Center" Foreground="White" Text="Xem Trailer">
+                                    </TextBlock>
+                                    <Button Cursor="Hand" Margin="0,0,20,0" Grid.Column="1"
+                                            Background="Yellow" FontWeight="Bold" Foreground="Black">
+                                        <Button.Resources>
+                                            <Style TargetType="Border">
+                                                <Setter Property="CornerRadius" Value="5"/>
+                                            </Style>
+                                        </Button.Resources>
+                                        Book
+                                    </Button>
+                                </Grid>
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Button Content="Previous" Command="{Binding TestCarousel.PrevCommand}"/>
+                    <Button Content="Next" Command="{Binding TestCarousel.NextCommand}"/>
+                </StackPanel>
+            </StackPanel>
+
+        </Grid>
+    </ScrollViewer>
+
+</Page>
