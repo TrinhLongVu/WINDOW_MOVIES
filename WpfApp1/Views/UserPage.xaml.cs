@@ -24,5 +24,9 @@ namespace WpfApp1.Views
         {
             InitializeComponent();
         }
+
+        private void loginLink_Click(object sender, RoutedEventArgs e) {
+            NavigationService.Navigate(new Login());
+        }
     }
 }

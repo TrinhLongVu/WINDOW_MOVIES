@@ -26,20 +26,9 @@ namespace WpfApp1.ViewModel
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public MovieCarousel(int itemPerPage = 4) {
+        public MovieCarousel(List<Movie> movies, int itemPerPage = 4) {
             _itemPerPage = itemPerPage;
-            _movies = new List<Movie>();
-            for (int i = 0; i < 10; i++) {
-                _movies.Add(new Movie {
-                    Title = "EXHUMA WQEQ WE QWE QWEQ EQW" + i.ToString(),
-                    Release = "2024",
-                    Runtime = "2h 14m",
-                    Rating = "7.5",
-                    Certification = "PG-16",
-                    Detail = "In Exhuma (2024), a spooky Korean family in LA calls on young shamans to battle a vengeful ancestor. The shamans track the source to a remote village and exhume the grave, unleashing a sinister force.  Their quest to appease the restless spirit turns into a fight for survival against a terrifying entity.",
-                    Poster = "https://m.media-amazon.com/images/M/MV5BMzczMmQ0NTItM2JkZi00MTRhLTg5OGMtZWEyZTE2ZDgwM2FjXkEyXkFqcGdeQXVyMTU1MDczNjU1._V1_FMjpg_UY2048_.jpg"
-                });
-            }
+            _movies = movies;
             _totalPage = _movies.Count / _itemPerPage + (_movies.Count % _itemPerPage == 0 ? 0 : 1);
             updateCollection();
         }
@@ -50,7 +39,7 @@ namespace WpfApp1.ViewModel
 
         private void updateCollection() {
             MovieCollection = new List<Movie>(_movies.Skip(_itemPerPage * CurrentPage).Take(_itemPerPage));
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("MovieCollection"));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(MovieCollection)));
         }
 
         public void Next() {

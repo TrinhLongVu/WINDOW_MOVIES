@@ -3,18 +3,75 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
       xmlns:local="clr-namespace:WpfApp1.Views"
       mc:Ignorable="d" 
       d:DesignHeight="700" d:DesignWidth="1280"
       Title="UserPage">
-
-    <Grid>
+    <Page.Resources>
+        <local:PlaceholderConverter x:Key="placeholderConverter" />
+        <Style TargetType="Border" x:Key="roundBox">
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="BorderBrush" Value="Black" />
+            <Setter Property="CornerRadius" Value="12" />
+            <Setter Property="Background" Value="White" />
+            <Setter Property="Padding" Value="10,0" />
+        </Style>
+        <Style TargetType="{x:Type Button}" x:Key="BlankButton">
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <ContentPresenter/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+    <Grid Margin="0,5,0,0" >
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"></RowDefinition>
-            <RowDefinition Height="10*"></RowDefinition>
+            <RowDefinition Height="11*"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <TextBlock x:Name="header" Foreground="White">HEADER</TextBlock>
-        <Frame x:Name="Body" NavigationUIVisibility="Hidden" Source="Search.xaml" Margin="0,39,0,0" Grid.RowSpan="2"/>
+        <StackPanel VerticalAlignment="Center" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,10,25" Grid.Row="0">
+            <Border Width="300" Style="{StaticResource roundBox}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="10*" />
+                        <ColumnDefinition Width="1*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBox VerticalContentAlignment="Center" BorderThickness="0" Background="Transparent" Grid.Column="0" x:Name="SearchBox" />
+                    <Button Style="{StaticResource BlankButton}" Grid.Column="1" Background="Transparent">
+                        <Image Height="Auto" Source="/Images/icon-search.png" Stretch="Uniform" />
+
+                    </Button>
+                </Grid>
+            </Border>
+            <WrapPanel Margin="30,0,0,0" Width="100" VerticalAlignment="Center">
+                <Icon:PackIconBootstrapIcons Kind="FilePersonFill" Height="Auto" VerticalAlignment="Center" Foreground="White"/>
+                <Button Margin="5,0,0,0" x:Name="loginLink" Style="{StaticResource BlankButton}" Click="loginLink_Click">
+                    <TextBlock FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <TextBlock.Style>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Foreground" Value="#f3ea28" />
+                                        <Setter Property="TextDecorations" Value="Underline" />
+                                    </Trigger>
+                                    <Trigger Property="IsMouseOver" Value="False">
+                                        <Setter Property="Foreground" Value="White" />
+                                        <Setter Property="TextDecorations" Value="None" />
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                        Login
+                    </TextBlock>
+                </Button>
+            </WrapPanel>
+        </StackPanel>
+        <Frame x:Name="Body" NavigationUIVisibility="Hidden" Source="Home.xaml" Margin="0,39,0,0" Grid.RowSpan="2"/>
     </Grid>
 </Page>
