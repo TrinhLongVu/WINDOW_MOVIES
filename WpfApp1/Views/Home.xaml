@@ -27,7 +27,8 @@
                 <ItemsControl
                     BorderThickness="0"
                     HorizontalAlignment="Left"
-                    ItemsSource="{Binding TestCarousel.MovieCollection}">
+                    ItemsSource="{Binding TestCarousel.MovieCollection}"
+                    >
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                             <StackPanel Orientation="Horizontal"/>

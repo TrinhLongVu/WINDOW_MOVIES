@@ -43,9 +43,8 @@
                         <ColumnDefinition Width="1*" />
                     </Grid.ColumnDefinitions>
                     <TextBox VerticalContentAlignment="Center" BorderThickness="0" Background="Transparent" Grid.Column="0" x:Name="SearchBox" />
-                    <Button Style="{StaticResource BlankButton}" Grid.Column="1" Background="Transparent">
+                    <Button Style="{StaticResource BlankButton}" Grid.Column="1" Background="Transparent" Click="SearchBtn">
                         <Image Height="Auto" Source="/Images/icon-search.png" Stretch="Uniform" />
-
                     </Button>
                 </Grid>
             </Border>

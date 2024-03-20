@@ -19,6 +19,7 @@ namespace WpfApp1.ViewModel
         public ObservableCollection<Movie> MovieShow { get; set; } = new ObservableCollection<Movie>();
         public ObservableCollection<Filter> Filters { get; set; }
         public ArrayList movies = new ArrayList();
+        public Movie SelectedItem { get; set; }
         public int CurrentPage { get; set; }
         private int _pageSize = 8;
         private int _totalMovies = 0;
@@ -35,10 +36,10 @@ namespace WpfApp1.ViewModel
             }
         }
         
-        public SearchViewModel()
+        public SearchViewModel(string stringSearch)
         {
             MovieDB movieDB = new MovieDB();
-            movies = movieDB.SearchMovie("Dam");
+            movies = movieDB.SearchMovie(stringSearch);
 
             CurrentPage = 0;
             _totalMovies = movies.Count;
@@ -50,6 +51,15 @@ namespace WpfApp1.ViewModel
                 new Filter { Name = "Hot" },
                 new Filter { Name = "Increase" }
             };
+            PropertyChanged += MyViewModel_PropertyChanged;
+        }
+        public event EventHandler<Int32> SelectItemBtn;
+        private void MyViewModel_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(SelectedItem))
+            {
+                SelectItemBtn?.Invoke(this, SelectedItem.Id);
+            }
         }
 
         private void FilterItems()
@@ -58,6 +68,11 @@ namespace WpfApp1.ViewModel
         }
         public ICommand PreviousPageCommand => new RelayCommand(Previous);
         public ICommand NextPageCommand => new RelayCommand(Next);
+        public ICommand ItemClickCommand => new RelayCommand(SelectItem);
+        private void SelectItem()
+        {
+            MessageBox.Show("hello");
+        }
         private void Next()
         {
             CurrentPage++;

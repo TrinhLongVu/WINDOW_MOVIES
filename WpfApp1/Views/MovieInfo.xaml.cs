@@ -20,10 +20,10 @@ namespace WpfApp1.Views
 {
     public partial class MovieInfo : Page
     {
-        public MovieInfo()
+        public MovieInfo(Int32 Id)
         {
             InitializeComponent();
-            DataContext = new MovieInfoViewModel();
+            DataContext = new MovieInfoViewModel(Id);
         }
     }
 }

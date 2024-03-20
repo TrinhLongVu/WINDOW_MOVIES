@@ -28,5 +28,11 @@ namespace WpfApp1.Views {
             var title = FindName("Checking") as TextBlock;
             title.Foreground = Brushes.Yellow;
         }
+
+        private void OnItemClick(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show(((Button)sender).Name);
+            
+        }
     }
 }
