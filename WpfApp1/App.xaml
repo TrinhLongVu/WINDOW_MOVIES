@@ -6,6 +6,37 @@
              StartupUri="Views/MainWindow.xaml">
     <Application.Resources>
 
+        <Style x:Key="homeBtn" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="#DFF5FF"/>
+            <Setter Property="Height" Value="45"/>
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="Margin" Value="35, 0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="10">
+                            <ContentPresenter HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="White"/>
+                    <Setter Property="Foreground" Value="#5444aa"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="homeBtnIcon" TargetType="Icon:PackIconBoxIcons">
+            <Setter Property="Margin" Value="10" />
+            <Setter Property="Width" Value="18"/>
+            <Setter Property="Height" Value="18"/>
+            <Setter Property="Foreground" Value="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type Button}}}"/>
+        </Style>
+
         <Style x:Key="dashboardMenuBtn" TargetType="Button">
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="Foreground" Value="#DFF5FF"/>
