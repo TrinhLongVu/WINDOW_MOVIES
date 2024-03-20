@@ -33,7 +33,13 @@
                         </Grid.ColumnDefinitions>
                         <StackPanel Grid.Column="0">
                             <Label FontWeight="DemiBold" FontSize="15">Username</Label>
-                            <TextBox Height="40" Padding="8" FontSize="15" Text="{Binding Username}"></TextBox>
+                            <TextBox Height="40" Padding="8" FontSize="15" Text="{Binding Username}" BorderBrush="Transparent">
+                                <TextBox.Resources>
+                                    <Style TargetType="{x:Type Border}">
+                                        <Setter Property="CornerRadius" Value="10"/>
+                                    </Style>
+                                </TextBox.Resources>
+                            </TextBox>
                         </StackPanel>
                         <StackPanel Grid.Column="2">
                             <Label FontWeight="DemiBold" FontSize="15">Date Of Birth</Label>
@@ -47,16 +53,53 @@
                                     </Style>
                                     <Style TargetType="Button">
                                         <Setter Property="Height" Value="30"/>
-                                        <Setter Property="Width" Value="30"/>
                                     </Style>
                                 </DatePicker.Resources>
                             </DatePicker>
                         </StackPanel>
                     </Grid>
                     <Label FontWeight="DemiBold" FontSize="15">Password</Label>
-                    <PasswordBox Height="40" Padding="8" FontSize="15" utils:HiddenPass.BoundPassword="{Binding Password}"></PasswordBox>
+                    <PasswordBox Height="40" Padding="8" FontSize="15" utils:HiddenPass.BoundPassword="{Binding Password}" BorderBrush="Transparent">
+                        <PasswordBox.Style>
+                            <Style TargetType="{x:Type PasswordBox}">
+                                <Style.Resources>
+                                    <Style TargetType="Border">
+                                        <Setter Property="CornerRadius" Value="10"/>
+                                    </Style>
+                                </Style.Resources>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type PasswordBox}">
+                                            <Border x:Name="border" CornerRadius="10" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                                                <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </PasswordBox.Style>
+                    </PasswordBox>
                     <Label FontWeight="DemiBold" FontSize="15">Confirm Password</Label>
-                    <PasswordBox Height="40" Padding="8" FontSize="15" utils:HiddenPass.BoundPassword="{Binding ConfirmPassword}"></PasswordBox>
+                    <PasswordBox Height="40" Padding="8" FontSize="15" utils:HiddenPass.BoundPassword="{Binding ConfirmPassword}" BorderBrush="Transparent">
+                        <PasswordBox.Style>
+                            <Style TargetType="{x:Type PasswordBox}">
+                                <Style.Resources>
+                                    <Style TargetType="Border">
+                                        <Setter Property="CornerRadius" Value="10"/>
+                                    </Style>
+                                </Style.Resources>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type PasswordBox}">
+                                            <Border x:Name="border" CornerRadius="10" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                                                <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </PasswordBox.Style>
+                    </PasswordBox>
                     <Button Command="{Binding RegisterBtn}" Margin="20" BorderBrush="Transparent" Background="#FF45B9FF" Foreground="White" FontWeight="DemiBold" Padding="15" FontSize="20">REGISTER
                         <Button.Resources>
                             <Style TargetType="Border">
