@@ -34,53 +34,13 @@
             <RowDefinition Height="1*"></RowDefinition>
             <RowDefinition Height="11*"></RowDefinition>
         </Grid.RowDefinitions>
-<<<<<<< HEAD
-
-        <StackPanel VerticalAlignment="Center" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,10,25" Grid.Row="0">
-            <Border Width="300" Style="{StaticResource roundBox}">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="10*" />
-                        <ColumnDefinition Width="1*" />
-                    </Grid.ColumnDefinitions>
-                    <TextBox VerticalContentAlignment="Center" BorderThickness="0" Background="Transparent" Grid.Column="0" x:Name="SearchBox" />
-                    <Button Style="{StaticResource BlankButton}" Grid.Column="1" Background="Transparent" Click="SearchBtn">
-                        <Image Height="Auto" Source="/Images/icon-search.png" Stretch="Uniform" />
-                    </Button>
-                </Grid>
-            </Border>
-            <WrapPanel Margin="30,0,0,0" Width="100" VerticalAlignment="Center">
-                <Icon:PackIconBootstrapIcons Kind="FilePersonFill" Height="Auto" VerticalAlignment="Center" Foreground="White"/>
-                <Button Margin="5,0,0,0" x:Name="loginLink" Style="{StaticResource BlankButton}" Click="loginLink_Click">
-                    <TextBlock FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Center">
-                        <TextBlock.Style>
-                            <Style TargetType="{x:Type TextBlock}">
-                                <Style.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Foreground" Value="#f3ea28" />
-                                        <Setter Property="TextDecorations" Value="Underline" />
-                                    </Trigger>
-                                    <Trigger Property="IsMouseOver" Value="False">
-                                        <Setter Property="Foreground" Value="White" />
-                                        <Setter Property="TextDecorations" Value="None" />
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </TextBlock.Style>
-                        Login
-                    </TextBlock>
-                </Button>
-            </WrapPanel>
-        </StackPanel>
-        <Frame x:Name="Body" NavigationUIVisibility="Hidden" Source="Home.xaml" Margin="0,39,0,0" Grid.RowSpan="2"/>
-=======
         <Grid>
             <Button Style="{StaticResource homeBtn}" HorizontalAlignment="Left" Click="navigateHome">
                 <Icon:PackIconBoxIcons Kind="SolidHome" Style="{StaticResource homeBtnIcon}"/>
             </Button>
-            
+
             <StackPanel VerticalAlignment="Center" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,10,25" Grid.Row="0">
-                
+
                 <Border Width="300" Style="{StaticResource roundBox}">
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -88,7 +48,7 @@
                             <ColumnDefinition Width="1*" />
                         </Grid.ColumnDefinitions>
                         <TextBox VerticalContentAlignment="Center" BorderThickness="0" Background="Transparent" Grid.Column="0" x:Name="SearchBox" />
-                        <Button Style="{StaticResource BlankButton}" Grid.Column="1" Background="Transparent">
+                        <Button Style="{StaticResource BlankButton}" Grid.Column="1" Background="Transparent" Click="SearchBtn">
                             <Image Height="Auto" Source="/Images/icon-search.png" Stretch="Uniform" />
 
                         </Button>
@@ -118,9 +78,6 @@
                 </WrapPanel>
             </StackPanel>
         </Grid>
-
-        
         <Frame x:Name="UserBody" NavigationUIVisibility="Hidden" Source="Home.xaml" Margin="0,39,0,0" Grid.RowSpan="2"/>
->>>>>>> 34a36b4e1be34170753419015bf638d091dbf8ff
     </Grid>
 </Page>
