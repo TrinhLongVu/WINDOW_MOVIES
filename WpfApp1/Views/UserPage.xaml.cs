@@ -15,9 +15,6 @@ using System.Windows.Shapes;
 
 namespace WpfApp1.Views
 {
-    /// <summary>
-    /// Interaction logic for UserPage.xaml
-    /// </summary>
     public partial class UserPage : Page
     {
         public UserPage()
@@ -26,7 +23,12 @@ namespace WpfApp1.Views
         }
 
         private void loginLink_Click(object sender, RoutedEventArgs e) {
-            NavigationService.Navigate(new Login());
+            UserBody.NavigationService.Navigate(new Login());
+        }
+
+        private void navigateHome(object sender, RoutedEventArgs e)
+        {
+            UserBody.NavigationService.Navigate(new Home());
         }
     }
 }
