@@ -14,6 +14,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Videos\trailer.mp4" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="Images\icon-search.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
@@ -69,6 +73,9 @@
 
   <ItemGroup>
     <Resource Include="Images\login_bg.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Videos\trailer.mp4">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>

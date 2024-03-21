@@ -3,23 +3,60 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WpfApp1.ViewModel;
 
 namespace WpfApp1.Views {
+    class TrailerControl {
+        public Image Landscape;
+        public Grid Info;
+        public MediaElement Trailer;
+        public bool IsPlaying;
+        public TrailerControl(Image img, Grid g, MediaElement vid) {
+            Landscape = img;
+            Trailer = vid;
+            Info = g;
+            IsPlaying = false;
+            Trailer.MediaEnded += Trailer_MediaEnded;
+        }
+
+        public void Play() {
+            IsPlaying = true;
+            Trailer.Visibility = Visibility.Visible;
+            Trailer.Play();
+            Landscape.Visibility = Visibility.Hidden;
+            Info.Visibility = Visibility.Hidden;
+        }
+
+        private void Trailer_MediaEnded(object sender, RoutedEventArgs e) {
+            Stop();
+        }
+
+        public void Stop() {
+            Info.Visibility = Landscape.IsMouseOver ? Visibility.Visible : Visibility.Hidden;
+            Landscape.Visibility = Visibility.Visible;
+            Trailer.Visibility = Visibility.Hidden;
+            Trailer.Stop();
+            IsPlaying = false;
+        }
+    }
     /// <summary>
     /// Interaction logic for Home.xaml
     /// </summary>
     public partial class Home : Page {
         HomePageModel viewModel;
+        Timer? timer = null;
+        private TrailerControl? playing = null;
         public Home() {
             InitializeComponent();
             viewModel = new HomePageModel();
@@ -32,15 +69,71 @@ namespace WpfApp1.Views {
             NavigationService?.Navigate(new MovieInfo(Id));
         }
 
-        private void Grid_MouseEnter(object sender, MouseEventArgs e) {
-            var title = FindName("Checking") as TextBlock;
-            title.Foreground = Brushes.Yellow;
+        private void ItemMouseEnter(object sender, MouseEventArgs e) {
+            Grid container = sender as Grid;
+            if (container == null) {
+                throw new Exception($"Unexpected type {sender.GetType()}");
+            }
+
+            Image? landscape = null;
+            Grid? info = null;
+            foreach (UIElement item in container.Children)
+            {
+                var ele = item as FrameworkElement;
+                if (ele == null) {
+                    throw new Exception($"Unexpected type {ele.GetType()}");
+                }
+                switch (ele.Name) {
+                    case "landscape":
+                        landscape = ele as Image;
+                        break;
+                    case "description":
+                        info = ele as Grid;
+                        break;
+                    case "trailer":
+                        MediaElement vid = ele as MediaElement;
+                        playing = new TrailerControl(landscape, info, vid);
+                        if (info == null || landscape == null) {
+                            throw new Exception("Missing landscape (poster) and description before trailer");
+                        } else {
+                            if (timer != null) timer.Stop();
+                            timer = new Timer {
+                                Interval = 2000,
+                                Enabled = true,
+                                    
+                            };
+                            timer.Elapsed += ((object source, ElapsedEventArgs e) => {
+                                this.Dispatcher.Invoke(() => {
+                                    playing?.Play();
+                                });
+                                timer.Stop();
+                            });
+                        }
+                        return;
+                    default:
+                        throw new Exception($"Unexpected name {ele.Name} type {ele.GetType()} before trailer");
+                }
+            }
         }
 
         private void OnItemClick(object sender, RoutedEventArgs e)
         {
             MessageBox.Show(((Button)sender).Name);
             
+        }
+
+        private void resetTrailer() {
+            if (playing != null && playing.IsPlaying) {
+                playing.Stop();
+            }
+            if (timer != null) {
+                timer.Stop();
+            }
+            playing = null;
+            timer = null;
+        }
+        private void ItemMouseLeave(object sender, MouseEventArgs e) {
+            resetTrailer();
         }
     }
 }
