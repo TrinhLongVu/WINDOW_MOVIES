@@ -7,14 +7,14 @@ namespace WpfApp1.ViewModel
 {
     class MovieInfoViewModel : INotifyPropertyChanged
     {
-        public Movie SelectedMovie { get; set; }
+        public InfoPageMovie SelectedMovie { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
         public MovieInfoViewModel(Int32 Id)
         {
             MovieDB movieDB = new MovieDB();
-            Movie selectedMovie = movieDB.GetMovie(Id);
+            InfoPageMovie selectedMovie = movieDB.GetMovie(Id);
             SelectedMovie = selectedMovie;
         }
     }

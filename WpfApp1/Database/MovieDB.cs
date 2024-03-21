@@ -77,11 +77,23 @@ namespace WpfApp1.Database
             return movies;
         }
 
-        public Movie GetMovie(Int32 IdMovie)
+        public InfoPageMovie GetMovie(Int32 IdMovie)
         {
-            Movie movie = new Movie();
+            InfoPageMovie movie = new InfoPageMovie();
 
-            string query = "SELECT * FROM Movie where Id=@Id";
+            //string query = "SELECT * FROM Movie where Id=@Id";
+            string query = @"
+            SELECT m.*, g.Name AS 'Genre', 
+                   s.Name AS NameStar, s.Image AS imageStar, 
+                   s.Story AS StoryStar, d.Name AS NameDirector, 
+                   d.Image AS Imagedirector, d.Story AS StoryDirector
+            FROM Movie m
+            JOIN MovieStar ms ON m.Id = ms.MovieId
+            JOIN MovieDirector md ON m.Id = md.MovieId
+            JOIN Genre g ON m.IdGener = g.Id
+            JOIN Star s ON s.Id = ms.StarId
+            JOIN Director d ON d.Id = md.DirectorId
+            WHERE m.Id = @Id";
 
             SqlCommand command = new SqlCommand(query, _connect);
             command.Parameters.AddWithValue("@Id", $"{IdMovie}");
@@ -99,7 +111,14 @@ namespace WpfApp1.Database
                 string Certification = reader.GetString(7);
                 string Release = reader.GetString(8);
                 string Detail = reader.GetString(9);
-                movie = new Movie { Id = Id, IdGener = IdGener, Title = Title, Runtime = Runtime, Rating = Rating, Poster = Poster, Landscape = Landscape, Certification = Certification, Release = Release, Detail = Detail };
+                string Genre = reader.GetString(10);
+                string NameStar = reader.GetString(11);
+                string ImageStar = reader.GetString(12);
+                string StoryStar = reader.GetString(13);
+                string NameDirector = reader.GetString(14);
+                string Imagedirector = reader.GetString(15);
+                string StoryDirector = reader.GetString(16);
+                movie = new InfoPageMovie { Id = Id, IdGener = IdGener, Title = Title, Runtime = Runtime, Rating = Rating, Poster = Poster, Landscape = Landscape, Certification = Certification, Release = Release, Detail = Detail, NameGenre = Genre, AvatarDirector = Imagedirector, BioDirector = StoryDirector, NameStar = NameStar, NameDirector = NameDirector, BioStar = StoryStar, AvatarStar = ImageStar};
                 break;
             }
 

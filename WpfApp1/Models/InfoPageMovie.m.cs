@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WpfApp1.Models
 {
-    class Movie
+    class InfoPageMovie
     {
         public Int32 Id { get; set; }
         public Int32? IdGener { get; set; }
@@ -19,8 +19,12 @@ namespace WpfApp1.Models
         public string? Poster { get; set; }
         public string? Certification { get; set; }
         public string? Detail { get; set; }
-        public string? Name { get; set; }
-        public string? Avatar { get; set; }
-        public string? Bio { get; set; }
+        public string? NameStar { get; set; }
+        public string? AvatarStar { get; set; }
+        public string? BioStar { get; set; }
+        public string? NameDirector { get; set; }
+        public string? AvatarDirector { get; set; }
+        public string? BioDirector { get; set; }
+        public string? NameGenre { get; set; }
     }
 }
