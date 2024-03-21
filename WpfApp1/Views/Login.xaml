@@ -6,10 +6,10 @@
       xmlns:local="clr-namespace:WpfApp1.Views"
       xmlns:utils="clr-namespace:WpfApp1.Utils"
       mc:Ignorable="d" 
-      d:DesignHeight="600" d:DesignWidth="1280"
+      d:DesignHeight="700" d:DesignWidth="1280"
       Title="Login">
 
-    <Grid Width="1280" Height="600">
+    <Grid Width="1280" Height="700">
         <Image Source="/Images/login_bg.jpg"/>
         <Grid>
             <Grid.ColumnDefinitions>

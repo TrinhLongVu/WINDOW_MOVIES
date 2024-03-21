@@ -51,14 +51,14 @@
                         </Button>
                         <Button Style="{StaticResource dashboardMenuBtn}" GotFocus="MenuButtonFocus">
                             <StackPanel Orientation="Horizontal">
-                                <Icon:PackIconBootstrapIcons Kind="Reception4" Style="{StaticResource dashboardMenuBtnIcon}"/>
-                                <TextBlock Text="Statistics" Style="{StaticResource dashboardMenuBtnText}"/>
+                                <Icon:PackIconBootstrapIcons Kind="CameraReelsFill" Style="{StaticResource dashboardMenuBtnIcon}"/>
+                                <TextBlock Text="Directors" Style="{StaticResource dashboardMenuBtnText}"/>
                             </StackPanel>
                         </Button>
                         <Button Style="{StaticResource dashboardMenuBtn}" GotFocus="MenuButtonFocus">
                             <StackPanel Orientation="Horizontal">
-                                <Icon:PackIconBootstrapIcons Kind="Reception4" Style="{StaticResource dashboardMenuBtnIcon}"/>
-                                <TextBlock Text="Statistics" Style="{StaticResource dashboardMenuBtnText}"/>
+                                <Icon:PackIconBootstrapIcons Kind="PersonVideo" Style="{StaticResource dashboardMenuBtnIcon}"/>
+                                <TextBlock Text="Casts" Style="{StaticResource dashboardMenuBtnText}"/>
                             </StackPanel>
                         </Button>
                         <Button Style="{StaticResource dashboardMenuBtn}" GotFocus="MenuButtonFocus">

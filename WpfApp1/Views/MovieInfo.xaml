@@ -26,7 +26,7 @@
                         </Grid.ColumnDefinitions>
                         <StackPanel Grid.Column="0" Orientation="Horizontal" Margin="15,8">
                             <Image Width="32" Height="32" Source="/Images/icon-tag.png"/>
-                            <Label Foreground="White" FontSize="18" Margin="8,0">Horror</Label>
+                            <Label Foreground="White" FontSize="18" Margin="8,0" Content="{Binding SelectedMovie.Runtime}"></Label>
                         </StackPanel>
                         <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="15,8">
                             <Image Width="32" Height="32" Source="/Images/icon-calendar.png"/>

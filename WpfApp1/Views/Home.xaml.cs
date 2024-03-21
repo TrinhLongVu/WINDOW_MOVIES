@@ -8,8 +8,6 @@ using System.Threading.Tasks;
 using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
@@ -52,9 +50,13 @@ namespace WpfApp1.Views {
             IsPlaying = false;
         }
     }
+}
     /// <summary>
     /// Interaction logic for Home.xaml
     /// </summary>
+
+namespace WpfApp1.Views
+{
     public partial class Home : Page {
         HomePageModel viewModel;
         Timer? timer = null;

@@ -1,13 +1,13 @@
-﻿<Page x:Class="WpfApp1.Views.MovieManagement"
+﻿<Page x:Class="WpfApp1.Views.DirectorManagement"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
       xmlns:local="clr-namespace:WpfApp1.Views"
       mc:Ignorable="d" 
       d:DesignHeight="650" d:DesignWidth="1010"
-      Title="MovieManagement">
+      Title="DirectorManagement">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -16,9 +16,9 @@
             <RowDefinition Height="55"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0" HorizontalAlignment="Right" Margin="10">
-            <Button Style="{StaticResource addBtn}" Click="AddMovie">
-                <Icon:BoxIcons Kind="RegularVideoPlus"/>
-            </Button>
+            <Border Background="White" Width="35" Height="35" CornerRadius="50">
+                <Icon:PackIconBootstrapIcons Kind="Plus" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#FF0033"/>
+            </Border>
         </Grid>
         <Grid Grid.Row="1">
             <ListView x:Name="myListView" ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalAlignment="Center" BorderThickness="0" BorderBrush="Transparent" ItemsSource="{Binding MovieShow}" Background="Transparent" SelectionMode="Single">
@@ -36,9 +36,9 @@
                             </Grid.RowDefinitions>
                             <Image Source="{Binding Poster}" Stretch="UniformToFill" Width="230" Height="350" Grid.Row="0"/>
                             <TextBlock Grid.Row="1" Width="200" TextWrapping="NoWrap" TextTrimming="WordEllipsis" TextAlignment="Center" FontSize="18px" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center">
-                            <Bold>
-                                <Run Text="{Binding Title}"></Run>
-                            </Bold>
+                    <Bold>
+                        <Run Text="{Binding Title}"></Run>
+                    </Bold>
                             </TextBlock>
                         </Grid>
                     </DataTemplate>
@@ -50,9 +50,9 @@
                 <Icon:BoxIcons Kind="RegularChevronLeft"/>
             </Button>
             <TextBlock Foreground="White" Padding="40 0 40 0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30">
-        <Bold>
-            <Run Text="{Binding CurrentPage}"/>
-        </Bold>
+<Bold>
+    <Run Text="{Binding CurrentPage}"/>
+</Bold>
             </TextBlock>
             <Button Command="{Binding NextPageCommand}" Style="{StaticResource pageNavBtn}">
                 <Icon:BoxIcons Kind="RegularChevronRight"/>

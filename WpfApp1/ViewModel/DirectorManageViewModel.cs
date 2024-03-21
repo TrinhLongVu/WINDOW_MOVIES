@@ -4,11 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WpfApp1.Models
+namespace WpfApp1.ViewModel
 {
-    class Genre
+    class DirectorManageViewModel
     {
-        public Int32 Id { get; set; }
-        public string? Name { get; set; }
     }
 }
