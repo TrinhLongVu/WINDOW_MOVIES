@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Timers;
@@ -134,6 +136,22 @@ namespace WpfApp1.Views {
         }
         private void ItemMouseLeave(object sender, MouseEventArgs e) {
             resetTrailer();
+        }
+
+        private void OnPrevClick(object sender, RoutedEventArgs e) {
+            var carousel = FindName("Carousel") as ListView;
+            if (carousel == null) {
+                throw new Exception("NULL");
+            }
+            viewModel.TestCarousel.Previous(carousel);
+        }
+
+        private void OnNextClick(object sender, RoutedEventArgs e) {
+            var carousel = FindName("Carousel") as ListView;
+            if (carousel == null) {
+                throw new Exception("NULL");
+            }
+            viewModel.TestCarousel.Next(carousel);
         }
     }
 }
