@@ -22,7 +22,7 @@ create table MovieStar(
 
 create table Movie (
 	Id INT IDENTITY(1, 1),
-    IdGener varchar(100),
+    IdGener INT,
     Title varchar(100),
     Runtime varchar(100),
     Rating varchar(100),
@@ -41,7 +41,7 @@ create table MovieDirector(
 )
 
 create table Genre (
-	Id varchar(100),
+	Id INT IDENTITY(1, 1),
 	Name varchar(100)
 	primary key (Id)
 )
@@ -62,7 +62,7 @@ create table Schedule (
 
 create table MovieSchedule(
 	IdSchedule INT,
-	IdMovie int
+	IdMovie INT
 	primary key (IdSchedule, IdMovie)
 )
 
@@ -74,6 +74,28 @@ create table Account(
 	Password varchar(100)
 	primary key (Id)
 )
+
+create table Position(
+	Id int IDENTITY(1, 1),
+	pos char(4),
+	primary key(Id)
+)
+
+insert into Position(pos) values('A-01')
+insert into Position(pos) values('A-02')
+
+create table Ticket(
+	Id INT IDENTITY(1, 1),
+	pos_id int,
+	movie_id int,
+	schedule_id int,
+	primary key(pos_id, movie_id, schedule_id)
+)
+
+alter table Ticket
+add constraint FK_TICK_POS foreign key(pos_id) references Position(Id),
+	constraint FK_TICK_MVSCHE foreign key(schedule_id, movie_id) references MovieSchedule(IdSchedule, IdMovie)
+
 
 go
 
@@ -94,20 +116,15 @@ add constraint FK_GENRE foreign key (IdGener) references Genre(Id)
 
 go
 
-insert into Account(Role, Username, Password)
+insert into Genre(Name)
 values
-('user', 'un1', '123'),
-('admin', 'ad1', '123')
-
-insert into Genre(Id, Name)
-values
-('1', 'Horror'),
-('2', 'Adventure'),
-('3', 'Action'),
-('4', 'Romance'),
-('5', 'Comedy'),
-('6', 'Drama'),
-('7', 'History')
+('Horror'),
+('Adventure'),
+('Action'),
+('Romance'),
+('Comedy'),
+('Drama'),
+('History')
 
 insert into Star(Name, Image, Story)
 values
@@ -278,4 +295,6 @@ values
 ('30','30')
 
 insert into Account(Role, Birthday, Username, Password)
-values('user', '05-12-2003', 'TrinhLongVu', '123')
+values
+('user', '1/1/2000 12:00:00 AM', 'un1', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3'),
+('admin', '1/1/2001 12:00:00 AM', 'ad1', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3')

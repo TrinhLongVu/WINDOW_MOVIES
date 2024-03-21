@@ -31,7 +31,7 @@ namespace WpfApp1.Database
             while (reader.Read())
             {
                 var Id = reader.GetInt32(0);
-                string IdGener = reader.GetString(1);
+                Int32 IdGener = reader.GetInt32(1);
                 string Title = reader.GetString(2);
                 string Runtime = reader.GetString(3);
                 string Rating = reader.GetString(4);
@@ -61,7 +61,7 @@ namespace WpfApp1.Database
             while (reader.Read())
             {
                 var Id = reader.GetInt32(0);
-                string IdGener = reader.GetString(1);
+                Int32 IdGener = reader.GetInt32(1);
                 string Title = reader.GetString(2);
                 string Runtime = reader.GetString(3);
                 string Rating = reader.GetString(4);
@@ -90,7 +90,7 @@ namespace WpfApp1.Database
             while (reader.Read())
             {
                 var Id = reader.GetInt32(0);
-                string IdGener = reader.GetString(1);
+                Int32 IdGener = reader.GetInt32(1);
                 string Title = reader.GetString(2);
                 string Runtime = reader.GetString(3);
                 string Rating = reader.GetString(4);

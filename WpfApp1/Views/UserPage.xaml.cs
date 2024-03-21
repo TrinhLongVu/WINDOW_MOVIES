@@ -23,7 +23,7 @@ namespace WpfApp1.Views
         }
 
         private void loginLink_Click(object sender, RoutedEventArgs e) {
-            NavigationService.Navigate(new Login());
+            UserBody.NavigationService.Navigate(new Login());
         }
 
         private void SearchBtn(object sender, RoutedEventArgs e)
