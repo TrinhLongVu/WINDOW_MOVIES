@@ -35,7 +35,7 @@
             <RowDefinition Height="11*"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid>
-            <Button Style="{StaticResource homeBtn}" HorizontalAlignment="Left" Click="navigateHome">
+            <Button Style="{StaticResource homeBtn}" VerticalAlignment="Top" HorizontalAlignment="Left" Click="navigateHome">
                 <Icon:PackIconBoxIcons Kind="SolidHome" Style="{StaticResource homeBtnIcon}"/>
             </Button>
 

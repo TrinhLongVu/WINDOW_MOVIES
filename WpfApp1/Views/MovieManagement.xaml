@@ -46,26 +46,16 @@
             </ListView>
         </Grid>
         <StackPanel Margin="0 0 100 0" Orientation="Horizontal" Grid.Row="3" HorizontalAlignment="Right">
-            <Button Command="{Binding PreviousPageCommand}" Background="#f3ea28" Padding="10" Width="90" Height="50">
-                <Button.Resources>
-                    <Style TargetType="Border">
-                        <Setter Property="CornerRadius" Value="10"/>
-                    </Style>
-                </Button.Resources>
-                <TextBlock FontSize="16"><Bold>Previous</Bold></TextBlock>
+            <Button Command="{Binding PreviousPageCommand}" Style="{StaticResource pageNavBtn}">
+                <Icon:BoxIcons Kind="RegularChevronLeft"/>
             </Button>
             <TextBlock Foreground="White" Padding="40 0 40 0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30">
         <Bold>
             <Run Text="{Binding CurrentPage}"/>
         </Bold>
             </TextBlock>
-            <Button Command="{Binding NextPageCommand}" Background="#f3ea28" Padding="10" Width="90" Height="50">
-                <Button.Resources>
-                    <Style TargetType="Border">
-                        <Setter Property="CornerRadius" Value="10"/>
-                    </Style>
-                </Button.Resources>
-                <TextBlock FontSize="16"><Bold>Next</Bold></TextBlock>
+            <Button Command="{Binding NextPageCommand}" Style="{StaticResource pageNavBtn}">
+                <Icon:BoxIcons Kind="RegularChevronRight"/>
             </Button>
         </StackPanel>
     </Grid>
