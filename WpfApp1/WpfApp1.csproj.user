@@ -7,10 +7,19 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="Views\AddMovie.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\CastManagement.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\Dashboard.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\DashboardStatistic.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\DirectorManagement.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\Login.xaml.cs">
@@ -36,10 +45,19 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="Views\AddMovie.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\CastManagement.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\Dashboard.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\DashboardStatistic.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\DirectorManagement.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\MainWindow.xaml">

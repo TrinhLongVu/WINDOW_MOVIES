@@ -1,7 +1,4 @@
-﻿using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Windows.Controls;
-using WpfApp1.Models;
+﻿using System.Windows.Controls;
 using WpfApp1.ViewModel;
 
 namespace WpfApp1.Views
@@ -12,6 +9,12 @@ namespace WpfApp1.Views
         {
             InitializeComponent();
             DataContext = new MovieManageViewModel();
+        }
+
+        private void AddMovie(object sender, System.Windows.RoutedEventArgs e)
+        {
+            AddMovie addMovieWindow = new AddMovie();
+            addMovieWindow.Show();
         }
     }
 }
