@@ -19,7 +19,7 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <TextBlock Grid.Row="0" FontSize="40px" TextAlignment="Center" Foreground="White"><Bold>PHIM ĐANG CHIẾU</Bold></TextBlock>
+            <TextBlock Grid.Row="0" FontSize="40px" TextAlignment="Center" Foreground="White"><Bold>AIRING MOVIES</Bold></TextBlock>
             <StackPanel
                 Background="Transparent"
                 MaxWidth="1300px" HorizontalAlignment="Center"
