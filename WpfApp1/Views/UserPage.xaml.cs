@@ -26,6 +26,11 @@ namespace WpfApp1.Views
             UserBody.NavigationService.Navigate(new Login());
         }
 
+        private void SearchBtn(object sender, RoutedEventArgs e)
+        {
+            UserBody.NavigationService.Navigate(new Search(SearchBox.Text));
+        }
+
         private void navigateHome(object sender, RoutedEventArgs e)
         {
             UserBody.NavigationService.Navigate(new Home());

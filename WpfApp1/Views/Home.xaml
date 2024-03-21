@@ -24,17 +24,20 @@
                 Background="Transparent"
                 MaxWidth="1300px" HorizontalAlignment="Center"
                 Grid.Row="1" Grid.Column="0">
-                <ItemsControl
+                <ListView
                     BorderThickness="0"
                     HorizontalAlignment="Left"
-                    ItemsSource="{Binding TestCarousel.MovieCollection}">
+                    ItemsSource="{Binding TestCarousel.MovieCollection}"
+                    Background="Transparent"
+                    SelectedItem="{Binding SelectedItem}"
+                    >
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                             <StackPanel Orientation="Horizontal"/>
                         </ItemsPanelTemplate>
                     </ItemsControl.ItemsPanel>
                     <ItemsControl.ItemTemplate>
-                        <DataTemplate>
+                        <DataTemplate >
                             <Grid Cursor="Hand" Grid.Row="1" Grid.Column="0"
                                   Width="300" Height="330" Margin="1,0,1,0"
                                   HorizontalAlignment="Left" x:Name="ItemDesc">
@@ -117,7 +120,7 @@
                             </Grid>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
-                </ItemsControl>
+                </ListView>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                     <Button Content="Previous" Command="{Binding TestCarousel.PrevCommand}"/>
                     <Button x:Name="btnChange" Content="Next" Command="{Binding TestCarousel.NextCommand}">

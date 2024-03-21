@@ -22,10 +22,18 @@ namespace WpfApp1.Views
     /// </summary>
     public partial class Search : Page
     {
-        public Search()
+        private SearchViewModel viewModel;
+        public Search(string stringSearch)
         {
             InitializeComponent();
-            DataContext = new SearchViewModel();
+            viewModel = new SearchViewModel(stringSearch);
+            DataContext = viewModel;
+            viewModel.SelectItemBtn += ViewModel_ClickItem;
+        }
+
+        private void ViewModel_ClickItem(object sender, Int32 Id)
+        {
+            NavigationService?.Navigate(new MovieInfo(Id));
         }
     }
 }
