@@ -15,7 +15,7 @@ namespace WpfApp1.Models
         public string? Release { get; set; }
         public string? Runtime { get; set; }
         public string? Landscape { get; set; }
-        public string? Rating { get; set; }
+        public double? Rating { get; set; }
         public string? Poster { get; set; }
         public string? Certification { get; set; }
         public string? Detail { get; set; }

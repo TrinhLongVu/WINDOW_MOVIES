@@ -24,6 +24,7 @@ namespace WpfApp1.ViewModel
         private int _pageSize = 8;
         private int _totalMovies = 0;
         private int _quantityPage = 0;
+        MovieDB movieDB;
 
         private Filter _SelectedFilter;
         public Filter SelectedFilter
@@ -38,7 +39,7 @@ namespace WpfApp1.ViewModel
         
         public SearchViewModel(string stringSearch)
         {
-            MovieDB movieDB = new MovieDB();
+            movieDB = new MovieDB();
             movies = movieDB.SearchMovie(stringSearch);
 
             CurrentPage = 0;
@@ -48,8 +49,8 @@ namespace WpfApp1.ViewModel
             UpdateMovie(0);
             Filters = new ObservableCollection<Filter>
             {
-                new Filter { Name = "Hot" },
-                new Filter { Name = "Increase" }
+                new Filter { Name = "Inscrease Rating" },
+                new Filter { Name = "Decrease Rating" }
             };
             PropertyChanged += MyViewModel_PropertyChanged;
         }
@@ -65,6 +66,17 @@ namespace WpfApp1.ViewModel
         private void FilterItems()
         {
             // handle logic from database(_SelectedFilter.Name)
+            MovieShow.Clear();
+            if(_SelectedFilter.Name == "Inscrease Rating")
+            {
+                movies = movieDB.FilterAsc();
+                UpdateMovie(0);
+            }else if (_SelectedFilter.Name == "Decrease Rating")
+            {
+                movies = movieDB.FilterDesc();
+                UpdateMovie(0);
+            }
+
         }
         public ICommand PreviousPageCommand => new RelayCommand(Previous);
         public ICommand NextPageCommand => new RelayCommand(Next);

@@ -298,3 +298,8 @@ insert into Account(Role, Birthday, Username, Password)
 values
 ('user', '1/1/2000 12:00:00 AM', 'un1', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3'),
 ('admin', '1/1/2001 12:00:00 AM', 'ad1', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3')
+
+
+select m.*, g.Name as 'Genre', s.Name as NameStar, s.Image as imageStar, s.Story as StoryStar, d.Name as NameDirector, d.Image as Imagedirector, d.Story as StoryDirector
+from Movie m, MovieStar ms, MovieDirector md, Genre g, Star s, Director d
+where m.Id = ms.MovieId and m.Id = md.DirectorId and m.IdGener = g.Id and m.Id = '2' and s.Id = ms.StarId and d.Id = md.DirectorId
