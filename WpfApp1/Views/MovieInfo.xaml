@@ -13,7 +13,11 @@
                 <ColumnDefinition Width="0.4*"/>
                 <ColumnDefinition Width="0.6*"/>
             </Grid.ColumnDefinitions>
-            <Image Grid.Column="0" Width="488" Height="750" Stretch="UniformToFill" Source="{Binding SelectedMovie.Poster}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Border Grid.Column="0" Width="488" Height="750">
+                <Border.Background>
+                    <ImageBrush ImageSource="{Binding SelectedMovie.Poster}" Stretch="UniformToFill"/>
+                </Border.Background>
+            </Border>
             <Border Grid.Column="1" Padding="20">
                 <StackPanel>
                     <TextBlock Foreground="White" FontSize="45" FontWeight="Bold" TextWrapping="Wrap" TextAlignment="Justify" Margin="0,0,0,30" Text="{Binding SelectedMovie.Title}"/>

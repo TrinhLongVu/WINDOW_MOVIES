@@ -75,9 +75,9 @@
     <Resource Include="Images\login_bg.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Videos\trailer.mp4">
+    <Content Include="Videos\trailer.mp4">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>

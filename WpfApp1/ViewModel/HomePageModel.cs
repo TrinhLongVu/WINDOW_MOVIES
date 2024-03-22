@@ -19,7 +19,7 @@ namespace WpfApp1.ViewModel
         public Movie SelectedItem { get; set; }
         public HomePageModel() {
             ArrayList movies = new MovieDB().GetAllMovie();
-            TestCarousel = new MovieCarousel(new List<Movie>(movies.ToArray(typeof(Movie)) as Movie[]), 2);
+            TestCarousel = new MovieCarousel(new List<Movie>(movies.ToArray(typeof(Movie)) as Movie[]), 1);
             PropertyChanged += MyViewModel_PropertyChanged;
         }
 

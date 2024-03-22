@@ -9,11 +9,11 @@ using WpfApp1.ViewModel;
 
 namespace WpfApp1.Views {
     class TrailerControl {
-        public Image Landscape;
+        public Border Landscape;
         public Grid Info;
         public MediaElement Trailer;
         public bool IsPlaying;
-        public TrailerControl(Image img, Grid g, MediaElement vid) {
+        public TrailerControl(Border img, Grid g, MediaElement vid) {
             Landscape = img;
             Trailer = vid;
             Info = g;
@@ -85,7 +85,7 @@ namespace WpfApp1.Views
                 throw new Exception($"Unexpected type {sender.GetType()}");
             }
 
-            Image? landscape = null;
+            Border? landscape = null;
             Grid? info = null;
             foreach (UIElement item in container.Children)
             {
@@ -95,7 +95,7 @@ namespace WpfApp1.Views
                 }
                 switch (ele.Name) {
                     case "landscape": {
-                        landscape = ele as Image;
+                        landscape = ele as Border;
                         
 /*                        Storyboard st = new Storyboard();
                         DoubleAnimation animation = new DoubleAnimation {

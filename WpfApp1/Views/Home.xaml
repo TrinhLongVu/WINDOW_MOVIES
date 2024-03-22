@@ -11,22 +11,20 @@
         <BooleanToVisibilityConverter x:Key="boolToValueConverter"></BooleanToVisibilityConverter>
         <DataTemplate x:Key="ItemTemplate" >
             <Grid Cursor="Hand" Grid.Row="1" Grid.Column="0" MouseEnter="ItemMouseEnter" MouseLeave="ItemMouseLeave"
-                                Width="300" Height="330" Margin="10,0"
+                                Width="500" Height="380" Margin="10,0"
                                 HorizontalAlignment="Left" x:Name="ItemDesc" Background="Transparent">
-
                 <Grid.RowDefinitions>
-                    <RowDefinition MinHeight="100" Height="90*"></RowDefinition>
-                    <RowDefinition Height="25*"></RowDefinition>
+                    <RowDefinition Height="90*"></RowDefinition>
+                    <RowDefinition Height="15*"></RowDefinition>
                     <RowDefinition Height="10*"></RowDefinition>
                 </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="1*"></ColumnDefinition>
-                </Grid.ColumnDefinitions>
+                <Border x:Name="landscape" Grid.Row="0">
+                    <Border.Background>
+                        <ImageBrush ImageSource="{Binding Landscape}" Stretch="UniformToFill"/>
+                    </Border.Background>
+                </Border>
 
-                <Image x:Name="landscape" Grid.Row="0" Grid.Column="0" Source="{Binding Landscape}" Stretch="UniformToFill">
-                </Image>
-
-                <Grid x:Name="description" Grid.Row="0" Grid.Column="0" Panel.ZIndex="100"
+                <Grid x:Name="description" Grid.Row="0" Panel.ZIndex="100"
                                     Visibility="{Binding Path=IsMouseOver, ElementName=ItemDesc, Converter={StaticResource boolToValueConverter}}">
                     <Grid.Background>
                         <SolidColorBrush Color="#000000" Opacity="0.5"/>
@@ -48,13 +46,13 @@
                     </StackPanel>
                 </Grid>
 
-                <MediaElement Visibility="Hidden" Grid.Row="0" Grid.Column="0" LoadedBehavior="Manual" Name="trailer" Panel.ZIndex="1000" Stretch="Uniform"
-                                            Source="/Videos/trailer.mp4" />
+                <MediaElement Visibility="Hidden" Grid.Row="0" LoadedBehavior="Manual" Name="trailer" Panel.ZIndex="1000" Stretch="Uniform"
+                                            Source="pack://siteoforigin:,,,/Videos/trailer.mp4" />
 
                 <TextBlock
                                 TextWrapping="Wrap" FontWeight="Bold" FontSize="20"
                                 HorizontalAlignment="Center" Text="{Binding Title}"
-                                Grid.Row="1" Grid.Column="1" VerticalAlignment="Top"
+                                Grid.Row="1" VerticalAlignment="Top"
                                 TextAlignment="Center"
                                 Padding="5,5,5,0">
                     <TextBlock.Style>
@@ -72,14 +70,9 @@
                         </Style>
                     </TextBlock.Style>
                 </TextBlock>
-                <Grid Grid.Row="2" Grid.Column="1" Width="Auto">
-                    <Button Cursor="Hand" Margin="0,0,20,0" Background="Yellow" FontWeight="Bold" Foreground="Black">
-                        <Button.Resources>
-                            <Style TargetType="Border">
-                                <Setter Property="CornerRadius" Value="5"/>
-                            </Style>
-                        </Button.Resources>
-                        Book
+                <Grid Grid.Row="2" Width="Auto">
+                    <Button Cursor="Hand" Width="100" FontWeight="Bold" Style="{StaticResource bookBtn}">
+                        Book Ticket
                     </Button>
                 </Grid>
             </Grid>
