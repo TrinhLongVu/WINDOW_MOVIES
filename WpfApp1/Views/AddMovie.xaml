@@ -4,7 +4,6 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
-        xmlns:local="clr-namespace:WpfApp1.Views"
         mc:Ignorable="d"
         d:DesignHeight="570" d:DesignWidth="900"
         Title="Add a Movie" Height="570" Width="900">
@@ -83,6 +82,34 @@
             </Grid>
             <Label FontWeight="Bold" Foreground="White" FontSize="15">Plot</Label>
             <TextBox Width="570" Height="120" TextWrapping="Wrap" AcceptsReturn="True" Style="{StaticResource CustomTxtBox}"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0">
+                    <Label Content="Director" Foreground="White" FontWeight="Bold" FontSize="15"/>
+                    <ComboBox Width="280" Height="40" FontSize="16" Style="{StaticResource RoundComboBox}" ItemsSource="{Binding DirectorData}" DisplayMemberPath="Name" SelectedItem="{Binding SelectedDirector}" Validation.ErrorTemplate="{x:Null}"/>
+                </StackPanel>
+                <StackPanel Grid.Column="1">
+                    <Label Content="Cast" Foreground="White" FontWeight="Bold" FontSize="15"/>
+                    <ComboBox Width="280" Height="40" FontSize="16" Style="{StaticResource RoundComboBox}" ItemsSource="{Binding StarData}" DisplayMemberPath="Name" SelectedItem="{Binding SelectedStar}" Validation.ErrorTemplate="{x:Null}"/>
+                </StackPanel>
+            </Grid>
+            <StackPanel Margin="0,40,0, 0" Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Style="{StaticResource userInfoBtn}">
+                    <StackPanel Orientation="Horizontal">
+                        <Icon:PackIconBoxIcons Kind="SolidXCircle" Style="{StaticResource userInfoBtnIcon}"/>
+                        <TextBlock Text="Cancel" Style="{StaticResource userInfoBtnText}"/>
+                    </StackPanel>
+                </Button>
+                <Button Style="{StaticResource userInfoBtn}">
+                    <StackPanel Orientation="Horizontal">
+                        <Icon:PackIconBoxIcons Kind="SolidPlusCircle" Style="{StaticResource userInfoBtnIcon}"/>
+                        <TextBlock Text="Add" Style="{StaticResource userInfoBtnText}"/>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
         </StackPanel>
     </Grid>
 </Window>
