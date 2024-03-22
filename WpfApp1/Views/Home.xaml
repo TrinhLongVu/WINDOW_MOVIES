@@ -11,7 +11,7 @@
         <BooleanToVisibilityConverter x:Key="boolToValueConverter"></BooleanToVisibilityConverter>
         <DataTemplate x:Key="ItemTemplate" >
             <Grid Cursor="Hand" Grid.Row="1" Grid.Column="0" MouseEnter="ItemMouseEnter" MouseLeave="ItemMouseLeave"
-                                Width="300" Height="330" Margin="0"
+                                Width="300" Height="330" Margin="10,0"
                                 HorizontalAlignment="Left" x:Name="ItemDesc" Background="Transparent">
 
                 <Grid.RowDefinitions>

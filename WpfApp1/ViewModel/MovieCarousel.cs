@@ -27,7 +27,8 @@ namespace WpfApp1.ViewModel
         private int _itemsLeft = 0;
         private int _itemScrolled = 0;
         private int _itemPerPage = 0;
-        private const int _margin = 2;
+        private const int _MARGIN = 7;
+        private const int _PADDING = 20;
 
 
         public MovieCarousel(List<Movie> movies, int scrollPerPage, int itemPerPage = 4) {
@@ -52,7 +53,7 @@ namespace WpfApp1.ViewModel
             _itemsLeft -= itemScroll;
             _itemScrolled += itemScroll;
             DoubleAnimation animation = new DoubleAnimation {
-                By = -itemWidth * itemScroll - _margin,
+                By = - (itemWidth * itemScroll + _MARGIN + (_itemsLeft == 0 ? _PADDING : 0)),
                 Duration = TimeSpan.FromSeconds(1.5),
             };
             Storyboard st = new Storyboard();
@@ -77,7 +78,7 @@ namespace WpfApp1.ViewModel
             _itemScrolled -= itemScroll;
             _itemsLeft += itemScroll;
             DoubleAnimation animation = new DoubleAnimation {
-                By = itemWidth * itemScroll + _margin,
+                By = itemWidth * itemScroll + _MARGIN + (_itemsLeft == itemScroll ? _PADDING : 0),
                 Duration = TimeSpan.FromSeconds(1.5),
             };
             Storyboard st = new Storyboard();
