@@ -22,13 +22,16 @@ namespace WpfApp1.ViewModel
 
         private bool onAnimation = false;
 
-        private int _itemPerPage = 4;
+        private int _scrollPerPage = 0;
         private int _totalItems = 0;
         private int _itemsLeft = 0;
         private int _itemScrolled = 0;
+        private int _itemPerPage = 0;
+        private const int _margin = 2;
 
 
-        public MovieCarousel(List<Movie> movies, int itemPerPage = 4) {
+        public MovieCarousel(List<Movie> movies, int scrollPerPage, int itemPerPage = 4) {
+            _scrollPerPage = scrollPerPage;
             _itemPerPage = itemPerPage;
             _movies = movies;
             _totalItems = _movies.Count;
@@ -39,18 +42,17 @@ namespace WpfApp1.ViewModel
 
         public void Next(ListView container) {
             if (onAnimation) return;
-            onAnimation = true;
             if (!(container.Parent is Canvas)) {
                 throw new Exception("Wrap list view in canvas to use carousel");
             }
-            if (_itemsLeft == 0) return;
+            if (_itemsLeft <= 0) return;
             var item = container.ItemContainerGenerator.ContainerFromIndex(0) as ListViewItem;
             var itemWidth = item.ActualWidth;
-            var itemScroll = Math.Min(_itemPerPage, _itemsLeft);
+            var itemScroll = Math.Min(_scrollPerPage, _itemsLeft);
             _itemsLeft -= itemScroll;
             _itemScrolled += itemScroll;
             DoubleAnimation animation = new DoubleAnimation {
-                By = -itemWidth * itemScroll,
+                By = -itemWidth * itemScroll - _margin,
                 Duration = TimeSpan.FromSeconds(1.5),
             };
             Storyboard st = new Storyboard();
@@ -60,22 +62,22 @@ namespace WpfApp1.ViewModel
             st.Completed += (object sender, EventArgs e) => {
                 onAnimation = false;
             };
+            onAnimation = true;
             st.Begin();
         }
         public void Previous(ListView container) {
             if (onAnimation) return;
-            onAnimation = true;
             if (!(container.Parent is Canvas)) {
                 throw new Exception("Wrap list view in canvas to use carousel");
             }
             if (_itemScrolled == 0) return;
             var item = container.ItemContainerGenerator.ContainerFromIndex(0) as ListViewItem;
             var itemWidth = item.ActualWidth;
-            var itemScroll = Math.Min(_itemPerPage, _itemScrolled);
+            var itemScroll = Math.Min(_scrollPerPage, _itemScrolled);
             _itemScrolled -= itemScroll;
             _itemsLeft += itemScroll;
             DoubleAnimation animation = new DoubleAnimation {
-                By = itemWidth * itemScroll,
+                By = itemWidth * itemScroll + _margin,
                 Duration = TimeSpan.FromSeconds(1.5),
             };
             Storyboard st = new Storyboard();
@@ -85,6 +87,7 @@ namespace WpfApp1.ViewModel
                 onAnimation = false;
             };
             st.Children.Add(animation);
+            onAnimation = true;
             st.Begin();
         }
     }
