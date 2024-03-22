@@ -55,7 +55,7 @@
                                 <TextBlock Text="Directors" Style="{StaticResource dashboardMenuBtnText}"/>
                             </StackPanel>
                         </Button>
-                        <Button Style="{StaticResource dashboardMenuBtn}" GotFocus="MenuButtonFocus">
+                        <Button x:Name="AdminCast" Style="{StaticResource dashboardMenuBtn}" GotFocus="MenuButtonFocus">
                             <StackPanel Orientation="Horizontal">
                                 <Icon:PackIconBootstrapIcons Kind="PersonVideo" Style="{StaticResource dashboardMenuBtnIcon}"/>
                                 <TextBlock Text="Casts" Style="{StaticResource dashboardMenuBtnText}"/>

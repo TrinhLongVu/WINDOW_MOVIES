@@ -39,6 +39,10 @@ namespace WpfApp1.Views
                 {
                     DashboardBody.Source = new Uri("DirectorManagement.xaml",UriKind.Relative);
                 }
+                else if (focusedButton.Name == "AdminCast")
+                {
+                    DashboardBody.Source = new Uri("CastManagement.xaml", UriKind.Relative);
+                }
             }
         }
 
