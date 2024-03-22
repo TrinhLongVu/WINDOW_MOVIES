@@ -40,7 +40,7 @@
                 </Grid.ColumnDefinitions>
                 <StackPanel Grid.Column="0">
                     <Label FontWeight="Bold" Foreground="White" FontSize="15">Title</Label>
-                    <TextBox Width="340" Style="{StaticResource CustomTxtBox}"/>
+                    <TextBox Text="{Binding Title}" Width="340" Style="{StaticResource CustomTxtBox}"/>
                 </StackPanel>
                 <StackPanel Grid.Column="1">
                     <Label FontWeight="Bold" Foreground="White" FontSize="15">Genre</Label>
@@ -54,11 +54,11 @@
                 </Grid.ColumnDefinitions>
                 <StackPanel Grid.Column="0">
                     <Label FontWeight="Bold" Foreground="White" FontSize="15">Poster URL</Label>
-                    <TextBox x:Name="posterUrl" Width="280" Style="{StaticResource CustomTxtBox}" TextChanged="imgUrlChanged"/>
+                    <TextBox Text="{Binding Poster}" x:Name="posterUrl" Width="280" Style="{StaticResource CustomTxtBox}" TextChanged="imgUrlChanged"/>
                 </StackPanel>
                 <StackPanel Grid.Column="1">
                     <Label FontWeight="Bold" Foreground="White" FontSize="15">Landscape Poster URL</Label>
-                    <TextBox x:Name="landscapeUrl" Width="280" Style="{StaticResource CustomTxtBox}" TextChanged="imgUrlChanged"/>
+                    <TextBox Text="{Binding Landscapre}" x:Name="landscapeUrl" Width="280" Style="{StaticResource CustomTxtBox}" TextChanged="imgUrlChanged"/>
                 </StackPanel>
             </Grid>
             <Grid>
@@ -69,19 +69,19 @@
                 </Grid.ColumnDefinitions>
                 <StackPanel Grid.Column="0">
                     <Label FontWeight="Bold" Foreground="White" FontSize="15">IMDB Rating</Label>
-                    <TextBox Width="180" Style="{StaticResource CustomTxtBox}"/>
+                    <TextBox Width="180" Style="{StaticResource CustomTxtBox}" Text="{Binding Rating}"/>
                 </StackPanel>
                 <StackPanel Grid.Column="1">
                     <Label FontWeight="Bold" Foreground="White" FontSize="15">Release Year</Label>
-                    <TextBox Width="180" Style="{StaticResource CustomTxtBox}"/>
+                    <TextBox  Text="{Binding Release}" Width="180" Style="{StaticResource CustomTxtBox}"/>
                 </StackPanel>
                 <StackPanel Grid.Column="2">
                     <Label FontWeight="Bold" Foreground="White" FontSize="15">Runtime</Label>
-                    <TextBox Width="180" Style="{StaticResource CustomTxtBox}"/>
+                    <TextBox  Text="{Binding Runtime}" Width="180" Style="{StaticResource CustomTxtBox}"/>
                 </StackPanel>
             </Grid>
             <Label FontWeight="Bold" Foreground="White" FontSize="15">Plot</Label>
-            <TextBox Width="570" Height="120" TextWrapping="Wrap" AcceptsReturn="True" Style="{StaticResource CustomTxtBox}"/>
+            <TextBox Text="{Binding Detail}" Width="570" Height="120" TextWrapping="Wrap" AcceptsReturn="True" Style="{StaticResource CustomTxtBox}"/>
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
@@ -103,7 +103,7 @@
                         <TextBlock Text="Cancel" Style="{StaticResource userInfoBtnText}"/>
                     </StackPanel>
                 </Button>
-                <Button Style="{StaticResource userInfoBtn}">
+                <Button Command="{Binding AddMovieBtn}" Style="{StaticResource userInfoBtn}">
                     <StackPanel Orientation="Horizontal">
                         <Icon:PackIconBoxIcons Kind="SolidPlusCircle" Style="{StaticResource userInfoBtnIcon}"/>
                         <TextBlock Text="Add" Style="{StaticResource userInfoBtnText}"/>

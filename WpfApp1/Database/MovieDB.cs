@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using WpfApp1.Models;
 
 namespace WpfApp1.Database
@@ -47,61 +48,47 @@ namespace WpfApp1.Database
             return movies;
         }
 
-        public ArrayList FilterDesc()
+        public void InsertMovie(Movie m, int idStar, int idDirector)
         {
             ArrayList movies = new ArrayList();
 
-            string query = "select* from movie order by Rating DESC";
+            string queryMovie = @"
+            INSERT INTO Movie (Title, IdGener, Runtime, Detail, Release, Rating, Poster, Landscape, Certification)
+            VALUES (@Title, @IdGener, @Runtime, @Detail, @Release, @Rating, @Poster, @Landscape, @Certification);
+            SELECT SCOPE_IDENTITY();";
+            string insertMovieStarQuery = "INSERT INTO MovieStar (MovieId, StarId) VALUES (@MovieId, @StarId);";
+            string insertMovieDirectorQuery = "INSERT INTO MovieDirector (MovieId, DirectorId) VALUES (@MovieId, @DirectorId);";
 
-            SqlCommand command = new SqlCommand(query, _connect);
-            SqlDataReader reader = command.ExecuteReader();
+            SqlCommand command = new SqlCommand();
+            command.Connection = _connect;
 
-            while (reader.Read())
-            {
-                var Id = reader.GetInt32(0);
-                Int32 IdGener = reader.GetInt32(1);
-                string Title = reader.GetString(2);
-                string Runtime = reader.GetString(3);
-                double Rating = reader.GetDouble(4);
-                string Poster = reader.GetString(5);
-                string Landscape = reader.GetString(6);
-                string Certification = reader.GetString(7);
-                string Release = reader.GetString(8);
-                string Detail = reader.GetString(9);
-                movies.Add(new Movie { Id = Id, IdGener = IdGener, Title = Title, Runtime = Runtime, Rating = Rating, Poster = Poster, Landscape = Landscape, Certification = Certification, Release = Release, Detail = Detail });
-            }
+            // movie
+            command.CommandText = queryMovie;
+            command.Parameters.AddWithValue("@Title", m.Title);
+            command.Parameters.AddWithValue("@IdGener", m.IdGener);
+            command.Parameters.AddWithValue("@Runtime", m.Runtime);
+            command.Parameters.AddWithValue("@Detail", m.Detail);
+            command.Parameters.AddWithValue("@Release", m.Release);
+            command.Parameters.AddWithValue("@Rating", m.Rating);
+            command.Parameters.AddWithValue("@Poster", m.Poster);
+            command.Parameters.AddWithValue("@Landscape", m.Landscape);
+            command.Parameters.AddWithValue("@Certification", "");
+            decimal insertedId = Convert.ToDecimal(command.ExecuteScalar());
 
-            reader.Close();
-            return movies;
+
+            command.CommandText = insertMovieStarQuery;
+            command.Parameters.Clear();
+            command.Parameters.AddWithValue("@MovieId", insertedId);
+            command.Parameters.AddWithValue("@StarId", idStar);
+            command.ExecuteNonQuery();
+
+            command.CommandText = insertMovieDirectorQuery;
+            command.Parameters.Clear();
+            command.Parameters.AddWithValue("@MovieId", insertedId); 
+            command.Parameters.AddWithValue("@DirectorId", idDirector); 
+            command.ExecuteNonQuery();
         }
-        public ArrayList FilterAsc()
-        {
-            ArrayList movies = new ArrayList();
-
-            string query = "select* from movie order by Rating";
-
-            SqlCommand command = new SqlCommand(query, _connect);
-            SqlDataReader reader = command.ExecuteReader();
-
-            while (reader.Read())
-            {
-                var Id = reader.GetInt32(0);
-                Int32 IdGener = reader.GetInt32(1);
-                string Title = reader.GetString(2);
-                string Runtime = reader.GetString(3);
-                double Rating = reader.GetDouble(4);
-                string Poster = reader.GetString(5);
-                string Landscape = reader.GetString(6);
-                string Certification = reader.GetString(7);
-                string Release = reader.GetString(8);
-                string Detail = reader.GetString(9);
-                movies.Add(new Movie { Id = Id, IdGener = IdGener, Title = Title, Runtime = Runtime, Rating = Rating, Poster = Poster, Landscape = Landscape, Certification = Certification, Release = Release, Detail = Detail });
-            }
-
-            reader.Close();
-            return movies;
-        }
-
+    
         public ArrayList SearchMovie(string stringSearch)
         {
             ArrayList movies = new ArrayList();
