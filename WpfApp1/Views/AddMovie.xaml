@@ -76,7 +76,7 @@
                     <TextBox Width="180" Style="{StaticResource CustomTxtBox}"/>
                 </StackPanel>
                 <StackPanel Grid.Column="2">
-                    <Label FontWeight="Bold" Foreground="White" FontSize="15">Release Year</Label>
+                    <Label FontWeight="Bold" Foreground="White" FontSize="15">Runtime</Label>
                     <TextBox Width="180" Style="{StaticResource CustomTxtBox}"/>
                 </StackPanel>
             </Grid>
