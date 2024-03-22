@@ -3,9 +3,8 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:WpfApp1.Views"
       mc:Ignorable="d"
-      d:DesignHeight="600" d:DesignWidth="1280"
+      d:DesignHeight="750" d:DesignWidth="1280"
       Title="MovieInfo">
 
     <ScrollViewer VerticalScrollBarVisibility="Hidden">
@@ -14,7 +13,7 @@
                 <ColumnDefinition Width="0.4*"/>
                 <ColumnDefinition Width="0.6*"/>
             </Grid.ColumnDefinitions>
-            <Image Grid.Column="0" x:Name="moviePoster" Source="{Binding SelectedMovie.Poster}"/>
+            <Image Grid.Column="0" Width="488" Height="750" Stretch="UniformToFill" Source="{Binding SelectedMovie.Poster}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             <Border Grid.Column="1" Padding="20">
                 <StackPanel>
                     <TextBlock Foreground="White" FontSize="45" FontWeight="Bold" TextWrapping="Wrap" TextAlignment="Justify" Margin="0,0,0,30" Text="{Binding SelectedMovie.Title}"/>
@@ -26,7 +25,7 @@
                         </Grid.ColumnDefinitions>
                         <StackPanel Grid.Column="0" Orientation="Horizontal" Margin="15,8">
                             <Image Width="32" Height="32" Source="/Images/icon-tag.png"/>
-                            <Label Foreground="White" FontSize="18" Margin="8,0" Content="{Binding SelectedMovie.Runtime}"></Label>
+                            <Label Foreground="White" FontSize="18" Margin="8,0" Content="{Binding SelectedMovie.NameGenre}"></Label>
                         </StackPanel>
                         <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="15,8">
                             <Image Width="32" Height="32" Source="/Images/icon-calendar.png"/>
@@ -57,7 +56,7 @@
                         <Label Foreground="White" FontSize="25" FontWeight="Bold" Margin="15,0">PLOT</Label>
                     </StackPanel>
                     <ScrollViewer MaxHeight="100" VerticalScrollBarVisibility="Hidden">
-                        <TextBlock Foreground="White" TextWrapping="Wrap" FontSize="16" TextAlignment="Justify" Text="{Binding SelectedMovie.Plot}"/>
+                        <TextBlock Foreground="White" TextWrapping="Wrap" FontSize="16" TextAlignment="Justify" Text="{Binding SelectedMovie.Detail}"/>
                     </ScrollViewer>
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -76,13 +75,13 @@
                                 </Grid.ColumnDefinitions>
                                 <Ellipse Grid.Column="0" Width="80" Height="100">
                                     <Ellipse.Fill>
-                                        <ImageBrush ImageSource="https://asianwiki.com/images/5/5e/Jang-Jae-Hyun-11-08-2015.jpg" Stretch="UniformToFill" AlignmentX="Center" AlignmentY="Center"/>
+                                        <ImageBrush ImageSource="{Binding SelectedMovie.AvatarDirector}" Stretch="UniformToFill" AlignmentX="Center" AlignmentY="Center"/>
                                     </Ellipse.Fill>
                                 </Ellipse>
                                 <StackPanel Grid.Column="1">
-                                    <Label Foreground="White" FontWeight="Bold" FontSize="16">Jae Hyun-Jang</Label>
+                                    <Label Foreground="White" FontWeight="Bold" FontSize="16" Content="{Binding SelectedMovie.NameDirector}"/>
                                     <ScrollViewer MaxHeight="65" VerticalScrollBarVisibility="Hidden" Margin="8,0">
-                                        <TextBlock Foreground="White" TextWrapping="Wrap" FontSize="12" TextAlignment="Justify" Text="Jae-hyun Jang is known for The Priests (2015), Svaha: The Sixth Finger (2019) and 12th Assistant Deacon (2015)."/>
+                                        <TextBlock Foreground="White" TextWrapping="Wrap" FontSize="12" TextAlignment="Justify" Text="{Binding SelectedMovie.BioDirector}"/>
                                     </ScrollViewer>
                                 </StackPanel>
                             </Grid>
@@ -99,18 +98,21 @@
                                 </Grid.ColumnDefinitions>
                                 <Ellipse Grid.Column="0" Width="80" Height="100">
                                     <Ellipse.Fill>
-                                        <ImageBrush ImageSource="https://m.media-amazon.com/images/M/MV5BZjY2MDM1ZGMtODY4OS00ZWY1LThmYzktMDdhNDI0ZjdhNzAzXkEyXkFqcGdeQXVyNTI5NjIyMw@@._V1_FMjpg_UX556_.jpg" Stretch="UniformToFill" AlignmentX="Center" AlignmentY="Center"/>
+                                        <ImageBrush ImageSource="{Binding SelectedMovie.AvatarStar}" Stretch="UniformToFill" AlignmentX="Center" AlignmentY="Center"/>
                                     </Ellipse.Fill>
                                 </Ellipse>
                                 <StackPanel Grid.Column="1">
-                                    <Label Foreground="White" FontWeight="Bold" FontSize="16">Lee Do-hyun</Label>
+                                    <Label Foreground="White" FontWeight="Bold" FontSize="16" Content="{Binding SelectedMovie.NameStar}"/>
                                     <ScrollViewer MaxHeight="65" VerticalScrollBarVisibility="Hidden" Margin="8,0">
-                                        <TextBlock Foreground="White" TextWrapping="Wrap" FontSize="12" TextAlignment="Justify" Text="Lee Do-hyun was born on 11 April 1995 in Goyang, South Korea. He is an actor, known for Youth of May (2021), Sweet Home (2020) and 18 Again (2020)."/>
+                                        <TextBlock Foreground="White" TextWrapping="Wrap" FontSize="12" TextAlignment="Justify" Text="{Binding SelectedMovie.BioStar}"/>
                                     </ScrollViewer>
                                 </StackPanel>
                             </Grid>
                         </StackPanel>
                     </Grid>
+                    <Button Cursor="Hand" Width="100" Margin="0, 100" FontWeight="Bold" Foreground="Black" Style="{StaticResource dashboardMenuBtn}">
+                        Book Ticket
+                    </Button>
                 </StackPanel>
             </Border>
         </Grid>
