@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -14,6 +15,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Xml.Linq;
 using WpfApp1.ViewModel;
 
 namespace WpfApp1.Views {
@@ -73,8 +75,23 @@ namespace WpfApp1.Views
             NavigationService?.Navigate(new MovieInfo(Id));
         }
 
+        private void scaleAnimation(FrameworkElement element, double scale, double secs) {
+            var scaler = element.LayoutTransform as ScaleTransform;
+            if (scaler == null) {
+                scaler = new ScaleTransform(1.0, 1.0);
+                element.LayoutTransform = scaler;
+            }
+            DoubleAnimation animator = new DoubleAnimation() {
+                Duration = new Duration(TimeSpan.FromSeconds(secs)),
+            };
+            animator.To = scale;
+            scaler.BeginAnimation(ScaleTransform.ScaleXProperty, animator);
+            scaler.BeginAnimation(ScaleTransform.ScaleYProperty, animator);
+        }
+
         private void ItemMouseEnter(object sender, MouseEventArgs e) {
             Grid container = sender as Grid;
+            scaleAnimation(container, 1.1, 0.2);
             if (container == null) {
                 throw new Exception($"Unexpected type {sender.GetType()}");
             }
@@ -88,9 +105,20 @@ namespace WpfApp1.Views
                     throw new Exception($"Unexpected type {ele.GetType()}");
                 }
                 switch (ele.Name) {
-                    case "landscape":
+                    case "landscape": {
                         landscape = ele as Image;
+                        
+/*                        Storyboard st = new Storyboard();
+                        DoubleAnimation animation = new DoubleAnimation {
+                            By = 10,
+                            Duration = TimeSpan.FromSeconds(1),
+                        };
+                        Storyboard.SetTarget(animation, landscape);
+                        Storyboard.SetTargetProperty(animation, new PropertyPath(("(Image.Width)")));
+                        st.Children.Add(animation);
+                        st.Begin();*/
                         break;
+                    }
                     case "description":
                         info = ele as Grid;
                         break;
@@ -137,6 +165,7 @@ namespace WpfApp1.Views
             timer = null;
         }
         private void ItemMouseLeave(object sender, MouseEventArgs e) {
+            scaleAnimation(sender as FrameworkElement, 1.0, 0.2);
             resetTrailer();
         }
 
