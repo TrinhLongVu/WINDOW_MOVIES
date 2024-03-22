@@ -106,10 +106,62 @@ namespace WpfApp1.Database
         {
             ArrayList movies = new ArrayList();
 
-            string query = "SELECT * FROM Movie WHERE Title LIKE @SearchTerm";
+            string query = "SELECT * FROM Movie, Genre WHERE Title LIKE @SearchTerm and Movie.IdGener = Genre.Id";
 
             SqlCommand command = new SqlCommand(query, _connect);
             command.Parameters.AddWithValue("@SearchTerm", $"%{stringSearch}%");
+
+            SqlDataReader reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                var Id = reader.GetInt32(0);
+                Int32 IdGener = reader.GetInt32(1);
+                string Title = reader.GetString(2);
+                string Runtime = reader.GetString(3);
+                double Rating = reader.GetDouble(4);
+                string Poster = reader.GetString(5);
+                string Landscape = reader.GetString(6);
+                string Certification = reader.GetString(7);
+                string Release = reader.GetString(8);
+                string Detail = reader.GetString(9);
+                string GenreName = reader.GetString(11);
+                movies.Add(new Movie { Id = Id, IdGener = IdGener, Title = Title, Runtime = Runtime, Rating = Rating, Poster = Poster, Landscape = Landscape, Certification = Certification, Release = Release, Detail = Detail, GenreName = GenreName });
+            }
+
+            reader.Close();
+            return movies;
+        }
+
+        public ArrayList FilterMovieGenre(Genre genre, Filter sort)
+        {
+            ArrayList movies = new ArrayList();
+
+            string query = "";
+            SqlCommand command = null;
+            if (genre != null && sort != null)
+            {
+                if (sort.Name == "Ascending Rating")
+                    query = "SELECT * FROM Movie, Genre WHERE Movie.IdGener = Genre.Id AND Genre.Name = @SearchTerm order by Rating";
+                else
+                    query = "SELECT * FROM Movie, Genre WHERE Movie.IdGener = Genre.Id AND Genre.Name = @SearchTerm order by Rating DESC";
+                command = new SqlCommand(query, _connect);
+                command.Parameters.AddWithValue("@SearchTerm", genre.Name);
+            }
+            else if(genre != null)
+            {
+                query = "SELECT * FROM Movie, Genre WHERE Movie.IdGener = Genre.Id AND Genre.Name = @SearchTerm";
+                command = new SqlCommand(query, _connect);
+                command.Parameters.AddWithValue("@SearchTerm", genre.Name);
+            }
+            else if (sort != null)
+            {
+                if(sort.Name == "Ascending Rating")
+                    query = "select* from movie order by Rating";
+                else
+                    query = "select* from movie order by Rating DESC";
+                command = new SqlCommand(query, _connect);
+            }
 
             SqlDataReader reader = command.ExecuteReader();
 

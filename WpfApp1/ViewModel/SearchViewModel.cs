@@ -18,6 +18,7 @@ namespace WpfApp1.ViewModel
         public event PropertyChangedEventHandler PropertyChanged;
         public ObservableCollection<Movie> MovieShow { get; set; } = new ObservableCollection<Movie>();
         public ObservableCollection<Filter> Filters { get; set; }
+        public ObservableCollection<Genre> FilterGenre { get; set; }
         public ArrayList movies = new ArrayList();
         public Movie SelectedItem { get; set; }
         public int CurrentPage { get; set; }
@@ -36,6 +37,17 @@ namespace WpfApp1.ViewModel
                 FilterItems();
             }
         }
+
+        private Genre _SelectedFilterGenre;
+        public Genre SelectedFilterGenre
+        {
+            get => _SelectedFilterGenre;
+            set
+            {
+                _SelectedFilterGenre = value;
+                FilterItems();
+            }
+        }
         
         public SearchViewModel(string stringSearch)
         {
@@ -49,9 +61,14 @@ namespace WpfApp1.ViewModel
             UpdateMovie(0);
             Filters = new ObservableCollection<Filter>
             {
-                new Filter { Name = "Inscrease Rating" },
+                new Filter { Name = "Ascending Rating" },
                 new Filter { Name = "Decrease Rating" }
             };
+
+            GenreDB genreDB = new GenreDB();
+            ArrayList _genres = genreDB.GetAllGenre();
+            FilterGenre = new ObservableCollection<Genre>(_genres.Cast<Genre>());
+
             PropertyChanged += MyViewModel_PropertyChanged;
         }
         public event EventHandler<Int32> SelectItemBtn;
@@ -65,18 +82,11 @@ namespace WpfApp1.ViewModel
 
         private void FilterItems()
         {
-            // handle logic from database(_SelectedFilter.Name)
-            MovieShow.Clear();
-            if(_SelectedFilter.Name == "Inscrease Rating")
-            {
-                movies = movieDB.FilterAsc();
-                UpdateMovie(0);
-            }else if (_SelectedFilter.Name == "Decrease Rating")
-            {
-                movies = movieDB.FilterDesc();
-                UpdateMovie(0);
-            }
+            movies = movieDB.FilterMovieGenre(_SelectedFilterGenre, _SelectedFilter);
+            _totalMovies = movies.Count;
+            _quantityPage = (_totalMovies + _pageSize - 1) / _pageSize;
 
+            UpdateMovie(0);
         }
         public ICommand PreviousPageCommand => new RelayCommand(Previous);
         public ICommand NextPageCommand => new RelayCommand(Next);

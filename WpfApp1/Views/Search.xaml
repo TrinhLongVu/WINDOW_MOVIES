@@ -16,8 +16,12 @@
             <RowDefinition Height="1*"></RowDefinition>
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" FontSize="40px" TextAlignment="Center"   Foreground="White"><Bold>MOVIE SEARCH RESULTS</Bold></TextBlock>
-        <ComboBox Grid.Row="1" VerticalAlignment="Center" Width="200" HorizontalAlignment="Right" Margin="0 0 50 0" FontSize="16" Style="{StaticResource RoundComboBox}" ItemsSource="{Binding Filters}" DisplayMemberPath="Name" SelectedItem="{Binding SelectedFilter}">
-        </ComboBox>
+        <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Right">
+            <TextBlock VerticalAlignment="Center" FontWeight="Bold" Foreground="White"  Margin="0 0 10 0">Sort Rating</TextBlock>
+            <ComboBox  VerticalAlignment="Center" Width="200" HorizontalAlignment="Right" Margin="0 0 40 0" FontSize="16" Style="{StaticResource RoundComboBox}" ItemsSource="{Binding Filters}" DisplayMemberPath="Name" SelectedItem="{Binding SelectedFilter}" />
+            <TextBlock VerticalAlignment="Center" FontWeight="Bold" Foreground="White" Margin="0 0 10 0">Genre</TextBlock>
+            <ComboBox Grid.Row="1" VerticalAlignment="Center" Width="200" HorizontalAlignment="Right" Margin="0 0 50 0" FontSize="16" Style="{StaticResource RoundComboBox}" ItemsSource="{Binding FilterGenre}" DisplayMemberPath="Name" SelectedItem="{Binding SelectedFilterGenre}" />
+        </StackPanel>
         <ListView ScrollViewer.VerticalScrollBarVisibility="Hidden" BorderThickness="0" BorderBrush="Transparent" HorizontalAlignment="Center" Grid.Row="2" Background="Transparent" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ItemsSource="{Binding MovieShow}" SelectedItem="{Binding SelectedItem}">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>

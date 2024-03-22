@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WpfApp1.Models
 {
-    class Movie
+    class Movie : IComparable
     {
         public Int32 Id { get; set; }
         public Int32? IdGener { get; set; }
@@ -22,5 +22,21 @@ namespace WpfApp1.Models
         public string? Name { get; set; }
         public string? Avatar { get; set; }
         public string? Bio { get; set; }
+        public string? GenreName { get; set; }
+
+        public int CompareTo(object obj)
+        {
+            if (obj == null) return 1;
+
+            Movie otherMovie = obj as Movie;
+            if (otherMovie != null)
+            {
+                return this.Rating.GetValueOrDefault().CompareTo(otherMovie.Rating.GetValueOrDefault());
+            }
+            else
+            {
+                throw new ArgumentException("Object is not a Movie");
+            }
+        }
     }
 }
