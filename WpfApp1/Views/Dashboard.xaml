@@ -49,7 +49,7 @@
                                 <TextBlock Text="Movies" Style="{StaticResource dashboardMenuBtnText}"/>
                             </StackPanel>
                         </Button>
-                        <Button Style="{StaticResource dashboardMenuBtn}" GotFocus="MenuButtonFocus">
+                        <Button x:Name="AdminDirector" Style="{StaticResource dashboardMenuBtn}" GotFocus="MenuButtonFocus">
                             <StackPanel Orientation="Horizontal">
                                 <Icon:PackIconBootstrapIcons Kind="CameraReelsFill" Style="{StaticResource dashboardMenuBtnIcon}"/>
                                 <TextBlock Text="Directors" Style="{StaticResource dashboardMenuBtnText}"/>

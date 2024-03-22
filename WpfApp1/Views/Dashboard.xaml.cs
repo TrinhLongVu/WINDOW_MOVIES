@@ -35,6 +35,10 @@ namespace WpfApp1.Views
                 {
                     DashboardBody.Source = new Uri("MovieManagement.xaml", UriKind.Relative);
                 }
+                else if (focusedButton.Name == "AdminDirector")
+                {
+                    DashboardBody.Source = new Uri("DirectorManagement.xaml",UriKind.Relative);
+                }
             }
         }
 
