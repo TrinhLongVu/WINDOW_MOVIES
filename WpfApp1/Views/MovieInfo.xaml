@@ -110,7 +110,7 @@
                             </Grid>
                         </StackPanel>
                     </Grid>
-                    <Button Cursor="Hand" Width="100" Margin="0, 100" FontWeight="Bold" Foreground="Black" Style="{StaticResource dashboardMenuBtn}">
+                    <Button Cursor="Hand" Width="100" Height="50" Margin="0, 80" FontWeight="Bold" Style="{StaticResource bookBtn}">
                         Book Ticket
                     </Button>
                 </StackPanel>

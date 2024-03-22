@@ -19,7 +19,7 @@ namespace WpfApp1.Database
             _connect = _dbInstance.Connect;
         }
 
-        public ArrayList GetAllStar()
+        public ArrayList GetAllDirectors()
         {
             ArrayList directors = new ArrayList();
 
@@ -34,7 +34,7 @@ namespace WpfApp1.Database
                 string Name = reader.GetString(1);
                 string Image = reader.GetString(2);
                 string Story = reader.GetString(3);
-                directors.Add(new Star { Id = Id, Name = Name, Avatar=Image, Bio = Story});
+                directors.Add(new Director { Id = Id, Name = Name, Avatar=Image, Bio = Story});
             }
 
             reader.Close();
