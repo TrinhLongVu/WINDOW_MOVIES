@@ -10,5 +10,11 @@ namespace WpfApp1.Views
             InitializeComponent();
             DataContext = new DirectorManageViewModel();
         }
+
+        private void AddDirector(object sender, System.Windows.RoutedEventArgs e)
+        {
+            AddPerson addDirectorWindow = new AddPerson("director");
+            addDirectorWindow.ShowDialog();
+        }
     }
 }

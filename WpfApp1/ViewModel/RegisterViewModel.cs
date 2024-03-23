@@ -32,6 +32,11 @@ namespace WpfApp1.ViewModel
         }
         private void RegisterButton()
         {
+            if ((BirthDay == DateTime.MinValue) || string.IsNullOrWhiteSpace(Password) || string.IsNullOrWhiteSpace(ConfirmPassword) || string.IsNullOrEmpty(Username))
+            {
+                MessageBox.Show("Please fill in all the information before continuing!");
+                return;
+            }
             if (Password != ConfirmPassword)
             {
                 MessageBox.Show("Password and confirm password is not match");
@@ -46,12 +51,9 @@ namespace WpfApp1.ViewModel
                     return;
                 }
             }
-            
-        
             string newHashPassword = Hash.HashPassword(Password);
             _account.Register("user", BirthDay.Date.ToString(), Username, newHashPassword);
             RegisterButtonClicked?.Invoke(this, EventArgs.Empty);
         }
-
     }
 }

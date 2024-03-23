@@ -163,7 +163,7 @@ namespace WpfApp1.Views
             if (carousel == null) {
                 throw new Exception("NULL");
             }
-            viewModel.TestCarousel.Previous(carousel);
+            viewModel.AllMovieCarousel.Previous(carousel);
         }
 
         private void OnNextClick(object sender, RoutedEventArgs e) {
@@ -171,7 +171,23 @@ namespace WpfApp1.Views
             if (carousel == null) {
                 throw new Exception("NULL");
             }
-            viewModel.TestCarousel.Next(carousel);
+            viewModel.AllMovieCarousel.Next(carousel);
+        }
+
+        private void OnPrevClick2(object sender, RoutedEventArgs e) {
+            var carousel = FindName("AiringCarousel") as ListView;
+            if (carousel == null) {
+                throw new Exception("NULL");
+            }
+            viewModel.AiringMovieCarousel.Previous(carousel);
+        }
+
+        private void OnNextClick2(object sender, RoutedEventArgs e) {
+            var carousel = FindName("AiringCarousel") as ListView;
+            if (carousel == null) {
+                throw new Exception("NULL");
+            }
+            viewModel.AiringMovieCarousel.Next(carousel);
         }
     }
 }

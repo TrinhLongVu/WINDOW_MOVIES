@@ -27,8 +27,8 @@ namespace WpfApp1.ViewModel
         private int _itemsLeft = 0;
         private int _itemScrolled = 0;
         private int _itemPerPage = 0;
-        private const int _MARGIN = 7;
-        private const int _PADDING = 20;
+        private const int _MARGIN = 5;
+        private const int _PADDING = 0;
 
 
         public MovieCarousel(List<Movie> movies, int scrollPerPage, int itemPerPage = 4) {

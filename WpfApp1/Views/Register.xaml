@@ -33,7 +33,7 @@
                         </Grid.ColumnDefinitions>
                         <StackPanel Grid.Column="0">
                             <Label FontWeight="DemiBold" FontSize="15">Username</Label>
-                            <TextBox Height="40" Padding="8" FontSize="15" Text="{Binding Username}" BorderBrush="Transparent">
+                            <TextBox Height="40" Padding="8" FontSize="15" KeyDown="RegisterEnter" Text="{Binding Username}" BorderBrush="Transparent">
                                 <TextBox.Resources>
                                     <Style TargetType="{x:Type Border}">
                                         <Setter Property="CornerRadius" Value="10"/>
@@ -43,7 +43,7 @@
                         </StackPanel>
                         <StackPanel Grid.Column="2">
                             <Label FontWeight="DemiBold" FontSize="15">Date Of Birth</Label>
-                            <DatePicker Height="40" BorderBrush="Transparent">
+                            <DatePicker Height="40" BorderBrush="Transparent" SelectedDate="{Binding BirthDay, Mode=OneWayToSource}" DisplayDateStart="1960-01-01" DisplayDateEnd="2024-03-31" Validation.ErrorTemplate="{x:Null}">
                                 <DatePicker.Resources>
                                     <Style TargetType="DatePickerTextBox">
                                         <Setter Property="Height" Value="40"/>
@@ -59,7 +59,7 @@
                         </StackPanel>
                     </Grid>
                     <Label FontWeight="DemiBold" FontSize="15">Password</Label>
-                    <PasswordBox Height="40" Padding="8" FontSize="15" utils:HiddenPass.BoundPassword="{Binding Password}" BorderBrush="Transparent">
+                    <PasswordBox Height="40" Padding="8" FontSize="15" KeyDown="RegisterEnter" utils:HiddenPass.BoundPassword="{Binding Password}" BorderBrush="Transparent">
                         <PasswordBox.Style>
                             <Style TargetType="{x:Type PasswordBox}">
                                 <Style.Resources>
@@ -80,7 +80,7 @@
                         </PasswordBox.Style>
                     </PasswordBox>
                     <Label FontWeight="DemiBold" FontSize="15">Confirm Password</Label>
-                    <PasswordBox Height="40" Padding="8" FontSize="15" utils:HiddenPass.BoundPassword="{Binding ConfirmPassword}" BorderBrush="Transparent">
+                    <PasswordBox KeyDown="RegisterEnter" Height="40" Padding="8" FontSize="15" utils:HiddenPass.BoundPassword="{Binding ConfirmPassword}" BorderBrush="Transparent">
                         <PasswordBox.Style>
                             <Style TargetType="{x:Type PasswordBox}">
                                 <Style.Resources>
