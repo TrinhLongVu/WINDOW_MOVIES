@@ -88,7 +88,7 @@
                             Canvas.Left="0" Canvas.Top="0"
                             BorderThickness="0"
                             HorizontalAlignment="Left"
-                            ItemsSource="{Binding TestCarousel.MovieCollection}"
+                            ItemsSource="{Binding AllMovieCarousel.MovieCollection}"
                             Background="Transparent"
                             SelectedItem="{Binding SelectedItem}"
                             ItemTemplate="{StaticResource ItemTemplate}"

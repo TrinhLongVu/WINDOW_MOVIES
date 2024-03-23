@@ -2,3 +2,5 @@
 /packages
 /WpfApp1/bin/Debug
 /WpfApp1/obj
+*.orig
+*~
