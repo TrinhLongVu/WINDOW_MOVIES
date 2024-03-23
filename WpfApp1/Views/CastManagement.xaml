@@ -15,9 +15,9 @@
             <RowDefinition Height="55"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0" HorizontalAlignment="Right" Margin="10">
-            <Border Background="White" Width="35" Height="35" CornerRadius="50">
-                <Icon:PackIconBootstrapIcons Kind="Plus" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#FF0033"/>
-            </Border>
+            <Button Style="{StaticResource addBtn}" Click="AddCast">
+                <Icon:BoxIcons Kind="SolidUserPlus"/>
+            </Button>
         </Grid>
         <Grid Grid.Row="1">
             <ListView x:Name="myListView" ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalAlignment="Center" BorderThickness="0" BorderBrush="Transparent" ItemsSource="{Binding CastList}" Background="Transparent" SelectionMode="Single">

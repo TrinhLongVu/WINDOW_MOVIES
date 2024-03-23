@@ -10,6 +10,9 @@
     <Compile Update="Views\AddMovie.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\AddPerson.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\CastManagement.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -46,6 +49,9 @@
   </ItemGroup>
   <ItemGroup>
     <Page Update="Views\AddMovie.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\AddPerson.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\CastManagement.xaml">
