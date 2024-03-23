@@ -62,7 +62,7 @@
             </ItemsControl.ItemContainerStyle>
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <Button Content="{Binding}" HorizontalAlignment="Center" Click="ToggleAddRemoveCommand"
+                    <Button Content="{Binding}" Style="{StaticResource seatBtn}" FontWeight="Bold" HorizontalAlignment="Center" Click="ToggleAddRemoveCommand"
                             VerticalAlignment="Center" IsEnabled="{Binding IsAvailable}" />
                 </DataTemplate>
             </ItemsControl.ItemTemplate>

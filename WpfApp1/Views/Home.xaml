@@ -16,7 +16,6 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="90*"></RowDefinition>
                     <RowDefinition Height="15*"></RowDefinition>
-                    <RowDefinition Height="10*"></RowDefinition>
                 </Grid.RowDefinitions>
                 <Border x:Name="landscape" Grid.Row="0">
                     <Border.Background>
@@ -65,10 +64,6 @@
                         </Style>
                     </TextBlock.Style>
                 </TextBlock>
-                <Grid Grid.Row="2" Width="Auto">
-                    <Button Cursor="Hand" Content="Book Ticket" Click="OnBookingClick"
-                            Width="100" FontWeight="Bold" Style="{StaticResource bookBtn}"/>
-                </Grid>
             </Grid>
         </DataTemplate>
     </Page.Resources>
