@@ -48,6 +48,31 @@ namespace WpfApp1.Database
             return movies;
         }
 
+        public List<Movie> GetAllAiringMovies() {
+            List<Movie> movies = new List<Movie>();
+            string query = "SELECT * FROM Movie WHERE Id in (SELECT IdMovie FROM MovieSchedule)";
+
+            SqlCommand command = new SqlCommand(query, _connect);
+            SqlDataReader reader = command.ExecuteReader();
+
+            while (reader.Read()) {
+                var Id = reader.GetInt32(0);
+                Int32 IdGener = reader.GetInt32(1);
+                string Title = reader.GetString(2);
+                string Runtime = reader.GetString(3);
+                double Rating = reader.GetDouble(4);
+                string Poster = reader.GetString(5);
+                string Landscape = reader.GetString(6);
+                string Certification = reader.GetString(7);
+                string Release = reader.GetString(8);
+                string Detail = reader.GetString(9);
+                movies.Add(new Movie { Id = Id, IdGener = IdGener, Title = Title, Runtime = Runtime, Rating = Rating, Poster = Poster, Landscape = Landscape, Certification = Certification, Release = Release, Detail = Detail });
+            }
+
+            reader.Close();
+            return movies;
+        }
+
         public void InsertMovie(Movie m, int idStar, int idDirector)
         {
             ArrayList movies = new ArrayList();
