@@ -5,6 +5,7 @@ go
 create database Movie;
 go
 use Movie
+go
 
 create table Star(
 	Id INT IDENTITY(1, 1),
@@ -56,46 +57,87 @@ create table Director (
 
 create table Schedule (
 	Id INT IDENTITY(1, 1),
-	Time varchar(100),
+	Time varchar(100) unique,
 	primary key (Id)
-)
+);
+
+insert into Schedule(Time) values
+('08:00:00'),
+('10:15:00'),
+('13:30:00'),
+('15:45:00'),
+('18:00:00'),
+('20:15:00'),
+('22:15:00')
+
+go
 
 create table MovieSchedule(
+	Id INT IDENTITY(1, 1),
 	IdSchedule INT,
-	IdMovie INT
-	primary key (IdSchedule, IdMovie)
+	IdMovie INT,
+    Date Date,
+	primary key (Id),
+    unique (IdSchedule, Date)
 )
 
 create table Account(
 	Id INT IDENTITY(1, 1),
 	Role varchar(100),
 	Birthday varchar(100),
-	Username varchar(100),
+	Username varchar(100) unique,
 	Password varchar(100)
 	primary key (Id)
 )
 
-create table Position(
+create table Seat(
 	Id int IDENTITY(1, 1),
-	pos char(4),
+	Chair char(4) unique,
 	primary key(Id)
 )
+insert into Seat(Chair) values('A-1')
+insert into Seat(Chair) values('A-2')
+insert into Seat(Chair) values('A-3')
+insert into Seat(Chair) values('A-4')
+insert into Seat(Chair) values('A-5')
 
-insert into Position(pos) values('A-01')
-insert into Position(pos) values('A-02')
+insert into Seat(Chair) values('B-1')
+insert into Seat(Chair) values('B-2')
+insert into Seat(Chair) values('B-3')
+insert into Seat(Chair) values('B-4')
+insert into Seat(Chair) values('B-5')
+
+insert into Seat(Chair) values('C-1')
+insert into Seat(Chair) values('C-2')
+insert into Seat(Chair) values('C-3')
+insert into Seat(Chair) values('C-4')
+insert into Seat(Chair) values('C-5')
+
+insert into Seat(Chair) values('D-1')
+insert into Seat(Chair) values('D-2')
+insert into Seat(Chair) values('D-3')
+insert into Seat(Chair) values('D-4')
+insert into Seat(Chair) values('D-5')
+
+insert into Seat(Chair) values('E-1')
+insert into Seat(Chair) values('E-2')
+insert into Seat(Chair) values('E-3')
+insert into Seat(Chair) values('E-4')
+insert into Seat(Chair) values('E-5')
+
+go
 
 create table Ticket(
 	Id INT IDENTITY(1, 1),
-	pos_id int,
-	movie_id int,
-	schedule_id int,
-	primary key(pos_id, movie_id, schedule_id)
+	SeatId int,
+    MovieScheduleId int,
+	primary key(SeatId, MovieScheduleId)
 )
+go
 
 alter table Ticket
-add constraint FK_TICK_POS foreign key(pos_id) references Position(Id),
-	constraint FK_TICK_MVSCHE foreign key(schedule_id, movie_id) references MovieSchedule(IdSchedule, IdMovie)
-
+add constraint FK_TICK_SEAT foreign key(SeatId) references Seat(Id),
+	constraint FK_TICK_MVSCHE foreign key(MovieScheduleId) references MovieSchedule(Id)
 
 go
 
@@ -108,8 +150,8 @@ add constraint FK_MVDIRECTOR_MV foreign key (MovieId) references Movie(Id),
 	constraint FK_MVDIRECTOR_DIRECTOR foreign key (DirectorId) references Director(Id)
 
 alter table MovieSchedule
-add constraint FK_MVSCHEDULE_MV foreign key (IdSchedule) references Movie(Id),
-	constraint FK_MVSCHEDULE_SCHEDULE foreign key (IdMovie) references Schedule(Id)
+add constraint FK_MVSCHEDULE_MV foreign key (IdSchedule) references Schedule(Id),
+	constraint FK_MVSCHEDULE_SCHEDULE foreign key (IdMovie) references Movie(Id)
 
 alter table Movie 
 add constraint FK_GENRE foreign key (IdGener) references Genre(Id)
@@ -298,3 +340,29 @@ insert into Account(Role, Birthday, Username, Password)
 values
 ('user', '1/1/2000 12:00:00 AM', 'un1', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3'),
 ('admin', '1/1/2001 12:00:00 AM', 'ad1', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3')
+
+go
+
+insert into MovieSchedule(IdMovie, IdSchedule, Date) values
+(1, 1, '3/22/2024'),
+(2, 3, '3/22/2024'),
+(1, 7, '3/22/2024'),
+(2, 2, '3/23/2024'),
+(1, 5, '3/23/2024'),
+(3, 7, '3/23/2024'),
+(2, 3, '3/24/2024'),
+(4, 5, '3/24/2024'),
+(5, 7, '3/24/2024'),
+(6, 2, '3/25/2024'),
+(4, 4, '3/25/2024'),
+(3, 6, '3/25/2024'),
+(5, 7, '3/25/2024'),
+(6, 1, '3/26/2024'),
+(7, 3, '3/26/2024'),
+(6, 5, '3/26/2024'),
+(8, 7, '3/26/2024'),
+(7, 3, '3/27/2024'),
+(9, 5, '3/27/2024'),
+(10, 7, '3/27/2024'),
+(13, 2, '3/28/2024'),
+(15, 4, '3/28/2024')
