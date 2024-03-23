@@ -30,7 +30,7 @@ namespace WpfApp1.Database
             string query =  "SELECT Seat.Position FROM Ticket JOIN MovieSchedule ms ON MovieScheduleId = ms.Id " +
                             " JOIN Schedule sc ON ms.IdSchedule = sc.Id " +
                             " JOIN Seat ON Seat.Id = Ticket.SeatId" +
-                           $" WHERE ms.Date = '{sqlDate}' AND sc.Time = '{schedule}' ";
+                           $" WHERE ms.Date = '{sqlDate}' AND sc.Time = '{schedule}' AND ms.IdMovie = {movieId} ";
 
             SqlCommand command = new SqlCommand(query, _connect);
             SqlDataReader reader = command.ExecuteReader();
