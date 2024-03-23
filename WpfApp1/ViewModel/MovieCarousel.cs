@@ -16,7 +16,7 @@ namespace WpfApp1.ViewModel
 {
     class MovieCarousel
     {
-        public List<Movie> MovieCollection { get; set; }
+        public ObservableCollection<Movie> MovieCollection { get; set; }
 
         private List<Movie> _movies;
 
@@ -38,7 +38,7 @@ namespace WpfApp1.ViewModel
             _totalItems = _movies.Count;
             _itemsLeft = Math.Max(_totalItems - _itemPerPage, 0);
             _itemScrolled = 0;
-            MovieCollection = new List<Movie>(_movies);
+            MovieCollection = new ObservableCollection<Movie>(_movies);
         }
 
         public void Next(ListView container) {

@@ -16,7 +16,6 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="90*"></RowDefinition>
                     <RowDefinition Height="15*"></RowDefinition>
-                    <RowDefinition Height="10*"></RowDefinition>
                 </Grid.RowDefinitions>
                 <Border x:Name="landscape" Grid.Row="0">
                     <Border.Background>
@@ -24,8 +23,7 @@
                     </Border.Background>
                 </Border>
 
-                <Grid x:Name="description" Grid.Row="0" Panel.ZIndex="100"
-                                    Visibility="{Binding Path=IsMouseOver, ElementName=ItemDesc, Converter={StaticResource boolToValueConverter}}">
+                <Grid x:Name="description" Grid.Row="0" Panel.ZIndex="100" Visibility="Hidden">
                     <Grid.Background>
                         <SolidColorBrush Color="#000000" Opacity="0.5"/>
                     </Grid.Background>
@@ -66,10 +64,6 @@
                         </Style>
                     </TextBlock.Style>
                 </TextBlock>
-                <Grid Grid.Row="2" Width="Auto">
-                    <Button Cursor="Hand" Content="Book Ticket" Click="OnBookingClick"
-                            Width="100" FontWeight="Bold" Style="{StaticResource bookBtn}"/>
-                </Grid>
             </Grid>
         </DataTemplate>
     </Page.Resources>

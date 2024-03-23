@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,14 +24,14 @@ namespace WpfApp1.ViewModel
         
         private List<MovieSchedule> _movieSchedules;
 
-        public List<string> Dates { get; }
+        public ObservableCollection<string> Dates { get; }
         public string DateSelected { get; set; }
 
-        public List<Schedule> Times { get; set; }
+        public ObservableCollection<Schedule> Times { get; set; }
         public int TimeSelected { get; set; }
 
         private List<Seat> _allSeats;
-        public List<Seat> Seats { get; set;  }
+        public ObservableCollection<Seat> Seats { get; set;  }
 
         private List<Seat> _bookingSeat;
 
@@ -37,7 +39,7 @@ namespace WpfApp1.ViewModel
         public BookingModel(int movieId) {
             _movieId = movieId;
             _movieSchedules = _db.GetSchedules(movieId);
-            Dates = _movieSchedules.GroupBy(x => x.Date).Select(x => x.Key.ToString("dd-MM-yyyy")).ToList();
+            Dates = new ObservableCollection<string>(_movieSchedules.GroupBy(x => x.Date).Select(x => x.Key.ToString("dd-MM-yyyy")).ToList());
             DateSelected = Dates.First();
             _bookingSeat = new List<Seat>();
             _allSeats = new SeatDB().GetAllSeats()
@@ -45,9 +47,8 @@ namespace WpfApp1.ViewModel
         }
 
         public void OnSelectedDateChanged() {
-            Times = _db.GetAllTimes(_movieId, DateTime.ParseExact(DateSelected, "dd-MM-yyyy", null));
+            Times = new ObservableCollection<Schedule>(_db.GetAllTimes(_movieId, DateTime.ParseExact(DateSelected, "dd-MM-yyyy", null)));
             TimeSelected = 0;   
-            PropertyChanged.Invoke(this, new PropertyChangedEventArgs(nameof(Times)));
         }
 
         public void OnSelectedTimeChanged() {
@@ -59,8 +60,7 @@ namespace WpfApp1.ViewModel
                                                     DateTime.ParseExact(DateSelected, "dd-MM-yyyy", null),
                                                     Times[TimeSelected].Time);
             _allSeats.ForEach((seat) => seat.IsAvailable = !takenSeats.Contains(seat.Position));
-            Seats = _allSeats;
-            PropertyChanged.Invoke(this, new PropertyChangedEventArgs(nameof(Seats)));
+            Seats = new ObservableCollection<Seat>(_allSeats);
             _bookingSeat.Clear();
         }
 

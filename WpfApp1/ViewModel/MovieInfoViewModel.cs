@@ -15,7 +15,7 @@ namespace WpfApp1.ViewModel
 
         public ICommand OnBookingClicked => new RelayCommand(() => {
             if (LoginViewModel.IsLogin()) {
-                new Booking(1).ShowDialog();
+                new Booking(SelectedMovie.Id).ShowDialog();
             } else {
                 ((MainWindow)App.Current.MainWindow).frame.NavigationService.Navigate(new Login());
             }

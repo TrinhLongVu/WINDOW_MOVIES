@@ -96,20 +96,11 @@ namespace WpfApp1.Views
                 switch (ele.Name) {
                     case "landscape": {
                         landscape = ele as Border;
-                        
-/*                        Storyboard st = new Storyboard();
-                        DoubleAnimation animation = new DoubleAnimation {
-                            By = 10,
-                            Duration = TimeSpan.FromSeconds(1),
-                        };
-                        Storyboard.SetTarget(animation, landscape);
-                        Storyboard.SetTargetProperty(animation, new PropertyPath(("(Image.Width)")));
-                        st.Children.Add(animation);
-                        st.Begin();*/
                         break;
                     }
                     case "description":
                         info = ele as Grid;
+                        info.Visibility = Visibility.Visible;
                         break;
                     case "trailer":
                         MediaElement vid = ele as MediaElement;
@@ -154,6 +145,7 @@ namespace WpfApp1.Views
             timer = null;
         }
         private void ItemMouseLeave(object sender, MouseEventArgs e) {
+            ((sender as Grid).FindName("description") as Grid).Visibility = Visibility.Hidden;
             scaleAnimation(sender as FrameworkElement, 1.0, 0.2);
             resetTrailer();
         }
