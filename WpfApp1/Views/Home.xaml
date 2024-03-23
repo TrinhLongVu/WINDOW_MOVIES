@@ -24,8 +24,7 @@
                     </Border.Background>
                 </Border>
 
-                <Grid x:Name="description" Grid.Row="0" Panel.ZIndex="100"
-                                    Visibility="{Binding Path=IsMouseOver, ElementName=ItemDesc, Converter={StaticResource boolToValueConverter}}">
+                <Grid x:Name="description" Grid.Row="0" Panel.ZIndex="100" Visibility="Hidden">
                     <Grid.Background>
                         <SolidColorBrush Color="#000000" Opacity="0.5"/>
                     </Grid.Background>

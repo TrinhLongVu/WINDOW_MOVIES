@@ -9,7 +9,6 @@
       d:DesignHeight="700" d:DesignWidth="1280"
       Title="UserPage">
     <Page.Resources>
-        <local:PlaceholderConverter x:Key="placeholderConverter" />
         <Style TargetType="Border" x:Key="roundBox">
             <Setter Property="BorderThickness" Value="1" />
             <Setter Property="BorderBrush" Value="Black" />
