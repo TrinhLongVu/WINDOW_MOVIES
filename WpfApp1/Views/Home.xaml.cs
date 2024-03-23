@@ -189,5 +189,13 @@ namespace WpfApp1.Views
             }
             viewModel.AiringMovieCarousel.Next(carousel);
         }
+
+        private void OnBookingClick(object sender, RoutedEventArgs e) {
+            if (LoginViewModel.IsLogin()) {
+                new Booking(1).ShowDialog();
+            } else {
+                ((MainWindow)App.Current.MainWindow).frame.NavigationService.Navigate(new Login());
+            }
+        }
     }
 }

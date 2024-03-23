@@ -92,38 +92,38 @@ create table Account(
 
 create table Seat(
 	Id int IDENTITY(1, 1),
-	Chair char(4) unique,
+	Position char(4) unique,
 	primary key(Id)
 )
-insert into Seat(Chair) values('A-1')
-insert into Seat(Chair) values('A-2')
-insert into Seat(Chair) values('A-3')
-insert into Seat(Chair) values('A-4')
-insert into Seat(Chair) values('A-5')
+insert into Seat(Position) values('A-1')
+insert into Seat(Position) values('A-2')
+insert into Seat(Position) values('A-3')
+insert into Seat(Position) values('A-4')
+insert into Seat(Position) values('A-5')
 
-insert into Seat(Chair) values('B-1')
-insert into Seat(Chair) values('B-2')
-insert into Seat(Chair) values('B-3')
-insert into Seat(Chair) values('B-4')
-insert into Seat(Chair) values('B-5')
+insert into Seat(Position) values('B-1')
+insert into Seat(Position) values('B-2')
+insert into Seat(Position) values('B-3')
+insert into Seat(Position) values('B-4')
+insert into Seat(Position) values('B-5')
 
-insert into Seat(Chair) values('C-1')
-insert into Seat(Chair) values('C-2')
-insert into Seat(Chair) values('C-3')
-insert into Seat(Chair) values('C-4')
-insert into Seat(Chair) values('C-5')
+insert into Seat(Position) values('C-1')
+insert into Seat(Position) values('C-2')
+insert into Seat(Position) values('C-3')
+insert into Seat(Position) values('C-4')
+insert into Seat(Position) values('C-5')
 
-insert into Seat(Chair) values('D-1')
-insert into Seat(Chair) values('D-2')
-insert into Seat(Chair) values('D-3')
-insert into Seat(Chair) values('D-4')
-insert into Seat(Chair) values('D-5')
+insert into Seat(Position) values('D-1')
+insert into Seat(Position) values('D-2')
+insert into Seat(Position) values('D-3')
+insert into Seat(Position) values('D-4')
+insert into Seat(Position) values('D-5')
 
-insert into Seat(Chair) values('E-1')
-insert into Seat(Chair) values('E-2')
-insert into Seat(Chair) values('E-3')
-insert into Seat(Chair) values('E-4')
-insert into Seat(Chair) values('E-5')
+insert into Seat(Position) values('E-1')
+insert into Seat(Position) values('E-2')
+insert into Seat(Position) values('E-3')
+insert into Seat(Position) values('E-4')
+insert into Seat(Position) values('E-5')
 
 go
 
@@ -131,13 +131,17 @@ create table Ticket(
 	Id INT IDENTITY(1, 1),
 	SeatId int,
     MovieScheduleId int,
-	primary key(SeatId, MovieScheduleId)
+    UserId int,
+	primary key(Id),
+    unique(SeatId, MovieScheduleId)
 )
 go
 
 alter table Ticket
 add constraint FK_TICK_SEAT foreign key(SeatId) references Seat(Id),
-	constraint FK_TICK_MVSCHE foreign key(MovieScheduleId) references MovieSchedule(Id)
+	constraint FK_TICK_MVSCHE foreign key(MovieScheduleId) references MovieSchedule(Id),
+    constraint FK_TICK_USER foreign key(UserId) references Account(Id)
+
 
 go
 

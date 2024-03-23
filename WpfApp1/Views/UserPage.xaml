@@ -56,8 +56,8 @@
                 </Border>
                 <WrapPanel Margin="30,0,0,0" Width="100" VerticalAlignment="Center">
                     <Icon:PackIconBootstrapIcons Kind="FilePersonFill" Height="Auto" VerticalAlignment="Center" Foreground="White"/>
-                    <Button Margin="5,0,0,0" x:Name="loginLink" Style="{StaticResource BlankButton}" Click="loginLink_Click">
-                        <TextBlock FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <Button Margin="5,0,0,0" Style="{StaticResource BlankButton}" Click="OnLoginLinkClicked">
+                        <TextBlock Text="{Binding LoginOrOutText}" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Center">
                             <TextBlock.Style>
                                 <Style TargetType="{x:Type TextBlock}">
                                     <Style.Triggers>
@@ -72,7 +72,6 @@
                                     </Style.Triggers>
                                 </Style>
                             </TextBlock.Style>
-                    Login
                         </TextBlock>
                     </Button>
                 </WrapPanel>

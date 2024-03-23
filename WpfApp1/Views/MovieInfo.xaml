@@ -114,7 +114,7 @@
                             </Grid>
                         </StackPanel>
                     </Grid>
-                    <Button Cursor="Hand" Width="100" Height="50" Margin="0, 80" FontWeight="Bold" Style="{StaticResource bookBtn}">
+                    <Button Cursor="Hand" Width="100" Height="50" Margin="0, 80" FontWeight="Bold" Style="{StaticResource bookBtn}" Command="{Binding OnBookingClicked}">
                         Book Ticket
                     </Button>
                 </StackPanel>

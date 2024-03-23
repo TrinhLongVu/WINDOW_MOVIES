@@ -67,7 +67,8 @@
                     </TextBlock.Style>
                 </TextBlock>
                 <Grid Grid.Row="2" Width="Auto">
-                    <Button Cursor="Hand" Content="Book Ticket" Width="100" FontWeight="Bold" Style="{StaticResource bookBtn}"/>
+                    <Button Cursor="Hand" Content="Book Ticket" Click="OnBookingClick"
+                            Width="100" FontWeight="Bold" Style="{StaticResource bookBtn}"/>
                 </Grid>
             </Grid>
         </DataTemplate>

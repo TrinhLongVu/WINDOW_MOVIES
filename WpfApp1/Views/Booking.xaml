@@ -1,0 +1,72 @@
+﻿<Window x:Class="WpfApp1.Views.Booking"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1.Views"
+        mc:Ignorable="d"
+        Title="Booking" Height="450" Width="800">
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                <GradientStop Color="#0f172a" Offset="0.0"/>
+                <GradientStop Color="#2e2154" Offset="1.0"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="111*" />
+            <ColumnDefinition Width="689*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="202*" />
+            <RowDefinition Height="15*" />
+        </Grid.RowDefinitions>
+        
+        <StackPanel Grid.Row="0" Grid.Column="0" Background="Transparent">
+            <TextBlock Text="Date" Foreground="White" FontWeight="Bold" HorizontalAlignment="Center"
+                       FontSize="20"/>
+            <ListView Grid.Column="0" SelectedItem="{Binding DateSelected}" BorderThickness="0" SelectionChanged="OnSelectedDateChanged"
+                      ItemsSource="{Binding Dates}" Background="Transparent" HorizontalAlignment="Center">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding}" HorizontalAlignment="Center" Foreground="White" Background="Transparent" />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <TextBlock Text="Time" Foreground="White" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,20,0,0"
+                       FontSize="20"/>
+            <ListView Grid.Column="0" SelectedIndex="{Binding TimeSelected}" BorderThickness="0" SelectionChanged="OnSelectedTimeChanged"
+                      ItemsSource="{Binding Times}" Background="Transparent" HorizontalAlignment="Center">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Time}" HorizontalAlignment="Center" Foreground="White" Background="Transparent" />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackPanel>
+        
+        <ItemsControl Grid.Row="0" Grid.Column="1" Background="Transparent" ItemsSource="{Binding Seats}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Columns="5" />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemContainerStyle>
+                <Style>
+                    <Setter Property="Control.HorizontalContentAlignment" Value="Center"/>
+                    <Setter Property="Control.VerticalContentAlignment" Value="Center"/>
+                    <Setter Property="Control.Cursor" Value="Hand" />
+                </Style>
+            </ItemsControl.ItemContainerStyle>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Button Content="{Binding}" HorizontalAlignment="Center" Click="ToggleAddRemoveCommand"
+                            VerticalAlignment="Center" IsEnabled="{Binding IsAvailable}" />
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+        <Button Grid.Row="1" Grid.ColumnSpan="2" Command="{Binding BookAllSeatsCommand}" Content="Confirm"/>
+    </Grid>
+</Window>
