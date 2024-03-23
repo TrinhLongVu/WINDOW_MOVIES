@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
+using WpfApp1.ViewModel;
 
 namespace WpfApp1.Views
 {
@@ -18,6 +19,14 @@ namespace WpfApp1.Views
             {
                 Title = "Add a cast";
             }
+            AddPersonViewModel viewModel = new AddPersonViewModel(type);
+            DataContext = viewModel;
+            viewModel.ClickInsert += ViewModel_Clicked;
+        }
+        private void ViewModel_Clicked(object sender, EventArgs e)
+        {
+            MessageBox.Show("Success insert.");
+            Close();
         }
 
         private void imgUrlChanged(object sender, TextChangedEventArgs e)

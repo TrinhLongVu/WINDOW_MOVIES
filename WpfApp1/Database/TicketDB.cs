@@ -27,7 +27,7 @@ namespace WpfApp1.Database
         public List<string> GetAllTickets(int movieId, DateTime date, string schedule) {
             List<string> result = new List<string>();
             string sqlDate = date.ToString("MM/dd/yyyy");
-            string query =  "SELECT Seat.Chair FROM Ticket JOIN MovieSchedule ms ON MovieScheduleId = ms.Id " +
+            string query =  "SELECT Seat.Position FROM Ticket JOIN MovieSchedule ms ON MovieScheduleId = ms.Id " +
                             " JOIN Schedule sc ON ms.IdSchedule = sc.Id " +
                             " JOIN Seat ON Seat.Id = Ticket.SeatId" +
                            $" WHERE ms.Date = '{sqlDate}' AND sc.Time = '{schedule}' ";

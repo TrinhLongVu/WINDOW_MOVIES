@@ -35,11 +35,11 @@
                 <StackPanel Grid.Column="1">
                     <StackPanel Grid.Column="0">
                         <Label FontWeight="Bold" Foreground="White" FontSize="15">Name</Label>
-                        <TextBox Text="{Binding Title}" Width="400" Style="{StaticResource CustomTxtBox}"/>
+                        <TextBox Text="{Binding Name}" Width="400" Style="{StaticResource CustomTxtBox}"/>
                     </StackPanel>
                     <StackPanel Grid.Column="0">
                         <Label FontWeight="Bold" Foreground="White" FontSize="15">Avatar URL</Label>
-                        <TextBox Text="{Binding Title}" x:Name="avatarUrl" Width="400" Style="{StaticResource CustomTxtBox}" TextChanged="imgUrlChanged"/>
+                        <TextBox Text="{Binding Avatar}" x:Name="avatarUrl" Width="400" Style="{StaticResource CustomTxtBox}" TextChanged="imgUrlChanged"/>
                     </StackPanel>
                     <Label FontWeight="Bold" Foreground="White" FontSize="15">Bio</Label>
                     <TextBox Text="{Binding Detail}" Width="400" Height="100" TextWrapping="Wrap" AcceptsReturn="True" Style="{StaticResource CustomTxtBox}"/>

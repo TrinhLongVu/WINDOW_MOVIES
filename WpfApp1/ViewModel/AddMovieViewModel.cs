@@ -84,6 +84,11 @@ namespace WpfApp1.ViewModel
 
         private void AddMovieBtnFunc()
         {
+            if(_SelectedGenre == null || _SelectedDirector == null || _SelectedStar == null || Title == "" || Poster == "" || Release == "" || Rating == 0 || Runtime == "" || Detail == "" || Landscapre == "")
+            {
+                MessageBox.Show("Please provide enough info");
+                return;
+            }
             int idGenre = HandlegetData(_genres, _SelectedGenre);
             int idDirector = HandlegetData(_director, _SelectedDirector);
             int idStar = HandlegetData(_star, _SelectedStar);

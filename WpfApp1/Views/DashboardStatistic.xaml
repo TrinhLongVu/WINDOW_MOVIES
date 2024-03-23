@@ -4,11 +4,16 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:WpfApp1.Views"
+      xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
       mc:Ignorable="d" 
       d:DesignHeight="650" d:DesignWidth="1010"
       Title="DashboardStatistic">
 
     <Grid>
-        <TextBlock>Hello</TextBlock>
+        <lvc:CartesianChart Series="{Binding ChartSeries}" LegendLocation="Right">
+            <lvc:CartesianChart.AxisX>
+                <lvc:Axis Title="Columns" Labels="{Binding ColumnLabels}"/>
+            </lvc:CartesianChart.AxisX>
+        </lvc:CartesianChart>
     </Grid>
 </Page>

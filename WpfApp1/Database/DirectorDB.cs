@@ -40,5 +40,16 @@ namespace WpfApp1.Database
             reader.Close();
             return directors;
         }
+
+        public void insertDirector(string name, string image, string story)
+        {
+            string insertStarQuery = "INSERT INTO Director(Name, Image, Story) VALUES (@Name, @Image, @Story);";
+            SqlCommand command = new SqlCommand(insertStarQuery, _connect);
+
+            command.Parameters.AddWithValue("@Name", name);
+            command.Parameters.AddWithValue("@Image", image);
+            command.Parameters.AddWithValue("@Story", story);
+            command.ExecuteNonQuery();
+        }
     }
 }
