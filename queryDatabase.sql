@@ -298,3 +298,6 @@ insert into Account(Role, Birthday, Username, Password)
 values
 ('user', '1/1/2000 12:00:00 AM', 'un1', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3'),
 ('admin', '1/1/2001 12:00:00 AM', 'ad1', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3')
+
+
+select * from Movie
