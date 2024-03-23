@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Navigation;
 using WpfApp1.ViewModel;
@@ -17,11 +18,6 @@ namespace WpfApp1.Views
             viewModel.LoginButtonClicked += ViewModel_LoginButtonClicked;
         }
 
-        private void NavigateRegister(object sender, MouseButtonEventArgs e)
-        {
-            NavigationService.Navigate(new Register());
-        }
-
         private void ViewModel_LoginButtonClicked(object sender, bool isUser)
         {
             if (isUser)
@@ -32,6 +28,20 @@ namespace WpfApp1.Views
             {
                 NavigationService?.Navigate(new Dashboard());
             }
+        }
+
+        private void LoginEnter(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                viewModel.LoginBtn.Execute(null);
+                e.Handled = true;
+            }           
+        }
+
+        private void NavigateRegister(object sender, MouseButtonEventArgs e)
+        {
+            NavigationService.Navigate(new Register());
         }
     }
 }

@@ -10,5 +10,11 @@ namespace WpfApp1.Views
             InitializeComponent();
             DataContext = new CastManageViewModel();
         }
+
+        private void AddCast(object sender, System.Windows.RoutedEventArgs e)
+        {
+            AddPerson addCastWindow = new AddPerson("cast");
+            addCastWindow.ShowDialog();
+        }
     }
 }

@@ -10,7 +10,7 @@
     <Compile Update="Views\AddMovie.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\Booking.xaml.cs">
+    <Compile Update="Views\AddPerson.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\CastManagement.xaml.cs">
@@ -51,7 +51,7 @@
     <Page Update="Views\AddMovie.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Booking.xaml">
+    <Page Update="Views\AddPerson.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\CastManagement.xaml">

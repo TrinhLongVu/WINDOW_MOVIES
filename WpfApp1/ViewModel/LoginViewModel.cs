@@ -1,13 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
-using WpfApp1.Views;
-using System.Windows.Navigation;
 using WpfApp1.Database;
 using System.Collections;
 using WpfApp1.Models;
@@ -36,9 +30,14 @@ namespace WpfApp1.ViewModel
         private void LoginButton()
         {
             bool isUser = true;
-            foreach(Account user in _users)
+            if (string.IsNullOrWhiteSpace(Password) || string.IsNullOrEmpty(Username))
             {
-                if(user.Username == Username && Hash.VerifyPassword(Password, user.Password))
+                MessageBox.Show("Please enter all the information before continuing");
+                return;
+            }
+            foreach (Account user in _users)
+            {  
+                if (user.Username == Username && Hash.VerifyPassword(Password, user.Password))
                 {
                     if(user.Role == "user")
                     {
