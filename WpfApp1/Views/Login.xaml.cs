@@ -18,11 +18,6 @@ namespace WpfApp1.Views
             viewModel.LoginButtonClicked += ViewModel_LoginButtonClicked;
         }
 
-        private void NavigateRegister(object sender, MouseButtonEventArgs e)
-        {
-            NavigationService.Navigate(new Register());
-        }
-
         private void ViewModel_LoginButtonClicked(object sender, bool isUser)
         {
             if (isUser)
@@ -40,7 +35,13 @@ namespace WpfApp1.Views
             if (e.Key == Key.Enter)
             {
                 viewModel.LoginBtn.Execute(null);
+                e.Handled = true;
             }           
+        }
+
+        private void NavigateRegister(object sender, MouseButtonEventArgs e)
+        {
+            NavigationService.Navigate(new Register());
         }
     }
 }
