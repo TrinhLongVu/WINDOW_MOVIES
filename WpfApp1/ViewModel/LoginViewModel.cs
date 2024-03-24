@@ -13,6 +13,7 @@ namespace WpfApp1.ViewModel
     {
         private static Account? _account = null; // temporary store user/admin account here after login successfully
         public static Account? GetAccount() {  return _account; }
+        public static void SetAccount(Account acc) {  _account = acc; }
         public static bool IsLogin() { return _account != null; }
         public static void Logout() { _account = null; }
 

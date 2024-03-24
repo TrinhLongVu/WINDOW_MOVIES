@@ -26,7 +26,7 @@
         <Icon:PackIconBootstrapIcons Grid.Row="0" Grid.Column="0" Kind="FilePersonFill" Width="200" Height="200" VerticalAlignment="Center" Foreground="White"/>
         <StackPanel Grid.Row="0" Grid.Column="1">
             <Label FontWeight="DemiBold" Foreground="White" FontSize="15">Username</Label>
-            <TextBox Height="40" Width="250" Padding="8" FontSize="15" BorderBrush="Transparent">
+            <TextBox Text="{Binding Username}" Height="40" Width="250" Padding="8" FontSize="15" BorderBrush="Transparent">
                 <TextBox.Resources>
                     <Style TargetType="{x:Type Border}">
                         <Setter Property="CornerRadius" Value="10"/>
@@ -34,15 +34,7 @@
                 </TextBox.Resources>
             </TextBox>
             <Label FontWeight="DemiBold" Foreground="White" FontSize="15">Password</Label>
-            <TextBox Height="40" Width="250" Padding="8" FontSize="15" BorderBrush="Transparent">
-                <TextBox.Resources>
-                    <Style TargetType="{x:Type Border}">
-                        <Setter Property="CornerRadius" Value="10"/>
-                    </Style>
-                </TextBox.Resources>
-            </TextBox>
-            <Label FontWeight="DemiBold" Foreground="White" FontSize="15">Full Name</Label>
-            <TextBox Height="40" Width="250" Padding="8" FontSize="15" BorderBrush="Transparent">
+            <TextBox Text="{Binding Password}" Height="40" Width="250" Padding="8" FontSize="15" BorderBrush="Transparent">
                 <TextBox.Resources>
                     <Style TargetType="{x:Type Border}">
                         <Setter Property="CornerRadius" Value="10"/>
@@ -50,7 +42,7 @@
                 </TextBox.Resources>
             </TextBox>
             <Label FontWeight="DemiBold" Foreground="White" FontSize="15">Date Of Birth</Label>
-            <DatePicker Width="250" Height="40" DisplayDateStart="1960-01-01" DisplayDateEnd="2024-03-31">
+            <DatePicker SelectedDate="{Binding BirthDate}" Width="250" Height="40" DisplayDateStart="1960-01-01" DisplayDateEnd="2024-03-31">
                 <DatePicker.Resources>
                     <Style TargetType="DatePickerTextBox">
                         <Setter Property="Height" Value="40"/>
@@ -71,7 +63,7 @@
                     <TextBlock Text="Close" Style="{StaticResource userInfoBtnText}"/>
                 </StackPanel>
             </Button>
-            <Button Style="{StaticResource userInfoBtn}">
+            <Button Style="{StaticResource userInfoBtn}" Command="{Binding UpdateInfoCommand}">
                 <StackPanel Orientation="Horizontal">
                     <Icon:PackIconBoxIcons Kind="SolidUpArrowCircle" Style="{StaticResource userInfoBtnIcon}"/>
                     <TextBlock Text="Update" Style="{StaticResource userInfoBtnText}"/>
