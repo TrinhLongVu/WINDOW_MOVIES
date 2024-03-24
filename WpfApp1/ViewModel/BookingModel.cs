@@ -39,6 +39,10 @@ namespace WpfApp1.ViewModel
         public BookingModel(int movieId) {
             _movieId = movieId;
             _movieSchedules = _db.GetSchedules(movieId);
+            if (_movieSchedules.Count == 0) {
+                MessageBox.Show("Missing schedule for this movie");
+                CloseCommand();
+            }
             Dates = new ObservableCollection<string>(_movieSchedules.GroupBy(x => x.Date).Select(x => x.Key.ToString("dd-MM-yyyy")).ToList());
             DateSelected = Dates.First();
             _bookingSeat = new List<Seat>();

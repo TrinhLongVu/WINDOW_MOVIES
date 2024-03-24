@@ -13,14 +13,13 @@ namespace WpfApp1.ViewModel
 {
     class HomePageModel : INotifyPropertyChanged
     {
-        public MovieCarousel AllMovieCarousel { get; set; }
+        public MovieCarousel TopMovies { get; set; }
         public MovieCarousel AiringMovieCarousel { get; set; }
         public event PropertyChangedEventHandler PropertyChanged;
 
         public Movie SelectedItem { get; set; }
         public HomePageModel() {
-            ArrayList movies = new MovieDB().GetAllMovie();
-            AllMovieCarousel = new MovieCarousel(new List<Movie>(movies.ToArray(typeof(Movie)) as Movie[]), 2, 2);
+            TopMovies = new MovieCarousel(new MovieDB().GetTopN_HotMovies(10), 2, 2);
             List<Movie> airingMovies = new MovieDB().GetAllAiringMovies();
             Shuffle(airingMovies);
             AiringMovieCarousel = new MovieCarousel(airingMovies, 2, 2);

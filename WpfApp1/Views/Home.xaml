@@ -69,7 +69,7 @@
     </Page.Resources>
     <ScrollViewer HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden">
         <StackPanel HorizontalAlignment="Stretch">
-            <TextBlock FontSize="40px" Margin="0,20" TextAlignment="Center" Foreground="White"><Bold>AIRING MOVIES</Bold></TextBlock>
+            <TextBlock FontSize="40px" Margin="0,20" TextAlignment="Center" Foreground="White"><Bold>Hot Movies</Bold></TextBlock>
             <StackPanel>
                 <Grid Width="1250px" Height="380" HorizontalAlignment="Center">
                     <Grid.ColumnDefinitions>
@@ -79,11 +79,11 @@
                     </Grid.ColumnDefinitions>
                     <Canvas Grid.Column="1" HorizontalAlignment="Left" Margin="-5,0,0,0">
                         <ListView
-                            x:Name="Carousel"
+                            x:Name="TopMoviesCarousel"
                             Canvas.Left="0" Canvas.Top="0"
                             BorderThickness="0"
                             HorizontalAlignment="Left"
-                            ItemsSource="{Binding AllMovieCarousel.MovieCollection}"
+                            ItemsSource="{Binding TopMovies.MovieCollection}"
                             Background="Transparent"
                             SelectedItem="{Binding SelectedItem}"
                             ItemTemplate="{StaticResource ItemTemplate}"
@@ -107,7 +107,7 @@
                 </Grid>
             </StackPanel>
 
-            <TextBlock FontSize="40px" Margin="0,20" TextAlignment="Center" Foreground="White"><Bold>AIRING MOVIES</Bold></TextBlock>
+            <TextBlock FontSize="40px" Margin="0,20" TextAlignment="Center" Foreground="White"><Bold>Airing Movies</Bold></TextBlock>
             <StackPanel>
                 <Grid Width="1250px" Height="380" HorizontalAlignment="Center">
                     <Grid.ColumnDefinitions>

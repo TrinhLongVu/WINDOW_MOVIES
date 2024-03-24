@@ -151,19 +151,19 @@ namespace WpfApp1.Views
         }
 
         private void OnPrevClick(object sender, RoutedEventArgs e) {
-            var carousel = FindName("Carousel") as ListView;
+            var carousel = FindName("TopMoviesCarousel") as ListView;
             if (carousel == null) {
                 throw new Exception("NULL");
             }
-            viewModel.AllMovieCarousel.Previous(carousel);
+            viewModel.TopMovies.Previous(carousel);
         }
 
         private void OnNextClick(object sender, RoutedEventArgs e) {
-            var carousel = FindName("Carousel") as ListView;
+            var carousel = FindName("TopMoviesCarousel") as ListView;
             if (carousel == null) {
                 throw new Exception("NULL");
             }
-            viewModel.AllMovieCarousel.Next(carousel);
+            viewModel.TopMovies.Next(carousel);
         }
 
         private void OnPrevClick2(object sender, RoutedEventArgs e) {
