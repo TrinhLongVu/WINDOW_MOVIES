@@ -17,6 +17,7 @@ namespace WpfApp1.ViewModel
         public DateTime BirthDate { get ; set; }
         public ICommand UpdateInfoCommand => new RelayCommand(() => {
             LoginViewModel.SetAccount(new Account {
+                Id = LoginViewModel.GetAccount().Id,
                 Username = Username,
                 Password = "********" == Password ? LoginViewModel.GetAccount().Password : Hash.HashPassword(Password),
                 Date = BirthDate.ToString("MM/dd/yyyy"),
