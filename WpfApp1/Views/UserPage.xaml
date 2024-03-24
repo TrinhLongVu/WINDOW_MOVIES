@@ -52,8 +52,10 @@
                         </Button>
                     </Grid>
                 </Border>
-                <WrapPanel Margin="30,0,0,0" Width="100" VerticalAlignment="Center">
-                    <Icon:PackIconBootstrapIcons Kind="FilePersonFill" Height="Auto" VerticalAlignment="Center" Foreground="White"/>
+                <WrapPanel Margin="25,0,25,0" Width="110" VerticalAlignment="Center">
+                    <Button x:Name="profileBtn" Cursor="Hand" Width="25" Style="{StaticResource profileBtn}" Click="inspectProfile">
+                        <Icon:PackIconBootstrapIcons Kind="PersonCircle" Width="23" Height="23" VerticalAlignment="Center"/>
+                    </Button>
                     <Button Margin="5,0,0,0" Style="{StaticResource BlankButton}" Click="OnLoginLinkClicked">
                         <TextBlock Text="{Binding LoginOrOutText}" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Center">
                             <TextBlock.Style>

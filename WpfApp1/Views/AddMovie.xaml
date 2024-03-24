@@ -97,7 +97,7 @@
                 </StackPanel>
             </Grid>
             <StackPanel Margin="0,40,0, 0" Orientation="Horizontal" HorizontalAlignment="Center">
-                <Button Style="{StaticResource userInfoBtn}">
+                <Button Style="{StaticResource userInfoBtn}" Click="CloseWindow">
                     <StackPanel Orientation="Horizontal">
                         <Icon:PackIconBoxIcons Kind="SolidXCircle" Style="{StaticResource userInfoBtnIcon}"/>
                         <TextBlock Text="Cancel" Style="{StaticResource userInfoBtnText}"/>

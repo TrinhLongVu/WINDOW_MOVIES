@@ -15,6 +15,7 @@ namespace WpfApp1.Views
         {
             InitializeComponent();
             DataContext = this;
+            profileBtn.Visibility = LoginViewModel.IsLogin() ? Visibility.Visible : Visibility.Collapsed;
         }
 
         private void OnLoginLinkClicked(object sender, RoutedEventArgs e) {
@@ -48,6 +49,12 @@ namespace WpfApp1.Views
         private void navigateHome(object sender, RoutedEventArgs e)
         {
             UserBody.NavigationService.Navigate(new Home());
+        }
+
+        private void inspectProfile(object sender, RoutedEventArgs e)
+        {
+            UserInfo userIn4Screen = new UserInfo();
+            userIn4Screen.ShowDialog();
         }
     }
 }

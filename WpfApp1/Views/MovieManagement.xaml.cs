@@ -14,7 +14,7 @@ namespace WpfApp1.Views
         private void AddMovie(object sender, System.Windows.RoutedEventArgs e)
         {
             AddMovie addMovieWindow = new AddMovie();
-            addMovieWindow.Show();
+            addMovieWindow.ShowDialog();
         }
     }
 }

@@ -48,5 +48,9 @@ namespace WpfApp1.Views
             }
         }
 
+        private void CloseWindow(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }
