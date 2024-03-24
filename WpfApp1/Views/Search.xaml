@@ -1,0 +1,70 @@
+﻿<Page x:Class="WpfApp1.Views.Search"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="1280"
+      Title="Search">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="0.8*"></RowDefinition>
+            <RowDefinition Height="9*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" FontSize="40px" TextAlignment="Center"   Foreground="White"><Bold>MOVIE SEARCH RESULTS</Bold></TextBlock>
+
+            <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Right">
+                <TextBlock VerticalAlignment="Center" FontWeight="Bold" Foreground="White"  Margin="0 0 10 0">Sort Rating</TextBlock>
+                <ComboBox  VerticalAlignment="Center" Width="200" HorizontalAlignment="Right" Margin="0 0 40 0" FontSize="16" Style="{StaticResource RoundComboBox}" ItemsSource="{Binding Filters}" DisplayMemberPath="Name" SelectedItem="{Binding SelectedFilter}" />
+                <TextBlock VerticalAlignment="Center" FontWeight="Bold" Foreground="White" Margin="0 0 10 0">Genre</TextBlock>
+                <ComboBox Grid.Row="1" VerticalAlignment="Center" Width="200" HorizontalAlignment="Right" Margin="0 0 50 0" FontSize="16" Style="{StaticResource RoundComboBox}" ItemsSource="{Binding FilterGenre}" DisplayMemberPath="Name" SelectedItem="{Binding SelectedFilterGenre}" />
+            </StackPanel>
+        <ListView ScrollViewer.VerticalScrollBarVisibility="Hidden" BorderThickness="0" BorderBrush="Transparent" HorizontalAlignment="Center" Grid.Row="2" Background="Transparent" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ItemsSource="{Binding MovieShow}" SelectedItem="{Binding SelectedItem}">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel/>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid x:Name="element" Margin="10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="60"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Border Grid.Row="0" Width="275" Height="420">
+                            <Border.Background>
+                                <ImageBrush ImageSource="{Binding Poster}" Stretch="UniformToFill"/>
+                            </Border.Background>
+                        </Border>
+                        <TextBlock Margin="10" Grid.Row="1" FontWeight="Bold" FontSize="18px" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding Title}" TextWrapping="Wrap" TextTrimming="WordEllipsis" TextAlignment="Center"/>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <StackPanel Margin="0 0 100 0" Orientation="Horizontal" Grid.Row="3" HorizontalAlignment="Right">
+            <Button Command="{Binding PreviousPageCommand}" Style="{StaticResource pageNavBtn}">
+                <Icon:BoxIcons Kind="RegularChevronLeft"/>
+            </Button>
+            <TextBlock Foreground="White" Padding="40 0 40 0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30">
+        <Bold>
+            <Run Text="{Binding CurrentPage}"/>
+        </Bold>
+            </TextBlock>
+            <Button Command="{Binding NextPageCommand}" Style="{StaticResource pageNavBtn}">
+                <Icon:BoxIcons Kind="RegularChevronRight"/>
+            </Button>
+        </StackPanel>
+    </Grid>
+</Page>

@@ -1,0 +1,85 @@
+﻿<Page x:Class="WpfApp1.Views.UserPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
+      mc:Ignorable="d" 
+      d:DesignHeight="700" d:DesignWidth="1280"
+      Title="UserPage">
+    <Page.Resources>
+        <Style TargetType="Border" x:Key="roundBox">
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="BorderBrush" Value="Black" />
+            <Setter Property="CornerRadius" Value="12" />
+            <Setter Property="Background" Value="White" />
+            <Setter Property="Padding" Value="10,0" />
+        </Style>
+        <Style TargetType="{x:Type Button}" x:Key="BlankButton">
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <ContentPresenter/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+    <Grid Margin="0,5,0,0" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="11*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid>
+            <Button Style="{StaticResource homeBtn}" VerticalAlignment="Top" HorizontalAlignment="Left" Click="navigateHome">
+                <Icon:PackIconBoxIcons Kind="SolidHome" Style="{StaticResource homeBtnIcon}"/>
+            </Button>
+
+            <StackPanel VerticalAlignment="Center" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,10,25" Grid.Row="0">
+
+                <Border Width="300" Style="{StaticResource roundBox}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="10*" />
+                            <ColumnDefinition Width="1*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBox VerticalContentAlignment="Center" BorderThickness="0" Background="Transparent" Grid.Column="0" x:Name="SearchBox" KeyDown="SearchMovies"/>
+                        <Button Style="{StaticResource BlankButton}" Grid.Column="1" Background="Transparent" Click="SearchBtn">
+                            <Image Height="Auto" Source="/Images/icon-search.png" Stretch="Uniform" />
+
+                        </Button>
+                    </Grid>
+                </Border>
+                <WrapPanel Margin="25,0,25,0" Width="130" VerticalAlignment="Center">
+                    <Button x:Name="profileBtn" Cursor="Hand" Width="25" Style="{StaticResource profileBtn}" Click="inspectProfile">
+                        <Icon:PackIconBootstrapIcons Kind="PersonCircle" Width="23" Height="23" VerticalAlignment="Center"/>
+                    </Button>
+                    <Button x:Name="ticketBtn" Margin="8,0" Cursor="Hand" Width="25" Style="{StaticResource ticketBtn}" Click="inspectTicket">
+                        <Icon:PackIconBootstrapIcons Kind="BookmarkCheckFill" Width="23" Height="23" VerticalAlignment="Center"/>
+                    </Button>
+                    <Button Margin="5,0,0,0" Style="{StaticResource BlankButton}" Click="OnLoginLinkClicked">
+                        <TextBlock Text="{Binding LoginOrOutText}" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <TextBlock.Style>
+                                <Style TargetType="{x:Type TextBlock}">
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Foreground" Value="#f3ea28" />
+                                            <Setter Property="TextDecorations" Value="Underline" />
+                                        </Trigger>
+                                        <Trigger Property="IsMouseOver" Value="False">
+                                            <Setter Property="Foreground" Value="White" />
+                                            <Setter Property="TextDecorations" Value="None" />
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
+                    </Button>
+                </WrapPanel>
+            </StackPanel>
+        </Grid>
+        <Frame x:Name="UserBody" NavigationUIVisibility="Hidden" Source="Home.xaml" Margin="0,39,0,0" Grid.RowSpan="2"/>
+    </Grid>
+</Page>

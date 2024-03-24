@@ -1,0 +1,88 @@
+﻿<Page x:Class="WpfApp1.Views.Dashboard"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="700" d:DesignWidth="1280"
+      Title="Dashboard">
+
+    <Border Padding="20" >
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="220"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            
+            <Border Grid.Column="0" CornerRadius="25">
+                <Border.Background>
+                    <LinearGradientBrush>
+                        <GradientStop Color="#5444aa" Offset="0"/>
+                        <GradientStop Color="#3a5fc5" Offset="0.8"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+
+                <Grid Margin="20">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="7*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock FontSize="20" FontWeight="Bold" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" Text="DASHBOARD"/>
+                    <StackPanel Grid.Row="1" x:Name="MenuButtonList">
+                        <Button x:Name="AdminStatistic" Style="{StaticResource dashboardMenuBtn}" GotFocus="MenuButtonFocus" Loaded="AdminInitStatistic">
+                            <StackPanel Orientation="Horizontal">
+                                <Icon:PackIconBootstrapIcons Kind="Reception4" Style="{StaticResource dashboardMenuBtnIcon}"/>
+                                <TextBlock Text="Statistics" Style="{StaticResource dashboardMenuBtnText}"/>
+                            </StackPanel>
+                        </Button>
+                        <Button x:Name="AdminMovie" Style="{StaticResource dashboardMenuBtn}" GotFocus="MenuButtonFocus">
+                            <StackPanel Orientation="Horizontal">
+                                <Icon:PackIconBootstrapIcons Kind="Film" Style="{StaticResource dashboardMenuBtnIcon}"/>
+                                <TextBlock Text="Movies" Style="{StaticResource dashboardMenuBtnText}"/>
+                            </StackPanel>
+                        </Button>
+                        <Button x:Name="AdminDirector" Style="{StaticResource dashboardMenuBtn}" GotFocus="MenuButtonFocus">
+                            <StackPanel Orientation="Horizontal">
+                                <Icon:PackIconBootstrapIcons Kind="CameraReelsFill" Style="{StaticResource dashboardMenuBtnIcon}"/>
+                                <TextBlock Text="Directors" Style="{StaticResource dashboardMenuBtnText}"/>
+                            </StackPanel>
+                        </Button>
+                        <Button x:Name="AdminCast" Style="{StaticResource dashboardMenuBtn}" GotFocus="MenuButtonFocus">
+                            <StackPanel Orientation="Horizontal">
+                                <Icon:PackIconBootstrapIcons Kind="PersonVideo" Style="{StaticResource dashboardMenuBtnIcon}"/>
+                                <TextBlock Text="Casts" Style="{StaticResource dashboardMenuBtnText}"/>
+                            </StackPanel>
+                        </Button>
+                        <Button Style="{StaticResource dashboardMenuBtn}" GotFocus="MenuButtonFocus">
+                            <StackPanel Orientation="Horizontal">
+                                <Icon:PackIconBootstrapIcons Kind="Reception4" Style="{StaticResource dashboardMenuBtnIcon}"/>
+                                <TextBlock Text="Statistics" Style="{StaticResource dashboardMenuBtnText}"/>
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+
+                    <Button Grid.Row="2" Style="{StaticResource dashboardMenuBtn}" VerticalAlignment="Bottom" Click="AdminLogOut">
+                        <StackPanel Orientation="Horizontal">
+                            <Icon:PackIconBootstrapIcons Kind="BoxArrowLeft" Style="{StaticResource dashboardMenuBtnIcon}"/>
+                            <TextBlock Text="Log out" Style="{StaticResource dashboardMenuBtnText}"/>
+                        </StackPanel>
+                    </Button>
+                </Grid>
+
+            </Border>
+            <Border Grid.Column="1" Margin="5" CornerRadius="0, 25, 25, 0">
+                <Border.Background>
+                    <LinearGradientBrush>
+                        <GradientStop Color="#5444aa" Offset="0"/>
+                        <GradientStop Color="#3a5fc5" Offset="0.8"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+                <Frame x:Name="DashboardBody" NavigationUIVisibility="Hidden" Source="DashboardStatistic.xaml"/>
+            </Border>
+        </Grid>
+    </Border>
+    
+</Page>
