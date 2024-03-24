@@ -132,7 +132,7 @@ create table Ticket(
 	SeatId int,
     MovieScheduleId int,
     UserId int,
-    Date Datetime,
+    Date Date,
     Price float check(Price > 0.0),
 	primary key(Id),
     unique(SeatId, MovieScheduleId)
