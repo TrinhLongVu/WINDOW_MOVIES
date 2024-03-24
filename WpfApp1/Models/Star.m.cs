@@ -13,5 +13,8 @@ namespace WpfApp1.Models
         // image can change datatype
         public string? Avatar { get; set; }
         public string? Bio { get; set; }
+        public override string ToString() {
+            return Name;
+        }
     }
 }

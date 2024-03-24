@@ -300,5 +300,42 @@ order by count(tk.Id) desc";
             reader.Close();
             return movie;
         }
+
+        public void UpdateMovie(Movie movie, int idDirector, int idStar) {
+            ArrayList movies = new ArrayList();
+
+            string updateMovie = $@"
+UPDATE Movie SET
+Title = '{movie.Title}'     ,
+IdGener = {movie.IdGener}   ,
+Runtime = '{movie.Runtime}' ,
+Rating = {movie.Rating}     ,
+Poster = '{movie.Poster}'   ,
+Landscape = '{movie.Landscape}',
+Certification = ''           ,
+Release = {movie.Release}    ,
+Detail = @Detail
+WHERE Id = {movie.Id}";
+            SqlCommand command = new SqlCommand();
+            command.Connection = _connect;
+            // movie
+            command.CommandText = updateMovie;
+            command.Parameters.AddWithValue("@Detail", movie.Detail);
+            command.ExecuteNonQuery();
+            command.Parameters.Clear();
+
+            command.CommandText = $@"
+UPDATE MovieStar SET
+StarId = {idStar}
+WHERE MovieId = {movie.Id}";
+            command.ExecuteNonQuery();
+            command.Parameters.Clear();
+
+            command.CommandText = $@"
+UPDATE MovieDirector SET
+DirectorId = {idDirector}
+WHERE MovieId = {movie.Id}";
+            command.ExecuteNonQuery();
+        }
     }
 }

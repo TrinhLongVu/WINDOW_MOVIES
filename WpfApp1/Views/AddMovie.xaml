@@ -44,7 +44,8 @@
                 </StackPanel>
                 <StackPanel Grid.Column="1">
                     <Label FontWeight="Bold" Foreground="White" FontSize="15">Genre</Label>
-                    <ComboBox Width="210" Height="40" Style="{StaticResource RoundComboBox}" ItemsSource="{Binding GenreData}" DisplayMemberPath="Name" SelectedItem="{Binding SelectedGenre}" />
+                    <ComboBox Width="210" Height="40" Style="{StaticResource RoundComboBox}" ItemsSource="{Binding GenreData}"
+                             SelectedItem="{Binding SelectedGenre}" />
                 </StackPanel>
             </Grid>
             <Grid>
@@ -58,7 +59,7 @@
                 </StackPanel>
                 <StackPanel Grid.Column="1">
                     <Label FontWeight="Bold" Foreground="White" FontSize="15">Landscape Poster URL</Label>
-                    <TextBox Text="{Binding Landscapre}" x:Name="landscapeUrl" Width="280" Style="{StaticResource CustomTxtBox}" TextChanged="imgUrlChanged"/>
+                    <TextBox Text="{Binding Landscape}" x:Name="landscapeUrl" Width="280" Style="{StaticResource CustomTxtBox}" TextChanged="imgUrlChanged"/>
                 </StackPanel>
             </Grid>
             <Grid>
@@ -89,11 +90,13 @@
                 </Grid.ColumnDefinitions>
                 <StackPanel Grid.Column="0">
                     <Label Content="Director" Foreground="White" FontWeight="Bold" FontSize="15"/>
-                    <ComboBox Width="280" Height="40" FontSize="16" Style="{StaticResource RoundComboBox}" ItemsSource="{Binding DirectorData}" DisplayMemberPath="Name" SelectedItem="{Binding SelectedDirector}" Validation.ErrorTemplate="{x:Null}"/>
+                    <ComboBox Width="280" Height="40" FontSize="16" Style="{StaticResource RoundComboBox}"
+                              ItemsSource="{Binding DirectorData}" SelectedItem="{Binding SelectedDirector}" Validation.ErrorTemplate="{x:Null}"/>
                 </StackPanel>
                 <StackPanel Grid.Column="1">
                     <Label Content="Cast" Foreground="White" FontWeight="Bold" FontSize="15"/>
-                    <ComboBox Width="280" Height="40" FontSize="16" Style="{StaticResource RoundComboBox}" ItemsSource="{Binding StarData}" DisplayMemberPath="Name" SelectedItem="{Binding SelectedStar}" Validation.ErrorTemplate="{x:Null}"/>
+                    <ComboBox Width="280" Height="40" FontSize="16" Style="{StaticResource RoundComboBox}" ItemsSource="{Binding StarData}"
+                              SelectedItem="{Binding SelectedStar}" Validation.ErrorTemplate="{x:Null}"/>
                 </StackPanel>
             </Grid>
             <StackPanel Margin="0,40,0, 0" Orientation="Horizontal" HorizontalAlignment="Center">
@@ -106,7 +109,7 @@
                 <Button Command="{Binding AddMovieBtn}" Style="{StaticResource userInfoBtn}">
                     <StackPanel Orientation="Horizontal">
                         <Icon:PackIconBoxIcons Kind="SolidPlusCircle" Style="{StaticResource userInfoBtnIcon}"/>
-                        <TextBlock Text="Add" Style="{StaticResource userInfoBtnText}"/>
+                        <TextBlock Text="{Binding ManageType}" Style="{StaticResource userInfoBtnText}"/>
                     </StackPanel>
                 </Button>
             </StackPanel>

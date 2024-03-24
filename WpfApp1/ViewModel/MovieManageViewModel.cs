@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Windows.Input;
 using WpfApp1.Database;
 using WpfApp1.Models;
+using WpfApp1.Views;
 
 namespace WpfApp1.ViewModel
 {
@@ -14,6 +15,7 @@ namespace WpfApp1.ViewModel
         public ObservableCollection<Movie> MovieShow { get; set; } = new ObservableCollection<Movie>();
         public ObservableCollection<Filter> Filters { get; set; }
         public ArrayList movies = new ArrayList();
+        public Movie SelectedItem { get; set; }
         public int CurrentPage { get; set; }
         private int _pageSize = 8;
         private int _totalMovies = 0;
@@ -49,6 +51,14 @@ namespace WpfApp1.ViewModel
             int endIndex = Math.Min(startIndex + _pageSize, _totalMovies);
             MovieShow.Clear();
             for (int i = startIndex; i < endIndex; i++) MovieShow.Add((Movie)movies[i]);
+        }
+
+        public void OpenUpdateMovie() {
+            if (SelectedItem == null) return;
+            new AddMovie(SelectedItem.Id).ShowDialog();
+            MovieDB movieDB = new MovieDB();
+            movies = movieDB.GetAllMovie();
+            UpdateMovie(CurrentPage);
         }
     }
 }

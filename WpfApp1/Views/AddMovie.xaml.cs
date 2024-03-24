@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
+using WpfApp1.Models;
 using WpfApp1.ViewModel;
 
 namespace WpfApp1.Views
@@ -12,6 +13,13 @@ namespace WpfApp1.Views
         {
             InitializeComponent();
             DataContext = new AddMovieViewModel();
+        }
+
+        public AddMovie(int originalId)
+        {
+            InitializeComponent();
+            DataContext = new AddMovieViewModel(originalId);
+            Title = "Update Movie";
         }
 
         private void imgUrlChanged(object sender, TextChangedEventArgs e)
