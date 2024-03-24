@@ -111,7 +111,11 @@
                         <TextBlock FontSize="16">Already Have Account?</TextBlock>
                         <TextBlock FontSize="16" Foreground="Blue" Margin="5,0" TextDecorations="Underline" Cursor="Hand" MouseLeftButtonDown="Navigate_Login">Login</TextBlock>
                     </StackPanel>
-
+                    <TextBlock FontSize="16" TextAlignment="Center" Margin="0,10">Or</TextBlock>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <TextBlock FontSize="16">Continue as</TextBlock>
+                        <TextBlock FontSize="16" Foreground="Blue" Margin="5,0" TextDecorations="Underline" Cursor="Hand" MouseLeftButtonDown="NavigateHome">Guest</TextBlock>
+                    </StackPanel>
                 </StackPanel>
             </Border>
         </Grid>
