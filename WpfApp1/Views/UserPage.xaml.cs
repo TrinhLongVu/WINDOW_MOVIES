@@ -16,12 +16,15 @@ namespace WpfApp1.Views
             InitializeComponent();
             DataContext = this;
             profileBtn.Visibility = LoginViewModel.IsLogin() ? Visibility.Visible : Visibility.Collapsed;
+            ticketBtn.Visibility = LoginViewModel.IsLogin() ? Visibility.Visible : Visibility.Collapsed;
         }
 
         private void OnLoginLinkClicked(object sender, RoutedEventArgs e) {
             if (LoginViewModel.IsLogin()) {
                 LoginViewModel.Logout();
                 LoginOrOutText = "Login";
+                profileBtn.Visibility = LoginViewModel.IsLogin() ? Visibility.Visible : Visibility.Collapsed;
+                ticketBtn.Visibility = LoginViewModel.IsLogin() ? Visibility.Visible : Visibility.Collapsed;
                 PropertyChanged.Invoke(this, new PropertyChangedEventArgs(nameof(LoginOrOutText)));
             } else {
                 NavigationService.Navigate(new Login());
@@ -55,6 +58,11 @@ namespace WpfApp1.Views
         {
             UserInfo userIn4Screen = new UserInfo();
             userIn4Screen.ShowDialog();
+        }
+
+        private void inspectTicket(object sender, RoutedEventArgs e)
+        {
+            UserBody.NavigationService.Navigate(new BookedTicket());
         }
     }
 }

@@ -4,16 +4,42 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:WpfApp1.Views"
-      xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+      xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf" 
+      xmlns:viewmodel="clr-namespace:WpfApp1.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:StatisticViewModel}"
       mc:Ignorable="d" 
       d:DesignHeight="650" d:DesignWidth="1010"
       Title="DashboardStatistic">
 
     <Grid>
-        <lvc:CartesianChart Series="{Binding ChartSeries}" LegendLocation="Right">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Orientation="Horizontal">
+            <TextBlock FontSize="60" Text="{Binding TotalMovies}"></TextBlock>
+            <TextBlock FontSize="60" Text="{Binding RevenueDay}"></TextBlock>
+            <TextBlock FontSize="60" Text="{Binding RevenueMonth}"></TextBlock>
+            <TextBlock FontSize="60" Text="{Binding RevenueYear}"></TextBlock>
+        </StackPanel>
+
+        <lvc:CartesianChart Series="{Binding ChartSeries}" Grid.Row="1" LegendLocation="Right">
             <lvc:CartesianChart.AxisX>
-                <lvc:Axis Title="Columns" Labels="{Binding ColumnLabels}"/>
+                <lvc:Axis Title="Columns" Labels="{Binding ColumnLabels}" MinWidth="30"/>
             </lvc:CartesianChart.AxisX>
         </lvc:CartesianChart>
+
+        <ListView Grid.Row="2"  ScrollViewer.VerticalScrollBarVisibility="Hidden" BorderThickness="0" BorderBrush="Transparent" HorizontalAlignment="Center" Background="Transparent" ItemsSource="{Binding MovietopRevenue}" SelectedItem="{Binding SelectedItem}" Width="1010" >
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Vertical"></StackPanel>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Margin="10" Grid.Row="1" FontWeight="Bold" FontSize="18px" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding Title}" TextWrapping="Wrap" TextTrimming="WordEllipsis" TextAlignment="Center"/>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
 </Page>

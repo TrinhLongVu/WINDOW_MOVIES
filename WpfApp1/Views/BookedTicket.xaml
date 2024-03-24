@@ -7,16 +7,30 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="BookedTicket">
+    <Grid Margin="30">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Foreground="White" Margin="0,10" FontSize="20" TextAlignment="Center" FontWeight="Bold">Your booked tickets</TextBlock>
+        <ListView Grid.Row="1" ScrollViewer.VerticalScrollBarVisibility="Hidden" ItemsSource="{Binding Tickets}" SelectedItem="{Binding SelectedItem}" SelectionChanged="OnSelectionChanged" Background="Transparent">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="400"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Image Grid.Column="0" Width="400" Height="200" Source="{Binding Movie.Landscape}" Stretch="UniformToFill" />
+                        <StackPanel Grid.Column="1" Orientation="Vertical" Margin="30">
+                            <TextBlock Text="{Binding Movie.Title}" Foreground="White" FontSize="35" FontWeight="Bold" />
+                            <TextBlock Text="{Binding Ticket.Schedule}" Margin="0, 30, 0, 0" Foreground="White" FontSize="16" FontWeight="Bold"/>
+                        </StackPanel>
+                    </Grid>
 
-    <ListView ItemsSource="{Binding Tickets}" SelectedItem="{Binding SelectedItem}" SelectionChanged="OnSelectionChanged">
-        <ListView.ItemTemplate>
-            <DataTemplate>
-                <StackPanel Orientation="Horizontal">
-                    <Image Width="400" Height="200" Source="{Binding Movie.Landscape}" Stretch="UniformToFill" />
-                    <TextBlock Text="{Binding Movie.Title}" Foreground="Black" />
-                    <TextBlock Text="{Binding Ticket.Schedule}" Foreground="Black" />
-                </StackPanel>
-            </DataTemplate>
-        </ListView.ItemTemplate>
-    </ListView>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+    
 </Page>
