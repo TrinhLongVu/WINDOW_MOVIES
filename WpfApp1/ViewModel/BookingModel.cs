@@ -59,7 +59,7 @@ namespace WpfApp1.ViewModel
             if (TimeSelected == -1) { // ItemsSource changed trigger this event and make TimeSelected = -1
                 TimeSelected = 0;
             }
-            List<string> takenSeats = new TicketDB().GetAllTickets(
+            List<string> takenSeats = new TicketDB().GetAllBookedSeats(
                                                     _movieId,
                                                     DateTime.ParseExact(DateSelected, "dd-MM-yyyy", null),
                                                     Times[TimeSelected].Time);

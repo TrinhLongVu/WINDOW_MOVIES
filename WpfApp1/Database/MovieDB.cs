@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Reflection.PortableExecutable;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -227,6 +228,28 @@ order by count(tk.Id) desc";
 
             reader.Close();
             return movies;
+        }
+
+        public Movie GetMovieRaw(int movieId) {
+            SqlCommand command = new SqlCommand($"SELECT * FROM Movie WHERE Id = {movieId}", _connect);
+            SqlDataReader reader = command.ExecuteReader();
+            Movie result = null;
+            if (reader.Read()) {
+                var Id = reader.GetInt32(0);
+                Int32 IdGener = reader.GetInt32(1);
+                string Title = reader.GetString(2);
+                string Runtime = reader.GetString(3);
+                double Rating = reader.GetDouble(4);
+                string Poster = reader.GetString(5);
+                string Landscape = reader.GetString(6);
+                string Certification = reader.GetString(7);
+                string Release = reader.GetString(8);
+                string Detail = reader.GetString(9);
+                result = new Movie { Id = Id, IdGener = IdGener, Title = Title, Runtime = Runtime, Rating = Rating, Poster = Poster, Landscape = Landscape, Certification = Certification, Release = Release, Detail = Detail };
+            }
+
+            reader.Close();
+            return result;
         }
 
         public InfoPageMovie GetMovie(Int32 IdMovie)

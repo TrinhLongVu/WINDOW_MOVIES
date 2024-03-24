@@ -24,7 +24,8 @@ namespace WpfApp1.Database
             command.ExecuteNonQuery();
         }
 
-        public List<string> GetAllTickets(int movieId, DateTime date, string schedule) {
+        // get all booked seats for a movie with a schedule
+        public List<string> GetAllBookedSeats(int movieId, DateTime date, string schedule) {
             List<string> result = new List<string>();
             string sqlDate = date.ToString("MM/dd/yyyy");
             string query =  "SELECT Seat.Position FROM Ticket JOIN MovieSchedule ms ON MovieScheduleId = ms.Id " +
@@ -41,6 +42,34 @@ namespace WpfApp1.Database
             }
             reader.Close();
 
+            return result;
+        }
+
+        public List<Ticket> GetAllTickets(int userId) {
+            List<Ticket> result = new List<Ticket>();
+
+            string query = $@"
+select tk.Id, tk.UserId, ms.IdMovie, ms.Date, sc.Time from Ticket tk
+join MovieSchedule ms on ms.Id = tk.MovieScheduleId
+join Schedule sc on sc.Id = ms.IdSchedule
+where tk.UserId = {userId}";
+
+            SqlCommand command = new SqlCommand(query, _connect);
+            SqlDataReader reader = command.ExecuteReader();
+
+            while (reader.Read()) {
+                string date_str = reader.GetDateTime(3).ToString("dd/MM/yyyy");
+                string time = reader.GetString(4);
+
+                result.Add(new Ticket {
+                    Id = reader.GetInt32(0),
+                    UserId = reader.GetInt32(1),
+                    MovieId = reader.GetInt32(2),
+                    Schedule = DateTime.ParseExact($"{date_str} {time}", "dd/MM/yyyy HH:mm:ss", null)
+                });
+            }
+
+            reader.Close();
             return result;
         }
     }
