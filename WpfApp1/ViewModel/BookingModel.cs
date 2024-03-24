@@ -82,14 +82,21 @@ namespace WpfApp1.ViewModel
 
         public ICommand BookAllSeatsCommand => new RelayCommand(() => {
             if (!LoginViewModel.IsLogin()) throw new Exception("Unexpected, must login begin book ticket");
-            foreach (Seat seat in _bookingSeat) {
-                new TicketDB().AddTicket(
-                    LoginViewModel.GetAccount(),
-                    seat,
-                    _movieSchedules.Find(x => (x.Date.ToString("dd-MM-yyyy") == DateSelected) && (x.IdSchedule == Times[TimeSelected].Id)));
+            if (_bookingSeat.Count > 0)
+            {
+                foreach (Seat seat in _bookingSeat)
+                {
+                    new TicketDB().AddTicket(
+                        LoginViewModel.GetAccount(),
+                        seat,
+                        _movieSchedules.Find(x => (x.Date.ToString("dd-MM-yyyy") == DateSelected) && (x.IdSchedule == Times[TimeSelected].Id)));
+                }
+                _bookingSeat.Clear();
+                MessageBox.Show("Successfully booked the ticket(s)!");
+                CloseCommand();
+                return;
             }
-            _bookingSeat.Clear();
-            CloseCommand();
+            MessageBox.Show("Please choose a ticket before confirming!");
         });
     }
 }
