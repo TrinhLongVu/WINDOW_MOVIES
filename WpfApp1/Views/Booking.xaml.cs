@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Accessibility;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,32 +22,44 @@ namespace WpfApp1.Views
     /// </summary>
     public partial class Booking : Window
     {
-        BookingModel model;
+        private BookingModel _model;
         public Booking(int movieId)
         {
             InitializeComponent();
-            model = new BookingModel(movieId);
-            DataContext = model;
-            model.CloseCommand += () => {
+            _model = new BookingModel(movieId);
+            DataContext = _model;
+            _model.CloseCommand += () => {
                 Close();
             };
         }
 
         private void OnSelectedDateChanged(object sender, SelectionChangedEventArgs e) {
-            model.OnSelectedDateChanged();
+            _model.OnSelectedDateChanged();
         }
 
         private void OnSelectedTimeChanged(object sender, SelectionChangedEventArgs e) {
-            model.OnSelectedTimeChanged();
+            _model.OnSelectedTimeChanged();
         }
 
         private void ToggleAddRemoveCommand(object sender, RoutedEventArgs e) {
             var button = sender as Button;
             var seat = button.Content as Seat;
-            bool isSelected = model.ToggleAddRemoveCommand(seat);
+            bool isSelected = _model.ToggleAddRemoveCommand(seat);
             this.Dispatcher.Invoke(() => {
                 button.Background = new SolidColorBrush(isSelected ? Colors.Yellow : Colors.White);
             });
+        }
+
+        private void OnCouponSelect(object sender, RoutedEventArgs e) {
+            Button btn = sender as Button;
+            Coupon cp = btn.Content as Coupon;
+            if (_model.ToggleSelectCoupon(cp)) { // selected
+                btn.Background = new SolidColorBrush(Colors.Yellow);
+                btn.Foreground = new SolidColorBrush(Colors.White);
+            } else { // unselected
+                btn.Background = new SolidColorBrush(Colors.White);
+                btn.Foreground = new SolidColorBrush(Colors.Black);
+            }
         }
     }
 }

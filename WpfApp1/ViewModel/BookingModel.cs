@@ -16,6 +16,9 @@ namespace WpfApp1.ViewModel
         private MovieScheduleDB _db = new MovieScheduleDB();
         private int _movieId;
 
+        public ObservableCollection<Coupon> Coupons { get; }
+        private List<Coupon> _selectedCoupons;
+
         public event PropertyChangedEventHandler PropertyChanged;
         
         private List<MovieSchedule> _movieSchedules;
@@ -44,6 +47,17 @@ namespace WpfApp1.ViewModel
             _bookingSeat = new List<Seat>();
             _allSeats = new SeatDB().GetAllSeats()
                                   .ConvertAll<Seat>((seat /*(string, int)*/) => new Seat(seat.Position, true, seat.Id));
+            Coupons = new ObservableCollection<Coupon>(new CouponDB().GetAvailableCoupons(LoginViewModel.GetAccount().Id));
+            _selectedCoupons = new List<Coupon>();
+        }   
+        public bool ToggleSelectCoupon(Coupon cp) {
+            if (_selectedCoupons.Find(x => x.Id == cp.Id) != null) {
+                _selectedCoupons.RemoveAll(x => x.Id == cp.Id);
+                return false;
+            } else {
+                _selectedCoupons.Add(cp);
+                return true;
+            }
         }
 
         public void OnSelectedDateChanged() {
@@ -80,15 +94,25 @@ namespace WpfApp1.ViewModel
             if (!LoginViewModel.IsLogin()) throw new Exception("Unexpected, must login begin book ticket");
             if (_bookingSeat.Count > 0)
             {
+                double discount = 0;
+                var couponDB = new CouponDB();
+                foreach (Coupon cp in _selectedCoupons) {
+                    discount += cp.Discount;
+                    discount = Math.Min(discount, 1);
+                    couponDB.RemoveCoupon(cp.Id);
+                }
+                double price = 90000 * (1 - discount);
                 foreach (Seat seat in _bookingSeat)
                 {
                     new TicketDB().AddTicket(
                         LoginViewModel.GetAccount(),
                         seat,
-                        _movieSchedules.Find(x => (x.Date.ToString("dd-MM-yyyy") == DateSelected) && (x.IdSchedule == Times[TimeSelected].Id)));
+                        _movieSchedules.Find(x => (x.Date.ToString("dd-MM-yyyy") == DateSelected) && (x.IdSchedule == Times[TimeSelected].Id)),
+                        DateTime.Now,
+                        price);
                 }
                 _bookingSeat.Clear();
-                MessageBox.Show("Successfully booked the ticket(s)!");
+                MessageBox.Show($"Successfully booked the ticket with: {price}$!");
                 CloseCommand();
                 return;
             }
