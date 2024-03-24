@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WpfApp1.Database;
 using WpfApp1.Models;
 
 namespace WpfApp1.ViewModel
@@ -20,13 +21,13 @@ namespace WpfApp1.ViewModel
         public string RevenueYear { get; set; }
         public string RevenueMonth { get; set; }
         public string RevenueDay { get; set; }
-        public string TotalMovies { get; set; }
+        public Int32 TotalMovies { get; set; }
         public StatisticViewModel()
         {
             RevenueYear = "1000";
             RevenueMonth = "1233";
-            RevenueDay = "2123";
-            TotalMovies = "30";
+            RevenueDay = new TicketDB().GetDayTicket().ToString();
+            TotalMovies = new MovieDB().QuantityMovie();
 
             MovietopRevenue.Add(new Movie { Title = "Hi1" });
             MovietopRevenue.Add(new Movie { Title = "Hi2" });

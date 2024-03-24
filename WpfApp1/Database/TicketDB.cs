@@ -72,5 +72,24 @@ namespace WpfApp1.Database
             reader.Close();
             return result;
         }
+
+        public double GetDayTicket()
+        {
+
+            string query = $"select sum(price) from ticket where date = {DateTime.Now.ToString("MM/dd/yyyy")}";
+
+            SqlCommand command = new SqlCommand(query, _connect);
+
+            SqlDataReader reader = command.ExecuteReader();
+
+
+            double result = 0.0;
+            while (reader.Read())
+            {
+                result = reader.GetDouble(0);   
+            }
+            reader.Close();
+            return result;
+        }
     }
 }

@@ -300,5 +300,29 @@ order by count(tk.Id) desc";
             reader.Close();
             return movie;
         }
+
+
+        public Int32 QuantityMovie()
+        {
+            InfoPageMovie movie = new InfoPageMovie();
+
+            string query = "select count(*) from Movie";
+
+            SqlCommand command = new SqlCommand(query, _connect);
+
+            SqlDataReader reader = command.ExecuteReader();
+
+            Int32 quantity = 0;
+            if (reader.Read())
+            {
+                quantity = reader.GetInt32(0);
+            }
+
+            reader.Close();
+            return quantity;
+        }
+
+
+
     }
 }
