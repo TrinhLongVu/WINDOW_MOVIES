@@ -196,6 +196,39 @@ namespace WpfApp1.Database
             return movies;
         }
 
+        // Input: 'n' rows or null to select all
+        public List<Movie> GetTopN_HotMovies(int? n) {
+            var movies = new List<Movie>();
+            string top_selector = n == null ? "" : $"top {n}";
+            string query = $@"
+select {top_selector} mv.Id, mv.IdGener, mv.Title, mv.Runtime, mv.Rating, mv.Poster, mv.Landscape, mv.Certification, mv.Release, mv.Detail from Movie mv
+join MovieSchedule ms on mv.Id = ms.IdMovie
+left join Ticket tk on tk.MovieScheduleId = ms.Id
+group by mv.Id, mv.IdGener, mv.Title, mv.Runtime, mv.Rating, mv.Poster, mv.Landscape, mv.Certification, mv.Release, mv.Detail
+order by count(tk.Id) desc";
+
+
+            SqlCommand command = new SqlCommand(query, _connect);
+            SqlDataReader reader = command.ExecuteReader();
+
+            while (reader.Read()) {
+                var Id = reader.GetInt32(0);
+                Int32 IdGener = reader.GetInt32(1);
+                string Title = reader.GetString(2);
+                string Runtime = reader.GetString(3);
+                double Rating = reader.GetDouble(4);
+                string Poster = reader.GetString(5);
+                string Landscape = reader.GetString(6);
+                string Certification = reader.GetString(7);
+                string Release = reader.GetString(8);
+                string Detail = reader.GetString(9);
+                movies.Add(new Movie { Id = Id, IdGener = IdGener, Title = Title, Runtime = Runtime, Rating = Rating, Poster = Poster, Landscape = Landscape, Certification = Certification, Release = Release, Detail = Detail });
+            }
+
+            reader.Close();
+            return movies;
+        }
+
         public InfoPageMovie GetMovie(Int32 IdMovie)
         {
             InfoPageMovie movie = new InfoPageMovie();
