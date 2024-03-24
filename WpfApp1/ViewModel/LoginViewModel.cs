@@ -47,7 +47,11 @@ namespace WpfApp1.ViewModel
                     {
                         isUser = false;
                     }
-                    LoginViewModel._account = user;
+
+                    LoginViewModel._account = user; // cache
+
+                    new CouponDB().AddBirthdayCouponIfNotExist(user);
+
                     LoginButtonClicked?.Invoke(this, isUser);
                     return;
                 }

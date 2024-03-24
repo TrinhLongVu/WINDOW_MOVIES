@@ -32,9 +32,10 @@ namespace WpfApp1.Database
             {
                 var Id = reader.GetInt32(0);
                 string Role = reader.GetString(1);
+                string BirthDate = reader.GetString(2);
                 string Username = reader.GetString(3);
                 string Password = reader.GetString(4);
-                account.Add(new Account { Id = Id, Role = Role, Username = Username, Password = Password });
+                account.Add(new Account { Id = Id, Date = BirthDate, Role = Role, Username = Username, Password = Password });
             }
 
             reader.Close();

@@ -137,6 +137,31 @@ create table Ticket(
 )
 go
 
+create table Coupon(
+    Id int identity(1, 1),
+    Expire date,
+    UserId int,
+    Discount float check(Discount > 0.0 and Discount < 1.0),
+    primary key(Id)
+)
+go
+
+alter table Coupon
+add constraint FK_CP_ACC foreign key(UserId) references Account(Id)
+
+go
+
+create table BirthDateCouponCache(
+    UserId int,
+    Month int check(Month >= 1 and Month <= 12),
+)
+go
+
+alter table  BirthDateCouponCache
+add constraint FK_BDCC_CP foreign key(UserId) references Account(Id)
+
+go
+
 alter table Ticket
 add constraint FK_TICK_SEAT foreign key(SeatId) references Seat(Id),
 	constraint FK_TICK_MVSCHE foreign key(MovieScheduleId) references MovieSchedule(Id),
