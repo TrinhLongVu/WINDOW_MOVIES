@@ -8,5 +8,10 @@ namespace WpfApp1.Views
         {
             InitializeComponent();
         }
+
+        private void CloseWindow(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }

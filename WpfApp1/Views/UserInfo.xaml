@@ -65,7 +65,7 @@
             </DatePicker>
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button Style="{StaticResource userInfoBtn}">
+            <Button Style="{StaticResource userInfoBtn}" Click="CloseWindow">
                 <StackPanel Orientation="Horizontal">
                     <Icon:PackIconBoxIcons Kind="SolidXCircle" Style="{StaticResource userInfoBtnIcon}"/>
                     <TextBlock Text="Close" Style="{StaticResource userInfoBtnText}"/>
