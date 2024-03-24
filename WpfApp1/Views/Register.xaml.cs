@@ -36,5 +36,10 @@ namespace WpfApp1.Views
         {
             NavigationService.Navigate(new Login());
         }
+
+        private void NavigateHome(object sender, MouseButtonEventArgs e)
+        {
+            NavigationService.Navigate(new UserPage());
+        }
     }
 }
