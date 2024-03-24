@@ -49,14 +49,6 @@
                             </Border.Background>
                         </Border>
                         <TextBlock Margin="10" Grid.Row="1" FontWeight="Bold" FontSize="18px" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding Title}" TextWrapping="Wrap" TextTrimming="WordEllipsis" TextAlignment="Center"/>
-                        <Button Grid.Row="2" Background="#f3ea28" Padding="10" Width="274.5" Height="50">
-                            <Button.Resources>
-                                <Style TargetType="Border">
-                                    <Setter Property="CornerRadius" Value="10"/>
-                                </Style>
-                            </Button.Resources>
-                            <TextBlock FontSize="16"><Bold>Book tickets</Bold></TextBlock>
-                        </Button>
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
