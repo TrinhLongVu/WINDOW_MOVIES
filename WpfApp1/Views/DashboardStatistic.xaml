@@ -91,7 +91,10 @@
             </ListView.ItemsPanel>
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Margin="10" Grid.Row="1" FontWeight="Bold" FontSize="18px" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding Title}" TextWrapping="Wrap" TextTrimming="WordEllipsis" TextAlignment="Center"/>
+                    <Grid>
+                        <TextBlock Margin="10" FontWeight="Bold" FontSize="18px" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding Title}" TextWrapping="Wrap" TextTrimming="WordEllipsis" TextAlignment="Center"/>
+                        <TextBlock Margin="10" FontWeight="Bold" FontSize="18px" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding Revenue}" TextWrapping="Wrap" TextTrimming="WordEllipsis" TextAlignment="Center"/>
+                    </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>

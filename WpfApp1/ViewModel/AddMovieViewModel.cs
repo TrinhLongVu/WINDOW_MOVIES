@@ -38,31 +38,6 @@ namespace WpfApp1.ViewModel
 
         private int _updatingId = 0;
 
-        private int HandlegetData(ArrayList datas)
-        {
-            int result = -1;
-            foreach(object obj in datas)
-            {
-                if (obj is Genre genre)
-                {
-                    result = genre.Id;
-                    break;
-                }
-                else if(obj is Director d)
-                {
-                    result = d.Id;
-                    break;
-                }
-                else if (obj is Star s)
-                {
-                    result = s.Id;
-                    break;
-                }
-            }
-            return result;
-        }
-
-
         private void AddMovieBtnFunc()
         {
             if(SelectedGenre == null || SelectedDirector == null || SelectedStar == null || Title == "" || Poster == "" || Release == "" || Rating == 0 || Runtime == "" || Detail == "" || Landscape == "")

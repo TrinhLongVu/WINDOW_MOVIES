@@ -202,7 +202,7 @@ namespace WpfApp1.Database
             var movies = new List<Movie>();
             string top_selector = n == null ? "" : $"top {n}";
             string query = $@"
-select {top_selector} mv.Id, mv.IdGener, mv.Title, mv.Runtime, mv.Rating, mv.Poster, mv.Landscape, mv.Certification, mv.Release, mv.Detail from Movie mv
+select {top_selector} mv.Id, mv.IdGener, mv.Title, mv.Runtime, mv.Rating, mv.Poster, mv.Landscape, mv.Certification, mv.Release, mv.Detail, sum(tk.price) from Movie mv
 join MovieSchedule ms on mv.Id = ms.IdMovie
 left join Ticket tk on tk.MovieScheduleId = ms.Id
 group by mv.Id, mv.IdGener, mv.Title, mv.Runtime, mv.Rating, mv.Poster, mv.Landscape, mv.Certification, mv.Release, mv.Detail
@@ -224,6 +224,32 @@ order by count(tk.Id) desc";
                 string Release = reader.GetString(8);
                 string Detail = reader.GetString(9);
                 movies.Add(new Movie { Id = Id, IdGener = IdGener, Title = Title, Runtime = Runtime, Rating = Rating, Poster = Poster, Landscape = Landscape, Certification = Certification, Release = Release, Detail = Detail });
+            }
+
+            reader.Close();
+            return movies;
+        }
+
+        public List<(string Title, double Revenue)> TopRevenue(int? n)
+        {
+            var movies = new List<(string, double)>();
+            string top_selector = n == null ? "" : $"top {n}";
+            string query = $@"
+            select {top_selector} mv.Title, sum(tk.price) from Movie mv
+            join MovieSchedule ms on mv.Id = ms.IdMovie
+            left join Ticket tk on tk.MovieScheduleId = ms.Id
+            group by mv.Id, mv.Title
+            order by  sum(tk.price) desc";
+
+
+            SqlCommand command = new SqlCommand(query, _connect);
+            SqlDataReader reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                string Title = reader.GetString(0);
+                double Revenue = reader.GetDouble(1);
+                movies.Add((Title, Revenue));
             }
 
             reader.Close();
@@ -336,6 +362,26 @@ UPDATE MovieDirector SET
 DirectorId = {idDirector}
 WHERE MovieId = {movie.Id}";
             command.ExecuteNonQuery();
+        }
+
+        public Int32 QuantityMovie()
+        {
+            InfoPageMovie movie = new InfoPageMovie();
+
+            string query = "select count(*) from Movie";
+
+            SqlCommand command = new SqlCommand(query, _connect);
+
+            SqlDataReader reader = command.ExecuteReader();
+
+            Int32 quantity = 0;
+            if (reader.Read())
+            {
+                quantity = reader.GetInt32(0);
+            }
+
+            reader.Close();
+            return quantity;
         }
     }
 }

@@ -7,42 +7,55 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WpfApp1.Database;
 using WpfApp1.Models;
 
 namespace WpfApp1.ViewModel
 {
+    class MovieTop
+    {
+        public string Title { get; set; }
+        public double Revenue { get; set; }
+    }
     class StatisticViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
         public SeriesCollection ChartSeries { get; set; }
-        public ObservableCollection<string> ColumnLabels { get; set; }
-        public ObservableCollection<Movie> MovietopRevenue { get; set; } = new ObservableCollection<Movie>();
+        public ObservableCollection<string> ColumnLabels { get; set; } = new ObservableCollection<string>();
+        public ObservableCollection<MovieTop> MovietopRevenue { get; set; } 
         public string RevenueYear { get; set; }
         public string RevenueMonth { get; set; }
         public string RevenueDay { get; set; }
-        public string TotalMovies { get; set; }
+        public Int32 TotalMovies { get; set; }
         public StatisticViewModel()
         {
-            RevenueYear = "1000";
-            RevenueMonth = "1233";
-            RevenueDay = "2123";
-            TotalMovies = "30";
+            var t = new TicketDB();
+            RevenueYear = t.GetYearTicket().ToString();
+            RevenueMonth = t.GetMonthTicket().ToString();
+            RevenueDay = t.GetDayTicket().ToString();
+            TotalMovies = new MovieDB().QuantityMovie();
+            var topMovies = new MovieDB().TopRevenue(20).ConvertAll(x => new MovieTop { Title = x.Title, Revenue = x.Revenue });
 
-            MovietopRevenue.Add(new Movie { Title = "Hi1" });
-            MovietopRevenue.Add(new Movie { Title = "Hi2" });
-            MovietopRevenue.Add(new Movie { Title = "Hi3" });
-            MovietopRevenue.Add(new Movie { Title = "Hi4" });
-            MovietopRevenue.Add(new Movie { Title = "Hi5" });
-            MovietopRevenue.Add(new Movie { Title = "Hi6" });
+
+            var movies = new TicketDB().MovieGetStatistic();
+
+            ChartValues<double> chartValues = new ChartValues<double>();
+            MovietopRevenue = new ObservableCollection<MovieTop>(topMovies);
+
+            foreach (var movie in movies)
+            {
+                chartValues.Add(movie.Revenue);
+                ColumnLabels.Add("Day: " + movie.Day.ToString() + "/" + DateTime.Now.Month.ToString());
+            }
+
             ChartSeries = new SeriesCollection
             {
                 new LineSeries
                 {
                     Title = "Revenue",
-                    Values = new ChartValues<double> { 1000000, 3000000, 2000000, 3000000, 1000000, 3000000, 2000000, 3000000, 1000000, 3000000, 2000000, 3000000, 1000000, 3000000, 2000000, 3000000 }
+                    Values = chartValues
                 }
             };
-            ColumnLabels = new ObservableCollection<string> { "1", "2", "3", "4", "1", "2", "3", "4", "1", "2", "3", "4", "1", "2", "3", "4" };
         }
     }
 }
