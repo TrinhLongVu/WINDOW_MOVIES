@@ -52,9 +52,12 @@
                         </Button>
                     </Grid>
                 </Border>
-                <WrapPanel Margin="25,0,25,0" Width="110" VerticalAlignment="Center">
+                <WrapPanel Margin="25,0,25,0" Width="130" VerticalAlignment="Center">
                     <Button x:Name="profileBtn" Cursor="Hand" Width="25" Style="{StaticResource profileBtn}" Click="inspectProfile">
                         <Icon:PackIconBootstrapIcons Kind="PersonCircle" Width="23" Height="23" VerticalAlignment="Center"/>
+                    </Button>
+                    <Button x:Name="ticketBtn" Margin="8,0" Cursor="Hand" Width="25" Style="{StaticResource ticketBtn}" Click="inspectTicket">
+                        <Icon:PackIconBootstrapIcons Kind="BookmarkCheckFill" Width="23" Height="23" VerticalAlignment="Center"/>
                     </Button>
                     <Button Margin="5,0,0,0" Style="{StaticResource BlankButton}" Click="OnLoginLinkClicked">
                         <TextBlock Text="{Binding LoginOrOutText}" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Center">
