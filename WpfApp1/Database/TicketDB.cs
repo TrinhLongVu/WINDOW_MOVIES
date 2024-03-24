@@ -80,7 +80,7 @@ VALUES({seat.Id}, {schedule.Id}, {user.Id}, '{date.ToString()}', {price})";
         public double GetDayTicket()
         {
 
-            string query = $"select sum(price) from ticket where date = {DateTime.Now.ToString("MM/dd/yyyy")}";
+            string query = $"select COALESCE(SUM(price), 0)  from ticket where date = {DateTime.Now.ToString("MM/dd/yyyy")}";
 
             SqlCommand command = new SqlCommand(query, _connect);
 
@@ -91,6 +91,25 @@ VALUES({seat.Id}, {schedule.Id}, {user.Id}, '{date.ToString()}', {price})";
             while (reader.Read())
             {
                 result = reader.GetDouble(0);   
+            }
+            reader.Close();
+            return result;
+        }
+
+        public double GetMonthTicket()
+        {
+
+            string query = $"select  COALESCE(SUM(price), 0) from ticket where MONTH(date) = {DateTime.Now.Month.ToString()}";
+
+            SqlCommand command = new SqlCommand(query, _connect);
+
+            SqlDataReader reader = command.ExecuteReader();
+
+
+            double result = 0.0;
+            while (reader.Read())
+            {
+                result = reader.GetDouble(0);
             }
             reader.Close();
             return result;

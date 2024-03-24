@@ -24,10 +24,11 @@ namespace WpfApp1.ViewModel
         public Int32 TotalMovies { get; set; }
         public StatisticViewModel()
         {
-            RevenueYear = "1000";
-            RevenueMonth = "1233";
-            RevenueDay = new TicketDB().GetDayTicket().ToString();
-            TotalMovies = new MovieDB().QuantityMovie();
+            var t = new TicketDB();
+            //RevenueYear = "1000";
+            RevenueMonth = t.GetMonthTicket().ToString();
+            //RevenueDay = t.GetDayTicket().ToString();
+            //TotalMovies = new MovieDB().QuantityMovie();
 
             MovietopRevenue.Add(new Movie { Title = "Hi1" });
             MovietopRevenue.Add(new Movie { Title = "Hi2" });
