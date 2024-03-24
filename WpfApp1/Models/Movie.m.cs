@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WpfApp1.Models
 {
-    class Movie
+    class TopRevenue
     {
         public Int32 Id { get; set; }
         public Int32? IdGener { get; set; }

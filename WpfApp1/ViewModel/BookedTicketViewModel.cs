@@ -14,7 +14,7 @@ namespace WpfApp1.ViewModel
 {
     class TicketView {
         public Ticket Ticket { get; set; }
-        public Movie Movie { get; set; }
+        public TopRevenue Movie { get; set; }
     }
     class BookedTicketViewModel
     {

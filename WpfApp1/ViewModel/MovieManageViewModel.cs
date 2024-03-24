@@ -11,7 +11,7 @@ namespace WpfApp1.ViewModel
     class MovieManageViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
-        public ObservableCollection<Movie> MovieShow { get; set; } = new ObservableCollection<Movie>();
+        public ObservableCollection<TopRevenue> MovieShow { get; set; } = new ObservableCollection<TopRevenue>();
         public ObservableCollection<Filter> Filters { get; set; }
         public ArrayList movies = new ArrayList();
         public int CurrentPage { get; set; }
@@ -48,7 +48,7 @@ namespace WpfApp1.ViewModel
             int startIndex = curPage > 0 ? curPage * _pageSize : 0;
             int endIndex = Math.Min(startIndex + _pageSize, _totalMovies);
             MovieShow.Clear();
-            for (int i = startIndex; i < endIndex; i++) MovieShow.Add((Movie)movies[i]);
+            for (int i = startIndex; i < endIndex; i++) MovieShow.Add((TopRevenue)movies[i]);
         }
     }
 }

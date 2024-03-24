@@ -16,9 +16,9 @@ namespace WpfApp1.ViewModel
 {
     class MovieCarousel
     {
-        public ObservableCollection<Movie> MovieCollection { get; set; }
+        public ObservableCollection<TopRevenue> MovieCollection { get; set; }
 
-        private List<Movie> _movies;
+        private List<TopRevenue> _movies;
 
         private bool onAnimation = false;
 
@@ -31,14 +31,14 @@ namespace WpfApp1.ViewModel
         private const int _PADDING = 0;
 
 
-        public MovieCarousel(List<Movie> movies, int scrollPerPage, int itemPerPage = 4) {
+        public MovieCarousel(List<TopRevenue> movies, int scrollPerPage, int itemPerPage = 4) {
             _scrollPerPage = scrollPerPage;
             _itemPerPage = itemPerPage;
             _movies = movies;
             _totalItems = _movies.Count;
             _itemsLeft = Math.Max(_totalItems - _itemPerPage, 0);
             _itemScrolled = 0;
-            MovieCollection = new ObservableCollection<Movie>(_movies);
+            MovieCollection = new ObservableCollection<TopRevenue>(_movies);
         }
 
         public void Next(ListView container) {

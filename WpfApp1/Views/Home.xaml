@@ -67,7 +67,7 @@
             </Grid>
         </DataTemplate>
     </Page.Resources>
-    <ScrollViewer HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden">
+    <ScrollViewer HorizontalScrollBarVisibility="Hidden" >
         <StackPanel HorizontalAlignment="Stretch">
             <TextBlock FontSize="40px" Margin="0,20" TextAlignment="Center" Foreground="White"><Bold>Hot Movies</Bold></TextBlock>
             <StackPanel>

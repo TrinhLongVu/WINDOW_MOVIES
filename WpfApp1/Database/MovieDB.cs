@@ -42,15 +42,15 @@ namespace WpfApp1.Database
                 string Certification = reader.GetString(7);
                 string Release = reader.GetString(8);
                 string Detail = reader.GetString(9);
-                movies.Add(new Movie { Id = Id, IdGener = IdGener, Title = Title, Runtime = Runtime, Rating = Rating, Poster = Poster, Landscape = Landscape, Certification = Certification, Release = Release, Detail = Detail });
+                movies.Add(new TopRevenue { Id = Id, IdGener = IdGener, Title = Title, Runtime = Runtime, Rating = Rating, Poster = Poster, Landscape = Landscape, Certification = Certification, Release = Release, Detail = Detail });
             }
 
             reader.Close();
             return movies;
         }
 
-        public List<Movie> GetAllAiringMovies() {
-            List<Movie> movies = new List<Movie>();
+        public List<TopRevenue> GetAllAiringMovies() {
+            List<TopRevenue> movies = new List<TopRevenue>();
             string query = "SELECT * FROM Movie WHERE Id in (SELECT IdMovie FROM MovieSchedule)";
 
             SqlCommand command = new SqlCommand(query, _connect);
@@ -67,14 +67,14 @@ namespace WpfApp1.Database
                 string Certification = reader.GetString(7);
                 string Release = reader.GetString(8);
                 string Detail = reader.GetString(9);
-                movies.Add(new Movie { Id = Id, IdGener = IdGener, Title = Title, Runtime = Runtime, Rating = Rating, Poster = Poster, Landscape = Landscape, Certification = Certification, Release = Release, Detail = Detail });
+                movies.Add(new TopRevenue { Id = Id, IdGener = IdGener, Title = Title, Runtime = Runtime, Rating = Rating, Poster = Poster, Landscape = Landscape, Certification = Certification, Release = Release, Detail = Detail });
             }
 
             reader.Close();
             return movies;
         }
 
-        public void InsertMovie(Movie m, int idStar, int idDirector)
+        public void InsertMovie(TopRevenue m, int idStar, int idDirector)
         {
             ArrayList movies = new ArrayList();
 
@@ -139,7 +139,7 @@ namespace WpfApp1.Database
                 string Release = reader.GetString(8);
                 string Detail = reader.GetString(9);
                 string GenreName = reader.GetString(11);
-                movies.Add(new Movie { Id = Id, IdGener = IdGener, Title = Title, Runtime = Runtime, Rating = Rating, Poster = Poster, Landscape = Landscape, Certification = Certification, Release = Release, Detail = Detail, GenreName = GenreName });
+                movies.Add(new TopRevenue { Id = Id, IdGener = IdGener, Title = Title, Runtime = Runtime, Rating = Rating, Poster = Poster, Landscape = Landscape, Certification = Certification, Release = Release, Detail = Detail, GenreName = GenreName });
             }
 
             reader.Close();
@@ -190,7 +190,7 @@ namespace WpfApp1.Database
                 string Certification = reader.GetString(7);
                 string Release = reader.GetString(8);
                 string Detail = reader.GetString(9);
-                movies.Add(new Movie { Id = Id, IdGener = IdGener, Title = Title, Runtime = Runtime, Rating = Rating, Poster = Poster, Landscape = Landscape, Certification = Certification, Release = Release, Detail = Detail });
+                movies.Add(new TopRevenue { Id = Id, IdGener = IdGener, Title = Title, Runtime = Runtime, Rating = Rating, Poster = Poster, Landscape = Landscape, Certification = Certification, Release = Release, Detail = Detail });
             }
 
             reader.Close();
@@ -198,11 +198,11 @@ namespace WpfApp1.Database
         }
 
         // Input: 'n' rows or null to select all
-        public List<Movie> GetTopN_HotMovies(int? n) {
-            var movies = new List<Movie>();
+        public List<TopRevenue> GetTopN_HotMovies(int? n) {
+            var movies = new List<TopRevenue>();
             string top_selector = n == null ? "" : $"top {n}";
             string query = $@"
-select {top_selector} mv.Id, mv.IdGener, mv.Title, mv.Runtime, mv.Rating, mv.Poster, mv.Landscape, mv.Certification, mv.Release, mv.Detail from Movie mv
+select {top_selector} mv.Id, mv.IdGener, mv.Title, mv.Runtime, mv.Rating, mv.Poster, mv.Landscape, mv.Certification, mv.Release, mv.Detail, sum(tk.price) from Movie mv
 join MovieSchedule ms on mv.Id = ms.IdMovie
 left join Ticket tk on tk.MovieScheduleId = ms.Id
 group by mv.Id, mv.IdGener, mv.Title, mv.Runtime, mv.Rating, mv.Poster, mv.Landscape, mv.Certification, mv.Release, mv.Detail
@@ -223,17 +223,43 @@ order by count(tk.Id) desc";
                 string Certification = reader.GetString(7);
                 string Release = reader.GetString(8);
                 string Detail = reader.GetString(9);
-                movies.Add(new Movie { Id = Id, IdGener = IdGener, Title = Title, Runtime = Runtime, Rating = Rating, Poster = Poster, Landscape = Landscape, Certification = Certification, Release = Release, Detail = Detail });
+                movies.Add(new TopRevenue { Id = Id, IdGener = IdGener, Title = Title, Runtime = Runtime, Rating = Rating, Poster = Poster, Landscape = Landscape, Certification = Certification, Release = Release, Detail = Detail });
             }
 
             reader.Close();
             return movies;
         }
 
-        public Movie GetMovieRaw(int movieId) {
+        public List<(string Title, double Revenue)> TopRevenue(int? n)
+        {
+            var movies = new List<(string, double)>();
+            string top_selector = n == null ? "" : $"top {n}";
+            string query = $@"
+            select {top_selector} mv.Title, sum(tk.price) from Movie mv
+            join MovieSchedule ms on mv.Id = ms.IdMovie
+            left join Ticket tk on tk.MovieScheduleId = ms.Id
+            group by mv.Id, mv.Title
+            order by  sum(tk.price) desc";
+
+
+            SqlCommand command = new SqlCommand(query, _connect);
+            SqlDataReader reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                string Title = reader.GetString(0);
+                double Revenue = reader.GetDouble(1);
+                movies.Add((Title, Revenue));
+            }
+
+            reader.Close();
+            return movies;
+        }
+
+        public TopRevenue GetMovieRaw(int movieId) {
             SqlCommand command = new SqlCommand($"SELECT * FROM Movie WHERE Id = {movieId}", _connect);
             SqlDataReader reader = command.ExecuteReader();
-            Movie result = null;
+            TopRevenue result = null;
             if (reader.Read()) {
                 var Id = reader.GetInt32(0);
                 Int32 IdGener = reader.GetInt32(1);
@@ -245,7 +271,7 @@ order by count(tk.Id) desc";
                 string Certification = reader.GetString(7);
                 string Release = reader.GetString(8);
                 string Detail = reader.GetString(9);
-                result = new Movie { Id = Id, IdGener = IdGener, Title = Title, Runtime = Runtime, Rating = Rating, Poster = Poster, Landscape = Landscape, Certification = Certification, Release = Release, Detail = Detail };
+                result = new TopRevenue { Id = Id, IdGener = IdGener, Title = Title, Runtime = Runtime, Rating = Rating, Poster = Poster, Landscape = Landscape, Certification = Certification, Release = Release, Detail = Detail };
             }
 
             reader.Close();

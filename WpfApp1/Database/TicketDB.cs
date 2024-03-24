@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -80,7 +81,7 @@ VALUES({seat.Id}, {schedule.Id}, {user.Id}, '{date.ToString()}', {price})";
         public double GetDayTicket()
         {
 
-            string query = $"select COALESCE(SUM(price), 0)  from ticket where date = {DateTime.Now.ToString("MM/dd/yyyy")}";
+            string query = $"select COALESCE(SUM(price), 0)  from ticket where date = '{DateTime.Now.ToString("MM/dd/yyyy")}'";
 
             SqlCommand command = new SqlCommand(query, _connect);
 
@@ -113,6 +114,46 @@ VALUES({seat.Id}, {schedule.Id}, {user.Id}, '{date.ToString()}', {price})";
             }
             reader.Close();
             return result;
+        }
+
+        public double GetYearTicket()
+        {
+
+            string query = $"select  COALESCE(SUM(price), 0) from ticket where Year(date) = {DateTime.Now.Year.ToString()}";
+
+            SqlCommand command = new SqlCommand(query, _connect);
+
+            SqlDataReader reader = command.ExecuteReader();
+
+
+            double result = 0.0;
+            while (reader.Read())
+            {
+                result = reader.GetDouble(0);
+            }
+            reader.Close();
+            return result;
+        }
+
+        public List<(Int32 Day, double Revenue)> MovieGetStatistic()
+        {
+
+            string query = $"select Day(Ticket.Date), SUM(Ticket.Price) from Ticket group by DAY(Ticket.Date)";
+
+            List<(Int32 Day, double Revenue)> movies = new List<(Int32 Day, double Revenue)>();
+
+            SqlCommand command = new SqlCommand(query, _connect);
+
+            SqlDataReader reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                Int32 day = reader.GetInt32(0);
+                double revenue = reader.GetDouble(1);
+                movies.Add((day, revenue));
+            }
+            reader.Close();
+            return movies;
         }
     }
 }

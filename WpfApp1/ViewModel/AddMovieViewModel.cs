@@ -93,7 +93,7 @@ namespace WpfApp1.ViewModel
             int idDirector = HandlegetData(_director, _SelectedDirector);
             int idStar = HandlegetData(_star, _SelectedStar);
             MovieDB mdb = new MovieDB();
-            Movie tmp = new Movie { IdGener = idGenre, Title = Title, Poster = Poster, Rating = Rating, Release = Release, Runtime = Runtime, Detail = Detail, Landscape = Landscapre};
+            TopRevenue tmp = new TopRevenue { IdGener = idGenre, Title = Title, Poster = Poster, Rating = Rating, Release = Release, Runtime = Runtime, Detail = Detail, Landscape = Landscapre};
             mdb.InsertMovie(tmp, idStar, idDirector);
         }
 

@@ -17,10 +17,10 @@ namespace WpfApp1.ViewModel
         public MovieCarousel AiringMovieCarousel { get; set; }
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public Movie SelectedItem { get; set; }
+        public TopRevenue SelectedItem { get; set; }
         public HomePageModel() {
             TopMovies = new MovieCarousel(new MovieDB().GetTopN_HotMovies(10), 2, 2);
-            List<Movie> airingMovies = new MovieDB().GetAllAiringMovies();
+            List<TopRevenue> airingMovies = new MovieDB().GetAllAiringMovies();
             Shuffle(airingMovies);
             AiringMovieCarousel = new MovieCarousel(airingMovies, 2, 2);
             PropertyChanged += MyViewModel_PropertyChanged;
