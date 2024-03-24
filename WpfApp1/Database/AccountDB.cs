@@ -70,5 +70,16 @@ namespace WpfApp1.Database
                 }
             }
         }
+
+        public void UpdateAccount(Account account) {
+            string query = $@"
+UPDATE Account SET
+Username = '{account.Username}',
+Birthday = '{account.Date}',
+Password = '{account.Password}'
+WHERE Id = {account.Id}";
+            SqlCommand command = new SqlCommand(query, _connect);
+            command.ExecuteNonQuery();
+        }
     }
 }

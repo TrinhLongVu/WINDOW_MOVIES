@@ -34,7 +34,12 @@ namespace WpfApp1.Database
                     DateTime.Now.Year,
                     DateTime.Now.Month,
                     DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month));
-                AddCoupon(user.Id, endOfMonth, 0.5);
+                AddCoupon(new Coupon {
+                    Name = "Birthday voucher",
+                    Discount = 0.1,
+                    Expire = endOfMonth,
+                    UserId = user.Id,
+                });
 
                 command = new SqlCommand($"INSERT INTO BirthDateCouponCache(UserId, Month) VALUES({user.Id}, {curMonth})",
                                          _connect);
@@ -43,9 +48,11 @@ namespace WpfApp1.Database
             return !gifted;
         }
 
-        public void AddCoupon(int userId, DateTime expire, double discount) {
-            var expire_str = expire.ToString("MM/dd/yyyy");
-            string query = $"INSERT INTO Coupon(Expire, UserId, Discount) VALUES('{expire_str}', {userId}, {discount})";
+        public void AddCoupon(Coupon cp) {
+            var expire_str = cp.Expire.ToString("MM/dd/yyyy");
+            string query = $@"
+INSERT INTO Coupon(Expire, Name, UserId, Discount)
+VALUES('{expire_str}', '{cp.Name}', {cp.UserId}, {cp.Discount})";
             SqlCommand command = new SqlCommand(query, _connect);
             command.ExecuteNonQuery();
         }
@@ -61,14 +68,21 @@ namespace WpfApp1.Database
             while (reader.Read()) {
                 result.Add(new Coupon {
                     Id = reader.GetInt32(0),
-                    Expire = reader.GetDateTime(1),
-                    UserId = reader.GetInt32(2),
-                    Discount = reader.GetDouble(3),
+                    Name = reader.GetString(1),
+                    Expire = reader.GetDateTime(2),
+                    UserId = reader.GetInt32(3),
+                    Discount = reader.GetDouble(4),
                 });
             }
 
             reader.Close();
             return result;
+        }
+
+        public void RemoveCoupon(int cpId) {
+            string query = $"DELETE FROM Coupon WHERE Id = {cpId};";
+            SqlCommand command = new SqlCommand(query, _connect);
+            command.ExecuteNonQuery();
         }
     }
 }
