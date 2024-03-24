@@ -132,6 +132,8 @@ create table Ticket(
 	SeatId int,
     MovieScheduleId int,
     UserId int,
+    Date Datetime,
+    Price float check(Price > 0.0),
 	primary key(Id),
     unique(SeatId, MovieScheduleId)
 )
@@ -139,6 +141,7 @@ go
 
 create table Coupon(
     Id int identity(1, 1),
+    Name varchar(100),
     Expire date,
     UserId int,
     Discount float check(Discount > 0.0 and Discount < 1.0),

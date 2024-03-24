@@ -17,8 +17,10 @@ namespace WpfApp1.Database
             _connect = _dbInstance.Connect;
         }
 
-        public void AddTicket(Account user, Seat seat, MovieSchedule schedule) {
-            string queryMovie = $"INSERT INTO Ticket(SeatId, MovieScheduleId, UserId) VALUES({seat.Id}, {schedule.Id}, {user.Id})";
+        public void AddTicket(Account user, Seat seat, MovieSchedule schedule, DateTime date, double price) {
+            string queryMovie = $@"
+INSERT INTO Ticket(SeatId, MovieScheduleId, UserId, Date, Price)
+VALUES({seat.Id}, {schedule.Id}, {user.Id}, '{date.ToString()}', {price})";
 
             SqlCommand command = new SqlCommand(queryMovie, _connect);
             command.ExecuteNonQuery();
@@ -65,7 +67,9 @@ where tk.UserId = {userId}";
                     Id = reader.GetInt32(0),
                     UserId = reader.GetInt32(1),
                     MovieId = reader.GetInt32(2),
-                    Schedule = DateTime.ParseExact($"{date_str} {time}", "dd/MM/yyyy HH:mm:ss", null)
+                    Schedule = DateTime.ParseExact($"{date_str} {time}", "dd/MM/yyyy HH:mm:ss", null),
+                    Date = reader.GetDateTime(5),
+                    Price = reader.GetDouble(6),
                 });
             }
 

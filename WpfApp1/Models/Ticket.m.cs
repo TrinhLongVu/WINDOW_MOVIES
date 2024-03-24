@@ -14,5 +14,7 @@ namespace WpfApp1.Models
         public string Seat { get; set; }
         public DateTime Schedule { get; set; }
         public int MovieId { get; set; }
+        public DateTime Date { get; set; }
+        public double Price { get; set; }
     }
 }

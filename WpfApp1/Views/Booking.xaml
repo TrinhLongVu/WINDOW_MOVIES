@@ -44,6 +44,18 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+
+            <TextBlock Text="Coupons" Foreground="White" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,20,0,0"
+                       FontSize="20"/>
+            <ItemsControl Grid.Column="0" BorderThickness="0"
+                      ItemsSource="{Binding Coupons}" Background="Transparent" HorizontalAlignment="Center">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Button Content="{Binding}" Click="OnCouponSelect"
+                                HorizontalAlignment="Center" Foreground="White" Background="Transparent" />
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
         </StackPanel>
         
         <ItemsControl Grid.Row="0" Grid.Column="1" Background="Transparent" ItemsSource="{Binding Seats}">
