@@ -3,7 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:WpfApp1.Views"
+      xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
       xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf" 
       xmlns:viewmodel="clr-namespace:WpfApp1.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:StatisticViewModel}"
       mc:Ignorable="d" 
@@ -12,16 +12,70 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="2*"/>
+            <RowDefinition Height="1*"/>
             <RowDefinition Height="4*"/>
             <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0" Orientation="Horizontal">
-            <TextBlock FontSize="60" Text="{Binding TotalMovies}"></TextBlock>
-            <TextBlock FontSize="60" Text="{Binding RevenueDay}"></TextBlock>
-            <TextBlock FontSize="60" Text="{Binding RevenueMonth}"></TextBlock>
-            <TextBlock FontSize="60" Text="{Binding RevenueYear}"></TextBlock>
-        </StackPanel>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Border Grid.Column="0" Background="White" BorderBrush="Black" Margin="10" BorderThickness="1,1,1,1" CornerRadius="20,20,20,20">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="8*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0" Orientation="Vertical" Margin="15,10">
+                        <TextBlock Text="Total Movies" FontSize="15" FontWeight="Bold"/>
+                        <TextBlock Text="{Binding TotalMovies}" FontSize="20" FontWeight="ExtraBold" Foreground="#5444aa"/>
+                    </StackPanel>
+                    <Icon:PackIconBootstrapIcons Grid.Column="1" Kind="CameraVideoFill" Width="30" Height="30" VerticalAlignment="Center"/>
+                </Grid>
+            </Border>
+            <Border Grid.Column="1" Background="White" BorderBrush="Black" Margin="10" BorderThickness="1,1,1,1" CornerRadius="20,20,20,20">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="8*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0" Orientation="Vertical" Margin="15,10">
+                        <TextBlock Text="Day Revenue" FontSize="15" FontWeight="Bold"/>
+                        <TextBlock Text="{Binding RevenueDay}" FontSize="20" FontWeight="ExtraBold" Foreground="#5444aa"/>
+                    </StackPanel>
+                    <Icon:PackIconBootstrapIcons Grid.Column="1" Kind="CameraVideoFill" Width="30" Height="30" VerticalAlignment="Center"/>
+                </Grid>
+            </Border>
+            <Border Grid.Column="2" Background="White" BorderBrush="Black" Margin="10" BorderThickness="1,1,1,1" CornerRadius="20,20,20,20">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="8*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0" Orientation="Vertical" Margin="15,10">
+                        <TextBlock Text="Month Revenue" FontSize="15" FontWeight="Bold"/>
+                        <TextBlock Text="{Binding RevenueMonth}" FontSize="20" FontWeight="ExtraBold" Foreground="#5444aa"/>
+                    </StackPanel>
+                    <Icon:PackIconBootstrapIcons Grid.Column="1" Kind="CameraVideoFill" Width="30" Height="30" VerticalAlignment="Center"/>
+                </Grid>
+            </Border>
+            <Border Grid.Column="3" Background="White" BorderBrush="Black" Margin="10" BorderThickness="1,1,1,1" CornerRadius="20,20,20,20">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="8*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0" Orientation="Vertical" Margin="15,10">
+                        <TextBlock Text="Year Revenue" FontSize="15" FontWeight="Bold"/>
+                        <TextBlock Text="{Binding RevenueYear}" FontSize="20" FontWeight="ExtraBold" Foreground="#5444aa"/>
+                    </StackPanel>
+                    <Icon:PackIconBootstrapIcons Grid.Column="1" Kind="CameraVideoFill" Width="30" Height="30" VerticalAlignment="Center"/>
+                </Grid>
+            </Border>
+        </Grid>
 
         <lvc:CartesianChart Series="{Binding ChartSeries}" Grid.Row="1" LegendLocation="Right">
             <lvc:CartesianChart.AxisX>
