@@ -111,8 +111,8 @@ namespace WpfApp1.ViewModel
                         DateTime.Now,
                         price);
                 }
+                MessageBox.Show($"Successfully booked the ticket with: {price * _bookingSeat.Count}đ!");
                 _bookingSeat.Clear();
-                MessageBox.Show($"Successfully booked the ticket with: {price}$!");
                 CloseCommand();
                 return;
             }

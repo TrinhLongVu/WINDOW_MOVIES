@@ -26,6 +26,7 @@ namespace WpfApp1.Views
                 profileBtn.Visibility = LoginViewModel.IsLogin() ? Visibility.Visible : Visibility.Collapsed;
                 ticketBtn.Visibility = LoginViewModel.IsLogin() ? Visibility.Visible : Visibility.Collapsed;
                 PropertyChanged.Invoke(this, new PropertyChangedEventArgs(nameof(LoginOrOutText)));
+                UserBody.Navigate(new Home());
             } else {
                 NavigationService.Navigate(new Login());
             }
