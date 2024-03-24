@@ -51,7 +51,7 @@ VALUES({seat.Id}, {schedule.Id}, {user.Id}, '{date.ToString()}', {price})";
             List<Ticket> result = new List<Ticket>();
 
             string query = $@"
-            select tk.Id, tk.UserId, ms.IdMovie, ms.Date, sc.Time from Ticket tk
+            select tk.Id, tk.UserId, ms.IdMovie, ms.Date, sc.Time, tk.Date, tk.Price from Ticket tk
             join MovieSchedule ms on ms.Id = tk.MovieScheduleId
             join Schedule sc on sc.Id = ms.IdSchedule
             where tk.UserId = {userId}";
