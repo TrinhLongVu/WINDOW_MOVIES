@@ -23,7 +23,7 @@
                 <TextBlock VerticalAlignment="Center" FontWeight="Bold" Foreground="White" Margin="0 0 10 0">Genre</TextBlock>
                 <ComboBox Grid.Row="1" VerticalAlignment="Center" Width="200" HorizontalAlignment="Right" Margin="0 0 50 0" FontSize="16" Style="{StaticResource RoundComboBox}" ItemsSource="{Binding FilterGenre}" DisplayMemberPath="Name" SelectedItem="{Binding SelectedFilterGenre}" />
             </StackPanel>
-            <ListView ScrollViewer.VerticalScrollBarVisibility="Hidden" BorderThickness="0" BorderBrush="Transparent" HorizontalAlignment="Center" Grid.Row="2" Background="Transparent" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ItemsSource="{Binding MovieShow}" SelectedItem="{Binding SelectedItem}">
+        <ListView ScrollViewer.VerticalScrollBarVisibility="Hidden" BorderThickness="0" BorderBrush="Transparent" HorizontalAlignment="Center" Grid.Row="2" Background="Transparent" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ItemsSource="{Binding MovieShow}" SelectedItem="{Binding SelectedItem}">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel/>

@@ -49,10 +49,10 @@ namespace WpfApp1.Database
             List<Ticket> result = new List<Ticket>();
 
             string query = $@"
-select tk.Id, tk.UserId, ms.IdMovie, ms.Date, sc.Time from Ticket tk
-join MovieSchedule ms on ms.Id = tk.MovieScheduleId
-join Schedule sc on sc.Id = ms.IdSchedule
-where tk.UserId = {userId}";
+            select tk.Id, tk.UserId, ms.IdMovie, ms.Date, sc.Time from Ticket tk
+            join MovieSchedule ms on ms.Id = tk.MovieScheduleId
+            join Schedule sc on sc.Id = ms.IdSchedule
+            where tk.UserId = {userId}";
 
             SqlCommand command = new SqlCommand(query, _connect);
             SqlDataReader reader = command.ExecuteReader();
