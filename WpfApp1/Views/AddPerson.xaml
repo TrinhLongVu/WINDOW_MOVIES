@@ -57,7 +57,7 @@
                     <Button Command="{Binding AddMovieBtn}" Style="{StaticResource userInfoBtn}">
                         <StackPanel Orientation="Horizontal">
                             <Icon:PackIconBoxIcons Kind="SolidPlusCircle" Style="{StaticResource userInfoBtnIcon}"/>
-                            <TextBlock Text="Add" Style="{StaticResource userInfoBtnText}"/>
+                            <TextBlock Text="{Binding ButtonText}" Style="{StaticResource userInfoBtnText}"/>
                         </StackPanel>
                     </Button>
                 </StackPanel>

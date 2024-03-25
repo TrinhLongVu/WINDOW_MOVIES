@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Windows.Input;
 using WpfApp1.Database;
 using WpfApp1.Models;
+using WpfApp1.Views;
 
 namespace WpfApp1.ViewModel
 {
@@ -13,6 +14,7 @@ namespace WpfApp1.ViewModel
         public event PropertyChangedEventHandler PropertyChanged;
         public ObservableCollection<Director> DirectorList { get; set; } = new ObservableCollection<Director>();
         public ArrayList directors = new ArrayList();
+        public Director SelectedDirector { get; set; }
         public int CurrentPage { get; set; }
         private int _pageSize = 8;
         private int _totalDirectors = 0;
@@ -48,6 +50,13 @@ namespace WpfApp1.ViewModel
             int endIndex = Math.Min(startIndex + _pageSize, _totalDirectors);
             DirectorList.Clear();
             for (int i = startIndex; i < endIndex; i++) DirectorList.Add((Director)directors[i]);
+        }
+
+        public void OpenUpdateDirector() {
+            if (SelectedDirector == null) return;
+            new AddPerson("director", SelectedDirector.Id).ShowDialog();
+            directors = new DirectorDB().GetAllDirectors();
+            UpdateDirectorList(CurrentPage);
         }
     }
 }

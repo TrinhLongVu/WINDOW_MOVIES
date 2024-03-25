@@ -23,9 +23,19 @@ namespace WpfApp1.Views
             DataContext = viewModel;
             viewModel.ClickInsert += ViewModel_Clicked;
         }
+        public AddPerson(String type, int id) {
+            InitializeComponent();
+            if (type == "director") {
+                Title = "Update a director";
+            } else if (type == "cast") {
+                Title = "Update a cast";
+            }
+            AddPersonViewModel viewModel = new AddPersonViewModel(type, id);
+            DataContext = viewModel;
+            viewModel.ClickInsert += ViewModel_Clicked;
+        }
         private void ViewModel_Clicked(object sender, EventArgs e)
         {
-            MessageBox.Show("Success insert.");
             Close();
         }
 
