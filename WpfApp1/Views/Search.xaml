@@ -31,24 +31,25 @@
             </ListView.ItemsPanel>
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Grid x:Name="element" Margin="10">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="60"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
-                        <Border Grid.Row="0" Width="275" Height="420">
+                    <Grid x:Name="element" Width="290" Height="440">
+                        <Border Width="280" Height="430" CornerRadius="10">
+                            <Border.Effect>
+                                <DropShadowEffect />
+                            </Border.Effect>
                             <Border.Background>
                                 <ImageBrush ImageSource="{Binding Poster}" Stretch="UniformToFill"/>
                             </Border.Background>
                         </Border>
-                        <TextBlock Margin="10" Grid.Row="1" FontWeight="Bold" FontSize="18px" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding Title}" TextWrapping="Wrap" TextTrimming="WordEllipsis" TextAlignment="Center"/>
+                        <TextBlock Width="280" FontWeight="Bold" FontSize="18px" Margin="0,15"
+                                   Foreground="White" VerticalAlignment="Bottom" HorizontalAlignment="Center"
+                                   Text="{Binding Title}" TextWrapping="Wrap" TextTrimming="WordEllipsis" TextAlignment="Center">
+                            <TextBlock.Background>
+                                <LinearGradientBrush StartPoint="0,1" EndPoint="0,0">
+                                    <GradientStop Color="Black" Offset="0"/>
+                                    <GradientStop Color="#80000000" Offset="1"/>
+                                </LinearGradientBrush>
+                            </TextBlock.Background>
+                        </TextBlock>
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
