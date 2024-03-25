@@ -240,7 +240,7 @@ order by count(tk.Id) desc";
             var movies = new List<(string, double)>();
             string top_selector = n == null ? "" : $"top {n}";
             string query = $@"
-            select {top_selector} mv.Title, sum(tk.price) from Movie mv
+            select {top_selector} mv.Title,  COALESCE(sum(tk.price), 0) from Movie mv
             join MovieSchedule ms on mv.Id = ms.IdMovie
             left join Ticket tk on tk.MovieScheduleId = ms.Id
             group by mv.Id, mv.Title

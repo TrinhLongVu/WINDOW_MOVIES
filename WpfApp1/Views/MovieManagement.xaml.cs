@@ -17,6 +17,7 @@ namespace WpfApp1.Views
         {
             AddMovie addMovieWindow = new AddMovie();
             addMovieWindow.ShowDialog();
+            _model.Reload();
         }
 
         private void OnSelectionChanged(object sender, SelectionChangedEventArgs e) {

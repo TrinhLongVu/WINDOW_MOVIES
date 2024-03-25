@@ -45,7 +45,7 @@ namespace WpfApp1.ViewModel
             foreach (var movie in movies)
             {
                 chartValues.Add(movie.Revenue);
-                ColumnLabels.Add("Day: " + movie.Day.ToString() + "/" + DateTime.Now.Month.ToString());
+                ColumnLabels.Add("Day: " + movie.Day.ToString() + "/" + movie.Month.ToString());
             }
 
             ChartSeries = new SeriesCollection

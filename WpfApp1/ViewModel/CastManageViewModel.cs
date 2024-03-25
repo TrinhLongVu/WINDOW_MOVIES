@@ -51,11 +51,17 @@ namespace WpfApp1.ViewModel
             CastList.Clear();
             for (int i = startIndex; i < endIndex; i++) CastList.Add((Star)casts[i]);
         }
+        public void Reload()
+        {
+            casts = new StarDB().GetAllStar();
+            _totalCasts = casts.Count;
+            _quantityPage = (_totalCasts + _pageSize - 1) / _pageSize;
+            UpdateCastList(CurrentPage);
+        }
         public void OpenUpdateStar() {
             if (SelectedStar == null) return;
             new AddPerson("cast", SelectedStar.Id).ShowDialog();
-            casts = new StarDB().GetAllStar();
-            UpdateCastList(CurrentPage);
+            Reload();
         }
     }
 }

@@ -135,12 +135,12 @@ VALUES({seat.Id}, {schedule.Id}, {user.Id}, '{date.ToString()}', {price})";
             return result;
         }
 
-        public List<(Int32 Day, double Revenue)> MovieGetStatistic()
+        public List<(Int32 Day, Int32 Month, double Revenue)> MovieGetStatistic()
         {
 
-            string query = $"select Day(Ticket.Date), SUM(Ticket.Price) from Ticket group by DAY(Ticket.Date)";
+            string query = $"select Day(Ticket.Date), Month(Ticket.Date), SUM(Ticket.Price) from Ticket group by DAY(Ticket.Date), Month(Ticket.Date)";
 
-            List<(Int32 Day, double Revenue)> movies = new List<(Int32 Day, double Revenue)>();
+            List<(Int32 Day, Int32 Month, double Revenue)> movies = new List<(Int32 Day, Int32, double Revenue)>();
 
             SqlCommand command = new SqlCommand(query, _connect);
 
@@ -149,8 +149,9 @@ VALUES({seat.Id}, {schedule.Id}, {user.Id}, '{date.ToString()}', {price})";
             while (reader.Read())
             {
                 Int32 day = reader.GetInt32(0);
-                double revenue = reader.GetDouble(1);
-                movies.Add((day, revenue));
+                Int32 month = reader.GetInt32(1);
+                double revenue = reader.GetDouble(2);
+                movies.Add((day, month, revenue));
             }
             reader.Close();
             return movies;

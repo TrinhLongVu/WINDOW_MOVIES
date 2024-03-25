@@ -17,6 +17,7 @@ namespace WpfApp1.Views
         {
             AddPerson addCastWindow = new AddPerson("cast");
             addCastWindow.ShowDialog();
+            _model.Reload();
         }
 
         private void OnSelectionChanged(object sender, SelectionChangedEventArgs e) {

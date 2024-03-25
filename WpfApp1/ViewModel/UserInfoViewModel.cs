@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using WpfApp1.Database;
 using WpfApp1.Models;
@@ -24,6 +25,7 @@ namespace WpfApp1.ViewModel
                 Role = LoginViewModel.GetAccount().Role,
             });
             new AccountDB().UpdateAccount(LoginViewModel.GetAccount());
+            MessageBox.Show("Update success.");
         });
 
         public UserInfoViewModel() {

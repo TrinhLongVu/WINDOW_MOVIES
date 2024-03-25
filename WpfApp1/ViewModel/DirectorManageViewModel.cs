@@ -51,12 +51,17 @@ namespace WpfApp1.ViewModel
             DirectorList.Clear();
             for (int i = startIndex; i < endIndex; i++) DirectorList.Add((Director)directors[i]);
         }
-
+        public void Reload()
+        {
+            directors = new DirectorDB().GetAllDirectors();
+            _totalDirectors = directors.Count;
+            _quantityPage = (_totalDirectors + _pageSize - 1) / _pageSize;
+            UpdateDirectorList(CurrentPage);
+        }
         public void OpenUpdateDirector() {
             if (SelectedDirector == null) return;
             new AddPerson("director", SelectedDirector.Id).ShowDialog();
-            directors = new DirectorDB().GetAllDirectors();
-            UpdateDirectorList(CurrentPage);
+            Reload();
         }
     }
 }

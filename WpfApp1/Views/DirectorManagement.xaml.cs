@@ -17,6 +17,7 @@ namespace WpfApp1.Views
         {
             AddPerson addDirectorWindow = new AddPerson("director");
             addDirectorWindow.ShowDialog();
+            _model.Reload();
         }
 
         private void OnSelectionChanged(object sender, SelectionChangedEventArgs e) {

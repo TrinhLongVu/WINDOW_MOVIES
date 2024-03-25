@@ -25,12 +25,11 @@ namespace WpfApp1.Views
         private BookingModel _model;
         public Booking(int movieId)
         {
-            InitializeComponent();
-            _model = new BookingModel(movieId);
-            DataContext = _model;
-            _model.CloseCommand += () => {
+            _model = new BookingModel(movieId, () => {
                 Close();
-            };
+            });
+            InitializeComponent();
+            DataContext = _model;
         }
 
         private void OnSelectedDateChanged(object sender, SelectionChangedEventArgs e) {

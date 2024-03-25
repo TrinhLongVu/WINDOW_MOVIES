@@ -53,12 +53,19 @@ namespace WpfApp1.ViewModel
             for (int i = startIndex; i < endIndex; i++) MovieShow.Add((Movie)movies[i]);
         }
 
+        public void Reload()
+        {
+            movies = new MovieDB().GetAllMovie();
+            _totalMovies = movies.Count;
+            _quantityPage = (_totalMovies + _pageSize - 1) / _pageSize;
+            UpdateMovie(CurrentPage);
+        }
+
         public void OpenUpdateMovie() {
             if (SelectedItem == null) return;
             new AddMovie(SelectedItem.Id).ShowDialog();
             MovieDB movieDB = new MovieDB();
-            movies = movieDB.GetAllMovie();
-            UpdateMovie(CurrentPage);
+            Reload();
         }
     }
 }
