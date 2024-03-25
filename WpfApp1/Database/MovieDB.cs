@@ -119,7 +119,12 @@ namespace WpfApp1.Database
         {
             ArrayList movies = new ArrayList();
 
-            string query = "SELECT * FROM Movie, Genre WHERE Title LIKE @SearchTerm and Movie.IdGener = Genre.Id";
+            string query = @"
+            SELECT m.Id, m.IdGener, m.Title, m.Runtime, m.Rating, m.Poster, m.Landscape, m.Certification, m.Release, m.Detail, g.Name
+            FROM Movie m, Genre g, MovieDirector md, MovieStar ms, Star s, Director d
+            WHERE m.IdGener = g.Id and m.Id = md.MovieId and ms.MovieId = m.Id and ms.StarId = s.Id and d.Id = md.DirectorId and (m.Title LIKE @SearchTerm or d.Name LIKE @SearchTerm or s.Name LIKE @SearchTerm)
+            group by m.Id, m.IdGener, m.Title, m.Runtime, m.Rating, m.Poster, m.Landscape, m.Certification, m.Release, m.Detail, g.Name
+";
 
             SqlCommand command = new SqlCommand(query, _connect);
             command.Parameters.AddWithValue("@SearchTerm", $"%{stringSearch}%");
@@ -138,7 +143,7 @@ namespace WpfApp1.Database
                 string Certification = reader.GetString(7);
                 string Release = reader.GetString(8);
                 string Detail = reader.GetString(9);
-                string GenreName = reader.GetString(11);
+                string GenreName = reader.GetString(10);
                 movies.Add(new Movie { Id = Id, IdGener = IdGener, Title = Title, Runtime = Runtime, Rating = Rating, Poster = Poster, Landscape = Landscape, Certification = Certification, Release = Release, Detail = Detail, GenreName = GenreName });
             }
 

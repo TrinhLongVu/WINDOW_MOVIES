@@ -31,6 +31,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"></RowDefinition>
             <RowDefinition Height="11*"></RowDefinition>
+            <RowDefinition Height="0.7*"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid>
             <Button Style="{StaticResource homeBtn}" VerticalAlignment="Top" HorizontalAlignment="Left" Click="navigateHome">
@@ -81,5 +82,20 @@
             </StackPanel>
         </Grid>
         <Frame x:Name="UserBody" NavigationUIVisibility="Hidden" Source="Home.xaml" Margin="0,39,0,0" Grid.RowSpan="2"/>
+        <Border Grid.Row="2" 
+        VerticalAlignment="Center" 
+        HorizontalAlignment="Center"
+        Background="Transparent"
+        Padding="5">
+            <Border.Effect>
+                <DropShadowEffect Color="White"
+                          Direction="315"
+                          ShadowDepth="3"
+                          Opacity="0.5"/>
+            </Border.Effect>
+            <TextBlock FontSize="16" 
+               Foreground="White"
+               Text="CopyRight@2024; Created by 21127725-21127711-21127720"/>
+        </Border>
     </Grid>
 </Page>
