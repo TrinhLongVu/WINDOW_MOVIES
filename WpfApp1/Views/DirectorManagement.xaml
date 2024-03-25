@@ -20,7 +20,10 @@
             </Button>
         </Grid>
         <Grid Grid.Row="1">
-            <ListView x:Name="myListView" ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalAlignment="Center" BorderThickness="0" BorderBrush="Transparent" ItemsSource="{Binding DirectorList}" Background="Transparent" SelectionMode="Single">
+            <ListView x:Name="myListView" ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                      ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalAlignment="Center"
+                      BorderThickness="0" BorderBrush="Transparent" ItemsSource="{Binding DirectorList}"
+                      Background="Transparent" SelectionMode="Single" SelectedItem="{Binding SelectedDirector}" SelectionChanged="OnSelectionChanged">
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel/>

@@ -5,16 +5,22 @@ namespace WpfApp1.Views
 {
     public partial class DirectorManagement : Page
     {
+        private DirectorManageViewModel _model;
         public DirectorManagement()
         {
             InitializeComponent();
-            DataContext = new DirectorManageViewModel();
+            _model = new DirectorManageViewModel();
+            DataContext = _model;
         }
 
         private void AddDirector(object sender, System.Windows.RoutedEventArgs e)
         {
             AddPerson addDirectorWindow = new AddPerson("director");
             addDirectorWindow.ShowDialog();
+        }
+
+        private void OnSelectionChanged(object sender, SelectionChangedEventArgs e) {
+            _model.OpenUpdateDirector();
         }
     }
 }

@@ -51,5 +51,31 @@ namespace WpfApp1.Database
             command.Parameters.AddWithValue("@Story", story);
             command.ExecuteNonQuery();
         }
+
+        public Star GetStar(int id) {
+            SqlCommand command = new SqlCommand($"SELECT * FROM Star WHERE Id = {id}", _connect);
+            SqlDataReader reader = command.ExecuteReader();
+            Star result = null;
+            if (reader.Read()) {
+                var Id = reader.GetInt32(0);
+                string Name = reader.GetString(1);
+                string Image = reader.GetString(2);
+                string Story = reader.GetString(3);
+                result = new Star { Id = Id, Name = Name, Avatar = Image, Bio = Story };
+            }
+            reader.Close();
+            return result;
+        }
+        public void Update(Star star) {
+            SqlCommand command = new SqlCommand(@$"
+UPDATE Star SET
+Name = '{star.Name}',
+Image = '{star.Avatar}',
+Story = @Story
+WHERE Id = {star.Id}
+", _connect);
+            command.Parameters.AddWithValue("@Story", star.Bio);
+            command.ExecuteNonQuery();
+        }
     }
 }
