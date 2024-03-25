@@ -23,7 +23,10 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Border Grid.Column="0" Background="White" BorderBrush="Black" Margin="10" BorderThickness="1,1,1,1" CornerRadius="20,20,20,20">
+            <Border Grid.Column="0" Background="White" BorderBrush="Transparent" Margin="10" BorderThickness="0" CornerRadius="20,20,20,20">
+                <Border.Effect>
+                    <DropShadowEffect />
+                </Border.Effect>
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="8*"/>
@@ -36,7 +39,10 @@
                     <Icon:PackIconBootstrapIcons Grid.Column="1" Kind="CameraVideoFill" Width="30" Height="30" VerticalAlignment="Center"/>
                 </Grid>
             </Border>
-            <Border Grid.Column="1" Background="White" BorderBrush="Black" Margin="10" BorderThickness="1,1,1,1" CornerRadius="20,20,20,20">
+            <Border Grid.Column="1" Background="White" BorderBrush="Transparent" Margin="10" BorderThickness="0" CornerRadius="20,20,20,20">
+                <Border.Effect>
+                    <DropShadowEffect />
+                </Border.Effect>
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="8*"/>
@@ -46,10 +52,13 @@
                         <TextBlock Text="Day Revenue" FontSize="15" FontWeight="Bold"/>
                         <TextBlock Text="{Binding RevenueDay}" FontSize="20" FontWeight="ExtraBold" Foreground="#5444aa"/>
                     </StackPanel>
-                    <Icon:PackIconBootstrapIcons Grid.Column="1" Kind="CameraVideoFill" Width="30" Height="30" VerticalAlignment="Center"/>
+                    <Icon:PackIconBootstrapIcons Grid.Column="1" Kind="CurrencyExchange" Width="30" Height="30" VerticalAlignment="Center"/>
                 </Grid>
             </Border>
-            <Border Grid.Column="2" Background="White" BorderBrush="Black" Margin="10" BorderThickness="1,1,1,1" CornerRadius="20,20,20,20">
+            <Border Grid.Column="2" Background="White" BorderBrush="Transparent" Margin="10" BorderThickness="0" CornerRadius="20,20,20,20">
+                <Border.Effect>
+                    <DropShadowEffect />
+                </Border.Effect>
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="8*"/>
@@ -59,10 +68,13 @@
                         <TextBlock Text="Month Revenue" FontSize="15" FontWeight="Bold"/>
                         <TextBlock Text="{Binding RevenueMonth}" FontSize="20" FontWeight="ExtraBold" Foreground="#5444aa"/>
                     </StackPanel>
-                    <Icon:PackIconBootstrapIcons Grid.Column="1" Kind="CameraVideoFill" Width="30" Height="30" VerticalAlignment="Center"/>
+                    <Icon:PackIconBootstrapIcons Grid.Column="1" Kind="CurrencyExchange" Width="30" Height="30" VerticalAlignment="Center"/>
                 </Grid>
             </Border>
-            <Border Grid.Column="3" Background="White" BorderBrush="Black" Margin="10" BorderThickness="1,1,1,1" CornerRadius="20,20,20,20">
+            <Border Grid.Column="3" Background="White" BorderBrush="Transparent" Margin="10" BorderThickness="0" CornerRadius="20,20,20,20">
+                <Border.Effect>
+                    <DropShadowEffect />
+                </Border.Effect>
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="8*"/>
@@ -72,31 +84,45 @@
                         <TextBlock Text="Year Revenue" FontSize="15" FontWeight="Bold"/>
                         <TextBlock Text="{Binding RevenueYear}" FontSize="20" FontWeight="ExtraBold" Foreground="#5444aa"/>
                     </StackPanel>
-                    <Icon:PackIconBootstrapIcons Grid.Column="1" Kind="CameraVideoFill" Width="30" Height="30" VerticalAlignment="Center"/>
+                    <Icon:PackIconBootstrapIcons Grid.Column="1" Kind="CurrencyExchange" Width="30" Height="30" VerticalAlignment="Center"/>
                 </Grid>
             </Border>
         </Grid>
-
         <lvc:CartesianChart Series="{Binding ChartSeries}" Grid.Row="1" LegendLocation="Right">
             <lvc:CartesianChart.AxisX>
                 <lvc:Axis Title="Columns" Labels="{Binding ColumnLabels}" MinWidth="30"/>
             </lvc:CartesianChart.AxisX>
         </lvc:CartesianChart>
-
-        <ListView Grid.Row="2"  ScrollViewer.VerticalScrollBarVisibility="Hidden" BorderThickness="0" BorderBrush="Transparent" HorizontalAlignment="Center" Background="Transparent" ItemsSource="{Binding MovietopRevenue}" SelectedItem="{Binding SelectedItem}" Width="1010" >
-            <ListView.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <StackPanel Orientation="Vertical"></StackPanel>
-                </ItemsPanelTemplate>
-            </ListView.ItemsPanel>
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <Grid>
-                        <TextBlock Margin="10" FontWeight="Bold" FontSize="18px" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding Title}" TextWrapping="Wrap" TextTrimming="WordEllipsis" TextAlignment="Center"/>
-                        <TextBlock Margin="10" FontWeight="Bold" FontSize="18px" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding Revenue}" TextWrapping="Wrap" TextTrimming="WordEllipsis" TextAlignment="Center"/>
-                    </Grid>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+        <Border Background="White" Margin="10" CornerRadius="20" Grid.Row="2">
+            <Border.Effect>
+                <DropShadowEffect />
+            </Border.Effect>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1.5*"/>
+                    <RowDefinition Height="8*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" Margin="0,5,0,0" FontSize="20" FontWeight="Bold" Text="TOP REVENUE MOVIES" TextAlignment="Center" VerticalAlignment="Center"/>
+                <ListView Grid.Row="1" Margin="13,0,13,13" ScrollViewer.VerticalScrollBarVisibility="Hidden" BorderThickness="0" BorderBrush="Transparent" Background="Transparent" ItemsSource="{Binding MovietopRevenue}" SelectedItem="{Binding SelectedItem}" >
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="8*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Foreground="#5444aa" FontWeight="Bold" FontSize="18px" VerticalAlignment="Center" Text="{Binding Title}" TextWrapping="Wrap" TextTrimming="WordEllipsis"/>
+                                <TextBlock Grid.Column="1" Foreground="#5444aa" FontWeight="Bold" FontSize="18px" VerticalAlignment="Center" HorizontalAlignment="Right" Text="{Binding Revenue}" TextWrapping="Wrap" TextTrimming="WordEllipsis"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                </ListView>
+            </Grid>
+        </Border>
     </Grid>
 </Page>
